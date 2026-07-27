@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "bundle_version": "0.2.0+8500270.d640ab4",
+  "cli_version": "0.2.0",
+  "kernel_revision": "850027074ecc0a9909ec18309f60d8ad487e23da",
+  "domain_revision": "d640ab44b3bd798e01c6cf20eb625adba7190eb3",
+  "domain_source": {
+    "id": "enterprise-domain-packs",
+    "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
+    "registry": "registry/domains.json"
+  },
+  "skills": [
+    {
+      "name": "end-to-end-evaluator",
+      "source": "kernel/skills/end-to-end-evaluator"
+    },
+    {
+      "name": "harness-audit",
+      "source": "kernel/skills/harness-audit"
+    },
+    {
+      "name": "register-domain-pack",
+      "source": "domains/.agents/skills/register-domain-pack"
+    }
+  ],
+  "files": [
+    {
+      "path": "domains/.agents/skills/register-domain-pack/SKILL.md",
+      "sha256": "c237d05e75b47fe3e6accaf604939d2f0c25eb8c3ff5c6fd8e12269ff98c6fc7"
+    },
+    {
+      "path": "domains/.agents/skills/register-domain-pack/agents/openai.yaml",
+      "sha256": "05bcda3f778d3e84a5ac63bdbeaaddd84f488a0d29bcc2009b2ef46e11b764a9"
+    },
+    {
+      "path": "domains/.agents/skills/register-domain-pack/references/registration-contract.md",
+      "sha256": "477cb0bd52df5184e28ba8872e643149fbc0a581939a5d62bf120985d44e0046"
+    },
+    {
+      "path": "domains/.agents/skills/register-domain-pack/scripts/register_domain_pack.py",
+      "sha256": "31bc8d6a40bdd0e4b0ef69bdf0cd28d72fc9fca37ad08ed1200228fb654b9ed2"
+    },
+    {
+      "path": "domains/AGENTS.md",
+      "sha256": "09c3c2b4cc295953f67274ea1bb67e7f16fb2d9d0f31e2a2a52cca09c8837898"
+    },
+    {
+      "path": "domains/docs/ARCHITECTURE.md",
+      "sha256": "b333d26b0a33cd0180787edb67e8e6448f7ce9208b0f83bf4c37b8dead50cb47"
+    },
+    {
+      "path": "domains/docs/GOVERNANCE.md",
+      "sha256": "1907ee85715cc2f3390550d55b4534fa593dac025492d6c839439df3666ee96f"
+    },
+    {
+      "path": "domains/domains/_template/DOMAIN.md",
+      "sha256": "f844d954dd9260782cadc085134c46c7b269cffc67859e12d8baff0af2032ad5"
+    },
+    {
+      "path": "domains/domains/_template/capabilities.json",
+      "sha256": "0b451e0de7b7f8615ed6c4a6ee2110555218a0311d37e2a7d69746e8cd38f239"
+    },
+    {
+      "path": "domains/domains/_template/domain.json",
+      "sha256": "1678513a5d2ac2f4b83f83201772dd2252118f2eb62bd178011af12969f527ad"
+    },
+    {
+      "path": "domains/domains/_template/evaluators/EVALUATOR.md",
+      "sha256": "b3cfc704b9c20fc620e3776ca7c573b699bb5b3bf9036c6463f4666374756c26"
+    },
+    {
+      "path": "domains/domains/_template/owners.json",
+      "sha256": "885f6758104b51a08f8a285be8d4bbb3154ac31ce86346603bee4ce07efe600d"
+    },
+    {
+      "path": "domains/domains/_template/routes.json",
+      "sha256": "fc66100edbba0d7f4308b8dc172f3cd716d0fa20631f885f04b0bf4f9197f64c"
+    },
+    {
+      "path": "domains/domains/_template/rules/BASE.md",
+      "sha256": "b2ee75ec1522f41b7a605a416d868dbd01aa144985b0fce5a6e400afc5ba0a03"
+    },
+    {
+      "path": "domains/domains/_template/skills/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/_template/templates/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/_template/workflows/WORKFLOW.md",
+      "sha256": "3f10d76270085be8dccaea74872e4ad94e38772ed4706ec7d24df323dbfd60c7"
+    },
+    {
+      "path": "domains/registry/domains.json",
+      "sha256": "092a9b772fc9f498cd77f82640f7b1643244b7e1780863d59e3e380d2101f02e"
+    },
+    {
+      "path": "domains/schemas/capability.schema.json",
+      "sha256": "0066aff6da73c33af6cbde48f43b5dadc1e13ac60d4f7a5298aa9ceeea821996"
+    },
+    {
+      "path": "domains/schemas/domain-pack.schema.json",
+      "sha256": "e891cd984f4312e682ee59d904a6271e14c0b5a395f0cfe16a3bb7b82cf72cdb"
+    },
+    {
+      "path": "domains/schemas/owners.schema.json",
+      "sha256": "585c8e3e980d00380d9d7dc6c9f3d4416fed263a24c8a1115a8ca161ded89aba"
+    },
+    {
+      "path": "domains/schemas/registry.schema.json",
+      "sha256": "d873331239419b50584aaa8c7b56d42df30212e3155e35635dc0aeb62c954083"
+    },
+    {
+      "path": "domains/schemas/route.schema.json",
+      "sha256": "a171175e580567d905fa4e0752daadbd98d4c7fbcb9254bd54f7bb509709ad20"
+    },
+    {
+      "path": "kernel/AGENTS.md",
+      "sha256": "e17cf423701b8f0caa5ae218eda32f8fb4bb2409c9200671b99debe5cd5af179"
+    },
+    {
+      "path": "kernel/config/domain-pack-sources.json",
+      "sha256": "4e707e324239042f1d5dad7cac4d40d791a4f995b20505b30a55768913892377"
+    },
+    {
+      "path": "kernel/docs/ARCHITECTURE.md",
+      "sha256": "1feb8fbe1236e5f81d455409af4b588cb34072f15e6f5a658b63bfdf3cf25290"
+    },
+    {
+      "path": "kernel/docs/AUTONOMY_POLICY.md",
+      "sha256": "481c7668df28efba688a54d90365ca2dccb03f345d87da173a20dda3863eb549"
+    },
+    {
+      "path": "kernel/docs/ENTERPRISE_DOMAIN_ARCHITECTURE.md",
+      "sha256": "05698201a2522ff4c564b58d5fb9cfe1d91165f789457909e1857507ce891bc0"
+    },
+    {
+      "path": "kernel/docs/GOVERNANCE.md",
+      "sha256": "aaacbf2c20e7651a367e715f74b9fc62bdfeecb4e141dd150877cf484cf0f776"
+    },
+    {
+      "path": "kernel/docs/MATURITY_MODEL.md",
+      "sha256": "bf7c56a118e893cfb85e9bf444c012ebdfb8cdf0ca92b17d03cc743ed52e2e14"
+    },
+    {
+      "path": "kernel/docs/OBSERVABILITY.md",
+      "sha256": "c602b7f1a665510d91b72ab85142d01eb2df04b823c24618d82153de0aab3ecd"
+    },
+    {
+      "path": "kernel/docs/ROUTING.md",
+      "sha256": "582dc8f58134f36c1aeb34aa4816e58dc2df511633cfe1c7398c710d7486bbe7"
+    },
+    {
+      "path": "kernel/docs/knowledge/harness-engineering-video-analysis-bv12lr1b3eut.md",
+      "sha256": "343ee0a463956a355a5b5a19159f3f958f8ec63bdca2993d9e241e0a01d91955"
+    },
+    {
+      "path": "kernel/docs/knowledge/harness-engineering-video-analysis.md",
+      "sha256": "6f78e0ee6e608be0ecacfcac7eca6fd754500f3f1b32aface7d45a2bbd94301f"
+    },
+    {
+      "path": "kernel/docs/reference/README.md",
+      "sha256": "ea7c9fc7b9222d8d8dd5b70f4d0ece2a74aed8e04e9419ea8211d81ac16e51f5"
+    },
+    {
+      "path": "kernel/docs/reference/harness-engineering-video-analysis.md",
+      "sha256": "6f78e0ee6e608be0ecacfcac7eca6fd754500f3f1b32aface7d45a2bbd94301f"
+    },
+    {
+      "path": "kernel/docs/reference/source-harness-engineering-spec.zh-CN.md",
+      "sha256": "e4c84f03719a3dfbf196deb8687e78bc50bfc088411cae9211751a76018edd53"
+    },
+    {
+      "path": "kernel/rules/CORE.md",
+      "sha256": "26a495231b889c2e54ef2738ceff1b1edc97b12b51fbda43b873ae8839daedf4"
+    },
+    {
+      "path": "kernel/schemas/domain-pack-source.schema.json",
+      "sha256": "8f4ae84a575905b29db913e59d6722fb84306ef111c2a3b6f6c3a0b130d72b27"
+    },
+    {
+      "path": "kernel/schemas/project-domain-overlay.schema.json",
+      "sha256": "75fa3ecd24c3f7ad27f990cc1b9a8c22452e69bd7d6c17d8965473f281998789"
+    },
+    {
+      "path": "kernel/schemas/routing-plan.schema.json",
+      "sha256": "16214d7cc099c699a299c0b973c731137996007a5619f50eee1e2635e1ce21f8"
+    },
+    {
+      "path": "kernel/schemas/task-envelope.schema.json",
+      "sha256": "2a13cb88b23bbcc9366faa9ff4be3ce552a06233b17c0392c4cb810c999ae3a5"
+    },
+    {
+      "path": "kernel/skills/end-to-end-evaluator/SKILL.md",
+      "sha256": "f067da61d5ebbb28545385c3d0f1343d1afb73a1507730c10a7a59496e2bdb6f"
+    },
+    {
+      "path": "kernel/skills/end-to-end-evaluator/agents/openai.yaml",
+      "sha256": "1c28ee6f2f0c6990017e0b461bd1788afb2f317b36834866c6993fae32bd1380"
+    },
+    {
+      "path": "kernel/skills/end-to-end-evaluator/references/evidence-contract.md",
+      "sha256": "22b7bb86de09e3f4510def83cae5984ad8da0136c4bbc78372f2f4c4131c4e7f"
+    },
+    {
+      "path": "kernel/skills/harness-audit/SKILL.md",
+      "sha256": "1a0a72f30304fdc54ef58a429b7310578414514f1c647bdc9ecace6e971dac89"
+    },
+    {
+      "path": "kernel/skills/harness-audit/agents/openai.yaml",
+      "sha256": "eed3e9ad0166ea31fc4b6ee8c04d0e1746a4ba8909b75c8e2563432489a79994"
+    },
+    {
+      "path": "kernel/skills/harness-audit/references/rubric.md",
+      "sha256": "b775a875dd22908d4074c167620135f82df82780e56f7943b5acded3aa0a622f"
+    },
+    {
+      "path": "kernel/workflows/3-plus-1.md",
+      "sha256": "212f1387abe499195dbd7b25350514c3cc9901baa73c3af1c55831d43a5a2bde"
+    }
+  ]
+}

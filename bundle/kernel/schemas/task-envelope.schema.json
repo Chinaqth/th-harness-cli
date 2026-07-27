@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Harness Task Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_id", "intent", "task_type", "deliverables", "constraints", "repository_signals", "required_evidence"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "task_id": { "type": "string", "minLength": 1 },
+    "intent": { "type": "string", "minLength": 1 },
+    "task_type": { "type": "string", "minLength": 1 },
+    "deliverables": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "constraints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "repository_signals": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "required_evidence": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "risk_hints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+  }
+}
