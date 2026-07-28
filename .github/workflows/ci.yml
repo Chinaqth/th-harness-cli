@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run check
+
+  package-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pack and install in isolated paths
+        run: |
+          package_dir="$(mktemp -d)"
+          user_dir="$(mktemp -d)"
+          project_dir="$(mktemp -d)"
+          npm pack --pack-destination "$package_dir"
+          npm install --global --prefix "$user_dir/prefix" "$package_dir"/*.tgz
+          export HARNESS_USER_HOME="$user_dir"
+          export HARNESS_HOME="$user_dir/.harness"
+          export CODEX_HOME="$user_dir/.codex"
+          export HARNESS_AGENTS_SKILL_ROOT="$user_dir/.agents/skills"
+          export HARNESS_CODEX_SKILL_ROOT="$user_dir/.codex/skills"
+          "$user_dir/prefix/bin/harness" install
+          cd "$project_dir"
+          "$user_dir/prefix/bin/harness" doctor
+          "$user_dir/prefix/bin/harness" check
+          "$user_dir/prefix/bin/harness" context
+          "$user_dir/prefix/bin/harness" uninstall
+          "$user_dir/prefix/bin/harness" install
+          "$user_dir/prefix/bin/harness" doctor

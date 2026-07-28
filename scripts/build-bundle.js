@@ -16,6 +16,8 @@ const kernelRevision = execFileSync("git", ["-C", kernel, "rev-parse", "HEAD"], 
 const domainRevision = execFileSync("git", ["-C", domains, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 const source = JSON.parse(fs.readFileSync(path.join(kernel, "config", "domain-pack-sources.json"), "utf8")).sources?.[0];
 if (!source || source.ref !== domainRevision) throw new Error("Kernel Domain pin does not match Domain Packs HEAD");
+execFileSync("bash", [path.join(kernel, "scripts", "harness-check.sh")], { cwd: kernel, stdio: "inherit" });
+execFileSync("bash", [path.join(domains, "scripts", "domain-check.sh")], { cwd: domains, stdio: "inherit" });
 
 const kernelEntries = ["AGENTS.md", "config", "docs", "rules", "schemas", "workflows", "skills"];
 const domainEntries = ["AGENTS.md", ".agents/skills", "docs", "registry", "schemas", "domains"];

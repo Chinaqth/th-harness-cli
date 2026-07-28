@@ -13,7 +13,8 @@
   "files": ["bin", "src", "bundle", "README.md", "README-CH.md", "docs"],
   "scripts": {
     "bundle:build": "node scripts/build-bundle.js",
+    "bundle:verify": "node scripts/verify-bundle.js",
     "test": "node --test",
-    "check": "node --check bin/harness.js && node --test && npm_config_cache=/tmp/harness-cli-npm-cache npm pack --dry-run"
+    "check": "node --check bin/harness.js && npm run bundle:verify && node --test && npm_config_cache=/tmp/harness-cli-npm-cache npm pack --dry-run"
   }
 }
