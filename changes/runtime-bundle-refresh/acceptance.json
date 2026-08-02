@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "change_id": "runtime-bundle-refresh",
+  "status": "complete",
+  "criteria": [
+    { "id": "source-pin", "status": "passed", "evidence": ["bundle/bundle-manifest.json", "bundle/kernel/config/domain-pack-sources.json"] },
+    { "id": "skill-lifecycle", "status": "passed", "evidence": ["scripts/build-bundle.js", "test/cli.test.js"] },
+    { "id": "bundle-boundary", "status": "passed", "evidence": ["docs/ARCHITECTURE.md", "bundle/bundle-manifest.json"] },
+    { "id": "isolated-journey", "status": "passed", "evidence": ["changes/runtime-bundle-refresh/progress.md"] }
+  ]
+}

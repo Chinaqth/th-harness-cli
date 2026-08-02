@@ -1,6 +1,6 @@
 {
   "name": "@chinaqth/harness-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "User-level Harness Engineering gateway for Codex projects.",
   "type": "module",
   "bin": {

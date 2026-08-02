@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.0+8500270.d640ab4",
-  "cli_version": "0.2.0",
-  "kernel_revision": "850027074ecc0a9909ec18309f60d8ad487e23da",
-  "domain_revision": "d640ab44b3bd798e01c6cf20eb625adba7190eb3",
+  "bundle_version": "0.2.1+0ca5c02.a5e87f5",
+  "cli_version": "0.2.1",
+  "kernel_revision": "0ca5c027ca8fc0685e579c320864f5d39403c31b",
+  "domain_revision": "a5e87f54e1ee0a2cca6215eed771639721f1a1dc",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -19,14 +19,118 @@
       "source": "kernel/skills/harness-audit"
     },
     {
+      "name": "author-domain-artifact",
+      "source": "domains/.agents/skills/author-domain-artifact"
+    },
+    {
+      "name": "complete-domain-pack",
+      "source": "domains/.agents/skills/complete-domain-pack"
+    },
+    {
+      "name": "evaluate-domain-artifact",
+      "source": "domains/.agents/skills/evaluate-domain-artifact"
+    },
+    {
+      "name": "evaluate-domain-pack",
+      "source": "domains/.agents/skills/evaluate-domain-pack"
+    },
+    {
       "name": "register-domain-pack",
       "source": "domains/.agents/skills/register-domain-pack"
     }
   ],
   "files": [
     {
+      "path": "domains/.agents/skills/author-domain-artifact/SKILL.md",
+      "sha256": "07c48b072af9c98ddee52842d783540e8fd0c35ce16d0a2484209a88031a3dfb"
+    },
+    {
+      "path": "domains/.agents/skills/author-domain-artifact/agents/openai.yaml",
+      "sha256": "7bfe4c6e125a26bf6f38dfb5c251a03ecffcb2b651dea33367561fca20d4cb44"
+    },
+    {
+      "path": "domains/.agents/skills/author-domain-artifact/references/artifact-contracts.md",
+      "sha256": "807701e9946f92ac8b9130034c4033231af724ab9e9508586bebb83c05a67e2f"
+    },
+    {
+      "path": "domains/.agents/skills/author-domain-artifact/references/content-boundaries.md",
+      "sha256": "6c906f92f02653074a0e7f3312ba113d4707386b83da9556361efb84ff523298"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/SKILL.md",
+      "sha256": "60a149f9d24fef3f571118fc3799fe116dff227fadb95f0fa537b87274c34045"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/agents/openai.yaml",
+      "sha256": "0ae7065f1ebafb0f3c0e0f7db0483f709119858fd72a915f1ee870e1a0de49a6"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/references/artifact-order.md",
+      "sha256": "7777fb3939b7d5470e250915c3d3d8275ed269bd940a293b6af58c6b98709396"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/references/lifecycle-gates.md",
+      "sha256": "726e7a25392784f9671cbfe72b5bdd8115f7d3b4629ecb1267284243412de97a"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/references/research-contract.md",
+      "sha256": "36ae6bbe9c3f9fc5e2bed200a34af84802baab1a7d8ca07250b3ccfcfca33eb3"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/references/session-contract.md",
+      "sha256": "e749437c9fca5b6870047299d3b6e784087e9db0bc6a049ec8fd63eef5cab464"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/scripts/validate_research.py",
+      "sha256": "13c389d4c48a71cf35d269bb32ed01e83d0c00e00b30f5abf9eece07f2cf61cf"
+    },
+    {
+      "path": "domains/.agents/skills/complete-domain-pack/scripts/validate_session.py",
+      "sha256": "db9b257b362e9f27ad17b04e94e4099e76b4aea2090aadc072cc9814f6df5e14"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-artifact/SKILL.md",
+      "sha256": "e0a9397bb8332a8b651d0b9e9749b4b50f39a0bc7d394bda345cc2f95f0f257d"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-artifact/agents/openai.yaml",
+      "sha256": "dacb7d73449a008ae4a04b9042ffca12e39f4c6a4fccac4146d624755261dd2d"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-artifact/references/evaluation-record.md",
+      "sha256": "32a9b98a56137280cd740c2be055e6b27f1de26f95392b72f231a65a881f67ed"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-artifact/references/scoring-rubric.md",
+      "sha256": "c6b7cdd2934a10999ca9b07f3c5b20ce8336eca017cdd039d94eeb88da85deb5"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-artifact/scripts/score_evaluation.py",
+      "sha256": "02cc991b64e639f55b767e9ec5895222b1f8c5ee683a1d92aa2f0f4c6e3b6c80"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-pack/SKILL.md",
+      "sha256": "32d305ecc4bf12126f8c9eb2c69c8fb569a223fa41a5018e265561def8854d21"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-pack/agents/openai.yaml",
+      "sha256": "b3d5e64a40a936b40ec9686446a784fb62879e62174f5743a11ec4e352bbdd44"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-pack/references/activation-gates.md",
+      "sha256": "2efa0e21d3c46933fba276015c7651a1f9323fcfc6cfc2a479cbe9a8dca94be4"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-pack/references/routing-scenarios.md",
+      "sha256": "7b59b2806ff1bb711fa91ebbbd2711bb012945db4b53919351c2ab05000b6703"
+    },
+    {
+      "path": "domains/.agents/skills/evaluate-domain-pack/scripts/check_pack.py",
+      "sha256": "021b848dc1874ea55bdedf794f58905f031e4e6a762a49bbdb83d9e3bdb0bf4a"
+    },
+    {
       "path": "domains/.agents/skills/register-domain-pack/SKILL.md",
-      "sha256": "c237d05e75b47fe3e6accaf604939d2f0c25eb8c3ff5c6fd8e12269ff98c6fc7"
+      "sha256": "9d6e93568a8754129da6d6f6d16ee0bae75670e018e6340908db7fdaa013e082"
     },
     {
       "path": "domains/.agents/skills/register-domain-pack/agents/openai.yaml",
@@ -38,11 +142,11 @@
     },
     {
       "path": "domains/.agents/skills/register-domain-pack/scripts/register_domain_pack.py",
-      "sha256": "31bc8d6a40bdd0e4b0ef69bdf0cd28d72fc9fca37ad08ed1200228fb654b9ed2"
+      "sha256": "a0f6711b69c68b86c02600e5cb1cfb7014acab8ea053409823dd239e417df243"
     },
     {
       "path": "domains/AGENTS.md",
-      "sha256": "09c3c2b4cc295953f67274ea1bb67e7f16fb2d9d0f31e2a2a52cca09c8837898"
+      "sha256": "42dcfa29eb96f5b1b89779f32450aad324139c428e0cac5398baa2a1d06a8b23"
     },
     {
       "path": "domains/docs/ARCHITECTURE.md",
@@ -93,8 +197,48 @@
       "sha256": "3f10d76270085be8dccaea74872e4ad94e38772ed4706ec7d24df323dbfd60c7"
     },
     {
+      "path": "domains/domains/engineering/android/DOMAIN.md",
+      "sha256": "bef538a935b93cf73f96fe9956774701ee37b04291456719510bb47d83a4a193"
+    },
+    {
+      "path": "domains/domains/engineering/android/capabilities.json",
+      "sha256": "cb3c55bd1ac8e65244feac38853c617fb7f6b3f8df199efea9e26b732d1ebc10"
+    },
+    {
+      "path": "domains/domains/engineering/android/domain.json",
+      "sha256": "b74125f5f59500e6975bdbf1f1671722d8c680fa685e3a409fd6ad4e88c80638"
+    },
+    {
+      "path": "domains/domains/engineering/android/evaluators/EVALUATOR.md",
+      "sha256": "b3cfc704b9c20fc620e3776ca7c573b699bb5b3bf9036c6463f4666374756c26"
+    },
+    {
+      "path": "domains/domains/engineering/android/owners.json",
+      "sha256": "fd51e18f8c7c7aa3e92a57956e840d4d0d64d8eec614634fd34a8ba2fd39372e"
+    },
+    {
+      "path": "domains/domains/engineering/android/routes.json",
+      "sha256": "6bf9b7f1856f543fae244ef6a8cb30eb6113733976b02c7ddce53bd399ed9e77"
+    },
+    {
+      "path": "domains/domains/engineering/android/rules/BASE.md",
+      "sha256": "b2ee75ec1522f41b7a605a416d868dbd01aa144985b0fce5a6e400afc5ba0a03"
+    },
+    {
+      "path": "domains/domains/engineering/android/skills/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/android/templates/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/android/workflows/WORKFLOW.md",
+      "sha256": "3f10d76270085be8dccaea74872e4ad94e38772ed4706ec7d24df323dbfd60c7"
+    },
+    {
       "path": "domains/registry/domains.json",
-      "sha256": "092a9b772fc9f498cd77f82640f7b1643244b7e1780863d59e3e380d2101f02e"
+      "sha256": "0cc3c9ce9b37a471949df9726c6cc04157565946caca28ea0e45c068176d8bd4"
     },
     {
       "path": "domains/schemas/capability.schema.json",
@@ -122,7 +266,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "4e707e324239042f1d5dad7cac4d40d791a4f995b20505b30a55768913892377"
+      "sha256": "c2ff0be49777115d2914194ec7691cf962869f4e6d23a7a5722ef8b6d6749e94"
     },
     {
       "path": "kernel/docs/ARCHITECTURE.md",

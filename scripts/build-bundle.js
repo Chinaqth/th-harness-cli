@@ -54,6 +54,14 @@ const skills = [
   ...skillEntries(path.join(output, "kernel", "skills"), "kernel/skills"),
   ...skillEntries(path.join(output, "domains", ".agents", "skills"), "domains/.agents/skills")
 ];
+const registry = JSON.parse(fs.readFileSync(path.join(output, "domains", source.registry), "utf8"));
+for (const domain of registry.domains || []) {
+  if (domain.status !== "active") continue;
+  skills.push(...skillEntries(
+    path.join(output, "domains", domain.path, "skills"),
+    path.join("domains", domain.path, "skills")
+  ));
+}
 if (new Set(skills.map((item) => item.name)).size !== skills.length) throw new Error("Duplicate published Skill name");
 const manifest = {
   schema_version: "1.0",

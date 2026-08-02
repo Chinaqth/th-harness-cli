@@ -2,9 +2,9 @@
 
 Current embedded baseline:
 
-- CLI: `0.2.0`
-- Kernel: `850027074ecc0a9909ec18309f60d8ad487e23da`
-- Domain Packs: `d640ab44b3bd798e01c6cf20eb625adba7190eb3`
+- CLI: `0.2.1`
+- Kernel: `0ca5c027ca8fc0685e579c320864f5d39403c31b`
+- Domain Packs: `a5e87f54e1ee0a2cca6215eed771639721f1a1dc`
 
 Run:
 

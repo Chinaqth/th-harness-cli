@@ -14,6 +14,8 @@ Kernel revision + Domain revision
 
 The Runtime manifest records exact source revisions, installed file checksums, and projections. Runtime commands read only installed files and never require the source Git repositories.
 
+The release Bundle includes Domain repository runtime content and administrative Skills, but excludes repository-development `.codex` configuration and Custom Agents. Those files orchestrate work inside the authoritative Domain repository and are not user-runtime policy. Functional Domain Skills are projected only when their registry entry is `active`; draft Domain content remains visible to maintainers but cannot become globally selectable.
+
 A product project is valid without Harness files. Its optional overlay can add stricter facts and select capabilities, but cannot weaken Kernel constraints. Routing fails closed unless a capability is registered, active, exact-version compatible, and project-enabled.
 
 Uninstall is the inverse operation. It requires both ownership records, rejects modified projections or Runtime files, removes only the managed Codex block, and never modifies a product project.

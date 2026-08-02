@@ -99,6 +99,14 @@ test("active and project-enabled synthetic Domain produces a routed plan", (t) =
       tools: ["npm"], evaluators: ["EVALUATOR.md"], permissions: ["repository:write"]
     }]
   });
+  write(path.join(domainRoot, "skills", "web-delivery", "SKILL.md"), "---\nname: web-delivery\ndescription: Deliver web changes.\n---\n");
+  const syntheticManifestFile = path.join(syntheticBundle, "bundle-manifest.json");
+  const syntheticManifest = JSON.parse(fs.readFileSync(syntheticManifestFile, "utf8"));
+  syntheticManifest.skills.push({
+    name: "web-delivery",
+    source: "domains/domains/engineering/web/skills/web-delivery"
+  });
+  writeJson(syntheticManifestFile, syntheticManifest);
   refreshBundleManifest(syntheticBundle);
   writeJson(path.join(item.project, ".harness", "domains.json"), {
     schema_version: "1.0",
@@ -117,6 +125,7 @@ test("active and project-enabled synthetic Domain produces a routed plan", (t) =
   const plan = route({ project: item.project, taskFile: task, env: item.env });
   assert.equal(plan.status, "routed");
   assert.deepEqual(plan.selections[0].capability_ids, ["delivery"]);
+  assert.ok(fs.lstatSync(path.join(item.env.HARNESS_CODEX_SKILL_ROOT, "web-delivery")).isSymbolicLink());
 });
 
 test("duplicate project Domain entries fail closed", (t) => {
