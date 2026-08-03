@@ -25,6 +25,7 @@ Professional behavior becomes more specific closer to the task. Safety constrain
 ```text
 domains/<domain-path>/
 ├── DOMAIN.md
+├── README-CH.md
 ├── domain.json
 ├── routes.json
 ├── capabilities.json
@@ -39,10 +40,11 @@ domains/<domain-path>/
 | Artifact | Responsibility |
 | --- | --- |
 | `DOMAIN.md` | Human-readable purpose, boundaries, inputs, outputs, and maturity |
+| `README-CH.md` | Chinese inventory of each production artifact's responsibility and behavior; never an independent policy source |
 | `domain.json` | Stable identity, lifecycle, ownership, inheritance, and applicability |
 | `routes.json` | Conditions a future conforming resolver may use to consider this Domain |
 | `capabilities.json` | Workflows, Skills, tools, evaluators, permissions, and dependencies |
-| `owners.json` | Primary owner and required reviewers |
+| `owners.json` | Primary owner and optional reviewers |
 | `rules/` | Domain invariants that specialize but do not weaken the Kernel |
 | `workflows/` | Repeatable domain delivery sequences |
 | `evaluators/` | Domain-specific acceptance and evidence contracts |
@@ -65,7 +67,10 @@ Task Envelope
 
 The registry is the fact source. Model reasoning may interpret ambiguous intent and compose work packages, but it must not invent unregistered capabilities.
 
-All registered JSON documents are checked against the schemas in `schemas/`. Lifecycle validation adds semantic gates that JSON Schema alone cannot express: an active Pack must have review ownership, meaningful routes and capabilities, evaluator coverage, activation evidence, a compatibility statement, and resolvable dependencies.
+All registered JSON documents are checked against the schemas in `schemas/`. Lifecycle validation
+adds semantic gates that JSON Schema alone cannot express: an active Pack must have a named owner,
+meaningful routes and capabilities, evaluator coverage, a compatibility statement, and resolvable
+references and dependencies. Successful completion automatically sets the Pack active.
 
 ## Distribution
 

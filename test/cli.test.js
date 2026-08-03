@@ -81,6 +81,30 @@ test("fresh project is discoverable and routes fail closed", (t) => {
   assert.deepEqual(plan.selections, []);
 });
 
+test("bundled active Web Domain routes only after explicit project enablement", (t) => {
+  const item = fixture(t);
+  install({ env: item.env, bundleRoot });
+  writeJson(path.join(item.project, ".harness", "domains.json"), {
+    schema_version: "1.0",
+    domains: [{
+      id: "engineering.web", version: "0.1.0", enabled: true, local_owner: "product-web",
+      additional_signals: [], constraints: [], disabled_capabilities: [], mappings: []
+    }]
+  });
+  const task = path.join(item.temp, "web-task.json");
+  writeJson(task, {
+    schema_version: "1.0", task_id: "web-feature", intent: "Implement a semantic web interface",
+    task_type: "web-frontend-implementation", deliverables: ["interface"], constraints: [],
+    repository_signals: ["HTML element semantics, content model, document structure, form, or native interactive control"],
+    required_evidence: ["tests"], risk_hints: []
+  });
+  const plan = route({ project: item.project, taskFile: task, env: item.env });
+  assert.equal(plan.status, "routed");
+  assert.equal(plan.selections[0].domain_id, "engineering.web");
+  assert.deepEqual(plan.selections[0].skills, ["web-interface-delivery"]);
+  assert.ok(fs.lstatSync(path.join(item.env.HARNESS_CODEX_SKILL_ROOT, "web-interface-delivery")).isSymbolicLink());
+});
+
 test("active and project-enabled synthetic Domain produces a routed plan", (t) => {
   const item = fixture(t);
   const syntheticBundle = copyBundle(item);

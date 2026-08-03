@@ -30,20 +30,21 @@ Author one evidence-ready artifact without scoring it.
 - Keep professional rules reusable across products; move local paths, commands, and constraints
   to project overlays.
 - Define measurable outputs and evidence, not aspirational prose.
-- Keep generated repository content in English unless preserving an authoritative localized
-  source.
+- Keep generated repository content in English except the required per-Domain `README-CH.md` and
+  authoritative localized sources. Write `README-CH.md` in Chinese as a faithful guide to the
+  final English production artifacts.
 
 ## Stop Conditions
 
 Return `needs_input` without writing speculative content when:
 
-- the Domain owner or required reviewer is unknown;
+- the Domain owner is unknown;
 - professional behavior lacks an authoritative source;
 - a tool, permission, dependency, or compatibility claim cannot be verified;
 - the requested content would weaken Kernel rules;
 - the artifact requires a project-specific fact.
 
-Do not stop public baseline authoring merely because a reviewer, internal permission, private
+Do not stop public baseline authoring merely because an optional reviewer, internal permission, private
 architecture, or unpublished policy is unknown. Preserve it as `needs-org-input` and continue
 where the validated research ledger supports content.
 

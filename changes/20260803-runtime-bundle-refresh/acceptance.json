@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "change_id": "20260803-runtime-bundle-refresh",
+  "status": "complete",
+  "criteria": [
+    { "id": "source-pin", "status": "passed", "evidence": ["bundle/bundle-manifest.json", "bundle/kernel/config/domain-pack-sources.json"] },
+    { "id": "active-domain-skill", "status": "passed", "evidence": ["bundle/domains/registry/domains.json", "test/cli.test.js"] },
+    { "id": "isolated-journey", "status": "passed", "evidence": ["changes/20260803-runtime-bundle-refresh/progress.md"] }
+  ]
+}
