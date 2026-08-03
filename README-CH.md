@@ -1,6 +1,6 @@
 # Harness Engineering CLI
 
-Harness CLI 为当前用户安装版本锁定的 Harness Kernel 和 Enterprise Domain Runtime。产品项目保持不变，新项目无需初始化即可被发现。
+Harness CLI 为当前用户安装版本锁定的 Harness Kernel 和 Enterprise Domain Runtime，并向已探测到的 AI Agent 平台部署适配器。目前支持 Codex 和 Hermes Agent。产品项目保持不变，新项目无需初始化即可被发现。
 
 [English README](README.md)
 
@@ -13,7 +13,9 @@ npm install -g @chinaqth/harness-cli
 harness install
 ```
 
-`harness install` 会验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，在 `~/.codex/AGENTS.md` 中维护一个受控接入区块，并把清单声明的 Skills 投影到 `~/.agents/skills` 和 `~/.codex/skills`。遇到同名非受管 Skill 时会安全失败。
+`harness platforms` 只读探测平台。`harness install` 会验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用官方原生目录 `~/.hermes/skills`，并获得仅限 Hermes 的 `harness-runtime` 路由适配 Skill；共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改 Hermes 的 `config.yaml`、`SOUL.md` 或记忆文件，遇到同名非受管 Skill 时会安全失败。
+
+探测依据为默认平台目录（`~/.codex`、`~/.hermes`）已经存在，或显式配置了 `CODEX_HOME`/`HERMES_HOME`。自动化环境可用 `HARNESS_PLATFORMS=codex,hermes` 明确选择适配器。
 
 ```text
 ~/.harness/
@@ -44,7 +46,7 @@ harness uninstall
 npm uninstall -g @chinaqth/harness-cli
 ```
 
-第一条命令只移除 manifest 确认所有权的 Runtime、Skill 投影、状态和 Codex 受控区块；保留产品项目、用户规则、非受管 Skills 和 CLI npm 包。第二条命令才删除 CLI 程序。
+第一条命令只移除 manifest 确认所有权的 Runtime、平台 Skill 投影、状态和受控规则区块；保留平台主目录、产品项目、用户规则、非受管 Skills、Hermes 身份与记忆，以及 CLI npm 包。第二条命令才删除 CLI 程序。
 
 ## 发布 Bundle
 

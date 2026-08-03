@@ -2,11 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { check, context, doctor, route } from "./runtime.js";
 import { install, uninstall } from "./install.js";
+import { resolveUserPaths } from "./paths.js";
+import { detectPlatforms } from "./platforms.js";
 
 const HELP = `Harness Engineering CLI
 
 Usage:
   harness install [--json]
+  harness platforms [--json]
   harness doctor [--project <path>] [--json]
   harness context [--project <path>] [--json]
   harness check [--project <path>] [--json]
@@ -85,7 +88,15 @@ export async function main(argv) {
       process.stdout.write(`Installed Harness Kernel ${result.kernel.revision.slice(0, 7)}\n`);
       process.stdout.write(`Installed Domain Packs ${result.domain_source.revision.slice(0, 7)}\n`);
       process.stdout.write(`Published ${result.managed_skills.length} global Skill projection(s)\n`);
+      process.stdout.write(`Deployed to: ${result.platforms.map((item) => item.id).join(", ") || "shared Skills only"}\n`);
     }
+    return;
+  }
+  if (command === "platforms") {
+    const platforms = detectPlatforms(resolveUserPaths(), process.env);
+    if (options.json) printJson({ platforms });
+    else if (!platforms.length) process.stdout.write("No supported AI platform detected\n");
+    else for (const platform of platforms) process.stdout.write(`${platform.id}: ${platform.evidence}\n`);
     return;
   }
   if (command === "uninstall") {
@@ -94,7 +105,7 @@ export async function main(argv) {
       printJson(result);
     } else {
       process.stdout.write(`Removed ${result.removed.length} managed Skill projection(s)\n`);
-      process.stdout.write("Removed the managed Runtime and Codex adapter\n");
+      process.stdout.write("Removed the managed Runtime and platform adapter(s)\n");
     }
     return;
   }

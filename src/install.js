@@ -1,10 +1,10 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { atomicWrite, pathExists, readJson, unique, writeJson } from "./io.js";
+import { atomicWrite, pathExists, readJson, writeJson } from "./io.js";
 import { resolveUserPaths } from "./paths.js";
+import { deploymentTargets } from "./platforms.js";
 
 export const GUIDANCE_START = "<!-- harness:managed:start -->";
 export const GUIDANCE_END = "<!-- harness:managed:end -->";
@@ -70,8 +70,45 @@ function replaceManagedBlock(existing) {
 function discoverSkills(runtimeRoot, bundleManifest) {
   return (bundleManifest.skills || []).map((item) => ({
     name: item.name,
-    source: path.join(runtimeRoot, item.source)
+    source: path.join(runtimeRoot, item.source),
+    platforms: ["shared", "codex", "hermes"]
   }));
+}
+
+function hermesAdapterContent() {
+  return `---
+name: harness-runtime
+description: Use the installed Harness Engineering Kernel and deterministic Domain routing runtime for governed engineering work.
+metadata:
+  hermes:
+    tags: [engineering, governance, routing]
+    requires_toolsets: [terminal]
+---
+
+# Harness Runtime
+
+## When to Use
+
+Use this Skill for engineering work that should follow the installed Harness Kernel or resolve an Enterprise Domain capability.
+
+## Procedure
+
+1. Read and follow \`~/.harness/runtime/kernel/AGENTS.md\` before taking task actions.
+2. Run \`harness context --project <path>\` to inspect the installed revisions and project overlay.
+3. When deterministic capability selection is required, create a Task Envelope that conforms to the installed Kernel schema and run \`harness route --task <file> --project <path>\`.
+4. Load only the workflows, Skills, evaluators, and constraints selected by the resulting routing plan.
+5. Run \`harness check --project <path>\` before reporting completion.
+
+## Boundaries
+
+- The installed Kernel and Domain Runtime are authoritative; this adapter does not restate their policy.
+- Do not invent a route when the CLI returns \`unroutable\`.
+- Project constraints may be stricter but cannot weaken Kernel requirements.
+
+## Verification
+
+Confirm that \`harness doctor --project <path>\` passes and report any failed check exactly.
+`;
 }
 
 function assertTargetsAvailable(projections, previous) {
@@ -88,20 +125,37 @@ function assertTargetsAvailable(projections, previous) {
 
 export function install({ env = process.env, bundleRoot } = {}) {
   const paths = resolveUserPaths(env);
+  const targets = deploymentTargets(paths, env);
   const bundle = loadBundle(bundleRoot);
   const previous = fs.existsSync(paths.manifestPath) ? readJson(paths.manifestPath) : null;
-  const skillSources = discoverSkills(paths.runtimeRoot, bundle.manifest);
-  const projections = unique(paths.skillRoots).flatMap((root) =>
-    skillSources.map((item) => ({ ...item, link: path.join(root, item.name) }))
+  const skillSources = [
+    ...discoverSkills(paths.runtimeRoot, bundle.manifest),
+    {
+      name: "harness-runtime",
+      source: path.join(paths.runtimeRoot, "adapters", "hermes", "harness-runtime"),
+      platforms: ["hermes"]
+    }
+  ];
+  const projections = targets.skillRoots.flatMap((target) =>
+    skillSources
+      .filter((item) => item.platforms.includes(target.platform))
+      .map((item) => ({ ...item, link: path.join(target.root, item.name), platform: target.platform }))
   );
   assertTargetsAvailable(projections, previous);
 
-  const priorGuidance = fs.existsSync(paths.guidancePath) ? fs.readFileSync(paths.guidancePath, "utf8") : null;
+  const priorGuidance = targets.guidance.map((item) => ({
+    ...item,
+    content: fs.existsSync(item.path) ? fs.readFileSync(item.path, "utf8") : null
+  }));
   fs.mkdirSync(path.dirname(paths.harnessHome), { recursive: true });
   const stage = fs.mkdtempSync(path.join(path.dirname(paths.harnessHome), ".harness-stage-"));
   const stagedRuntime = path.join(stage, "runtime");
   fs.cpSync(path.join(bundle.root, "kernel"), path.join(stagedRuntime, "kernel"), { recursive: true });
   fs.cpSync(path.join(bundle.root, "domains"), path.join(stagedRuntime, "domains"), { recursive: true });
+  atomicWrite(
+    path.join(stagedRuntime, "adapters", "hermes", "harness-runtime", "SKILL.md"),
+    hermesAdapterContent()
+  );
   const backupRuntime = `${paths.runtimeRoot}.previous`;
   const createdLinks = [];
   try {
@@ -109,7 +163,7 @@ export function install({ env = process.env, bundleRoot } = {}) {
     if (fs.existsSync(backupRuntime)) fs.rmSync(backupRuntime, { recursive: true, force: true });
     if (fs.existsSync(paths.runtimeRoot)) fs.renameSync(paths.runtimeRoot, backupRuntime);
     fs.renameSync(stagedRuntime, paths.runtimeRoot);
-    atomicWrite(paths.guidancePath, replaceManagedBlock(priorGuidance || ""));
+    for (const item of priorGuidance) atomicWrite(item.path, replaceManagedBlock(item.content || ""));
     for (const item of projections) {
       fs.mkdirSync(path.dirname(item.link), { recursive: true });
       if (!pathExists(item.link)) {
@@ -133,7 +187,9 @@ export function install({ env = process.env, bundleRoot } = {}) {
         repository: bundle.manifest.domain_source.repository,
         registry: bundle.manifest.domain_source.registry
       },
-      runtime: { root: paths.runtimeRoot, project_overlay: ".harness/domains.json", global_guidance: paths.guidancePath },
+      runtime: { root: paths.runtimeRoot, project_overlay: ".harness/domains.json", global_guidance: targets.guidance[0]?.path || null },
+      platforms: targets.platforms,
+      managed_guidance: targets.guidance,
       installed_at: new Date().toISOString(),
       installed_files: installedFiles,
       managed_skills: projections
@@ -146,8 +202,10 @@ export function install({ env = process.env, bundleRoot } = {}) {
     for (const link of createdLinks.reverse()) fs.rmSync(link, { force: true });
     if (fs.existsSync(paths.runtimeRoot)) fs.rmSync(paths.runtimeRoot, { recursive: true, force: true });
     if (fs.existsSync(backupRuntime)) fs.renameSync(backupRuntime, paths.runtimeRoot);
-    if (priorGuidance === null) fs.rmSync(paths.guidancePath, { force: true });
-    else atomicWrite(paths.guidancePath, priorGuidance);
+    for (const item of priorGuidance) {
+      if (item.content === null) fs.rmSync(item.path, { force: true });
+      else atomicWrite(item.path, item.content);
+    }
     throw error;
   } finally {
     fs.rmSync(stage, { recursive: true, force: true });
@@ -181,12 +239,16 @@ export function uninstall({ env = process.env } = {}) {
     fs.unlinkSync(item.link);
     removed.push(item.link);
   }
-  if (fs.existsSync(paths.guidancePath)) {
-    const existing = fs.readFileSync(paths.guidancePath, "utf8");
+  const managedGuidance = manifest.managed_guidance || (manifest.runtime?.global_guidance
+    ? [{ platform: "codex", path: manifest.runtime.global_guidance }]
+    : []);
+  for (const guidance of managedGuidance) {
+    if (!fs.existsSync(guidance.path)) continue;
+    const existing = fs.readFileSync(guidance.path, "utf8");
     const pattern = new RegExp(`\\n?${GUIDANCE_START}[\\s\\S]*?${GUIDANCE_END}\\n?`, "g");
     const next = existing.replace(pattern, "\n").trim();
-    if (next) atomicWrite(paths.guidancePath, `${next}\n`);
-    else fs.rmSync(paths.guidancePath, { force: true });
+    if (next) atomicWrite(guidance.path, `${next}\n`);
+    else fs.rmSync(guidance.path, { force: true });
   }
   fs.rmSync(paths.runtimeRoot, { recursive: true, force: true });
   fs.rmSync(paths.manifestPath, { force: true });

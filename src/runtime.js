@@ -119,14 +119,17 @@ export function doctor({ project, env = process.env }) {
     };
   }
 
-  const guidance = fs.existsSync(current.paths.guidancePath)
-    ? fs.readFileSync(current.paths.guidancePath, "utf8")
-    : "";
-  checks.push({
-    name: "global guidance",
-    passed: guidance.includes(GUIDANCE_START),
-    detail: current.paths.guidancePath
-  });
+  const managedGuidance = current.config.managed_guidance || (current.config.runtime.global_guidance
+    ? [{ platform: "codex", path: current.config.runtime.global_guidance }]
+    : []);
+  for (const item of managedGuidance) {
+    const guidance = fs.existsSync(item.path) ? fs.readFileSync(item.path, "utf8") : "";
+    checks.push({
+      name: `${item.platform} global guidance`,
+      passed: guidance.includes(GUIDANCE_START),
+      detail: item.path
+    });
+  }
 
   for (const item of current.config.installed_files || []) {
     const file = path.join(current.config.runtime.root, item.path);

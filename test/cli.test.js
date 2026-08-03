@@ -7,6 +7,8 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { install, uninstall, GUIDANCE_START } from "../src/install.js";
 import { check, context, doctor, route } from "../src/runtime.js";
+import { detectPlatforms } from "../src/platforms.js";
+import { resolveUserPaths } from "../src/paths.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const bundleRoot = path.join(root, "bundle");
@@ -64,6 +66,57 @@ test("install is self-contained, idempotent, and preserves user guidance", (t) =
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime", "kernel", "AGENTS.md")));
   assert.equal(doctor({ project: item.project, env: item.env }).passed, true);
   assert.equal(check({ project: item.project, env: item.env }).passed, true);
+});
+
+test("platform discovery is read-only and deploys Hermes only when detected", (t) => {
+  const item = fixture(t);
+  const hermesHome = path.join(item.env.HARNESS_USER_HOME, ".hermes");
+  const paths = resolveUserPaths(item.env);
+  assert.deepEqual(detectPlatforms(paths, item.env).map((platform) => platform.id), ["codex"]);
+  assert.equal(fs.existsSync(hermesHome), false);
+
+  fs.mkdirSync(hermesHome, { recursive: true });
+  assert.deepEqual(detectPlatforms(paths, item.env).map((platform) => platform.id), ["codex", "hermes"]);
+  const result = install({ env: item.env, bundleRoot });
+  const hermesSkills = result.managed_skills.filter((skill) => skill.platform === "hermes");
+  assert.ok(hermesSkills.length > 0);
+  assert.ok(hermesSkills.some((skill) => skill.name === "harness-runtime"));
+  assert.ok(hermesSkills.every((skill) => fs.lstatSync(skill.link).isSymbolicLink()));
+  assert.match(
+    fs.readFileSync(path.join(hermesHome, "skills", "harness-runtime", "SKILL.md"), "utf8"),
+    /harness route --task/
+  );
+  assert.equal(fs.existsSync(path.join(hermesHome, "SOUL.md")), false);
+
+  uninstall({ env: item.env });
+  assert.ok(fs.existsSync(hermesHome));
+  assert.ok(hermesSkills.every((skill) => !fs.existsSync(skill.link)));
+});
+
+test("HARNESS_PLATFORMS supports explicit isolated Hermes deployment", (t) => {
+  const item = fixture(t);
+  const env = {
+    ...item.env,
+    HARNESS_PLATFORMS: "hermes",
+    HERMES_HOME: path.join(item.temp, "custom-hermes"),
+    HARNESS_HERMES_SKILL_ROOT: path.join(item.temp, "custom-hermes", "skills")
+  };
+  const result = install({ env, bundleRoot });
+  assert.deepEqual(result.platforms.map((platform) => platform.id), ["hermes"]);
+  assert.equal(result.managed_guidance.length, 0);
+  assert.ok(result.managed_skills.some((skill) => skill.platform === "hermes"));
+  assert.ok(result.managed_skills.some((skill) => skill.name === "harness-runtime"));
+  assert.ok(result.managed_skills.some((skill) => skill.platform === "shared"));
+  assert.ok(result.managed_skills.every((skill) => skill.platform !== "codex"));
+});
+
+test("Hermes adapter is not projected to Codex or the shared Skill root", (t) => {
+  const item = fixture(t);
+  const result = install({ env: item.env, bundleRoot });
+  assert.equal(result.platforms.some((platform) => platform.id === "hermes"), false);
+  assert.equal(result.managed_skills.some((skill) => skill.name === "harness-runtime"), false);
+  assert.equal(fs.existsSync(path.join(item.env.HARNESS_CODEX_SKILL_ROOT, "harness-runtime")), false);
+  assert.equal(fs.existsSync(path.join(item.env.HARNESS_AGENTS_SKILL_ROOT, "harness-runtime")), false);
 });
 
 test("fresh project is discoverable and routes fail closed", (t) => {

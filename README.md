@@ -1,6 +1,6 @@
 # Harness Engineering CLI
 
-Harness CLI installs a version-locked Harness Kernel and Enterprise Domain Runtime for the current user. Product projects stay untouched and are discoverable without initialization.
+Harness CLI installs a version-locked Harness Kernel and Enterprise Domain Runtime for the current user and deploys adapters to detected AI agent platforms. Codex and Hermes Agent are currently supported. Product projects stay untouched and are discoverable without initialization.
 
 [中文说明](README-CH.md)
 
@@ -13,7 +13,9 @@ npm install -g @chinaqth/harness-cli
 harness install
 ```
 
-`harness install` verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, adds one managed adapter block to `~/.codex/AGENTS.md`, and projects declared Skills into `~/.agents/skills` and `~/.codex/skills`. It refuses to overwrite unmanaged Skills.
+`harness platforms` performs read-only platform discovery. `harness install` verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` routing adapter in `~/.hermes/skills`. Shared Skills are also projected to `~/.agents/skills`. The installer does not edit Hermes `config.yaml`, `SOUL.md`, or memories, and refuses to overwrite unmanaged Skills.
+
+Detection uses an existing default platform home (`~/.codex` or `~/.hermes`) or an explicitly configured `CODEX_HOME`/`HERMES_HOME`. For automation, set `HARNESS_PLATFORMS=codex,hermes` to select adapters explicitly.
 
 ```text
 ~/.harness/
@@ -44,7 +46,7 @@ harness uninstall
 npm uninstall -g @chinaqth/harness-cli
 ```
 
-The first command removes only manifest-owned Runtime files, Skill projections, state, and the Harness block in `~/.codex/AGENTS.md`. It preserves product projects, user guidance, unmanaged Skills, and the npm package. The second command removes the CLI package.
+The first command removes only manifest-owned Runtime files, platform Skill projections, state, and managed guidance blocks. It preserves platform homes, product projects, user guidance, unmanaged Skills, Hermes identity and memory, and the npm package. The second command removes the CLI package.
 
 ## Release Bundle
 
