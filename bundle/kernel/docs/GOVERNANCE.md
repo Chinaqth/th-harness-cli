@@ -27,13 +27,25 @@ Small teams may combine roles, but the Generator and approver for a G2 or G3 dec
 
 The central Harness team owns Kernel policy and routing schemas. Domain teams own their professional content. Product teams own project overlays. A project owner may enable or pin a Domain Pack but cannot silently alter its published contract.
 
+## Approval Scope and Evidence
+
+An approval is a decision over an explicit scope, not an unlimited conversational instruction. A
+machine-readable approval gate identifies the decision kind, required role, decision state, scope,
+scope fingerprint, and evidence. Approved and rejected gates require evidence; silence is pending.
+
+If implementation changes the approved scope, permissions, external effects, selected capabilities,
+or material plan, the affected approval is stale and must return to pending. Domain Skills may
+prepare professional assessments and proposals but cannot approve their own work, expand their own
+authority, or bypass the Kernel gate.
+
 For G2 and G3 work, the Generator may update implementation state and attach evidence, while the Evaluator independently reproduces the critical journey and owns the final pass, fail, or blocked verdict. The Owner resolves changes to scope or acceptance criteria.
 
 ## Policy Changes
 
 When changing `rules/`, audit scoring, or approval boundaries:
 
-1. Create a complete G2 change record under `changes/<id>/`.
+1. Create a complete G2 change record under the target project's `<project-root>/changes/<id>/`,
+   independent of whether the project has a Git repository.
 2. Document motivation, applicability, migration, and failure modes.
 3. Describe compatibility impact, autonomy budgets, evaluation contract, and rollback.
 4. Validate machine-readable acceptance state and obtain an independent verdict.

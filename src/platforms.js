@@ -13,6 +13,13 @@ const definitions = [
     envHome: "HERMES_HOME",
     homeKey: "hermesHome",
     skillRootKey: "hermesSkillRoot"
+  },
+  {
+    id: "kimi",
+    envHome: "KIMI_CODE_HOME",
+    homeKey: "kimiHome",
+    skillRootKey: "kimiSkillRoot",
+    guidanceKey: "kimiGuidancePath"
   }
 ];
 

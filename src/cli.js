@@ -1,24 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
-import { check, context, doctor, route } from "./runtime.js";
-import { install, uninstall } from "./install.js";
+import { fileURLToPath } from "node:url";
+import { install, uninstall, update } from "./install.js";
 import { resolveUserPaths } from "./paths.js";
-import { detectPlatforms } from "./platforms.js";
 
 const HELP = `Harness Engineering CLI
 
 Usage:
   harness install [--json]
-  harness platforms [--json]
-  harness doctor [--project <path>] [--json]
-  harness context [--project <path>] [--json]
-  harness check [--project <path>] [--json]
-  harness route --task <file> [--project <path>] [--output <file>]
+  harness update [--json]
   harness uninstall [--json]
-  harness version
-
-New product projects require no initialization. Add .harness/domains.json only when
-the project needs to enable and specialize registered Domain Packs.
+  harness version [--json]
 `;
 
 function parse(argv) {
@@ -48,22 +40,29 @@ function printJson(value) {
   process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
 }
 
-function printDoctor(result) {
-  for (const item of result.checks) {
-    process.stdout.write(`${item.passed ? "PASS" : "FAIL"} ${item.name}${item.detail ? `: ${item.detail}` : ""}\n`);
-  }
+function packageVersion() {
+  const packageFile = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "package.json");
+  return JSON.parse(fs.readFileSync(packageFile, "utf8")).version;
 }
 
-function printCheck(result) {
-  for (const gate of result.gates) {
-    process.stdout.write(`${gate.passed ? "PASS" : "FAIL"} ${gate.label}\n`);
-    if (!gate.passed && gate.output) {
-      process.stdout.write(`${gate.output}\n`);
-    }
-  }
-  process.stdout.write(
-    `PASS project overlay: ${result.overlay_present ? "validated" : "not present; empty overlay applies"}\n`
-  );
+function versionInfo(env = process.env) {
+  const manifestFile = resolveUserPaths(env).manifestPath;
+  const installed = fs.existsSync(manifestFile) ? JSON.parse(fs.readFileSync(manifestFile, "utf8")) : null;
+  return {
+    cli_version: packageVersion(),
+    runtime: installed ? {
+      bundle_version: installed.bundle_version,
+      kernel_revision: installed.kernel?.revision,
+      domain_revision: installed.domain_source?.revision
+    } : null
+  };
+}
+
+function printDeployment(verb, result) {
+  process.stdout.write(`${verb} Harness Kernel ${result.kernel.revision.slice(0, 7)}\n`);
+  process.stdout.write(`${verb} Domain Packs ${result.domain_source.revision.slice(0, 7)}\n`);
+  process.stdout.write(`Published ${result.managed_skills.length} managed Skill projection(s)\n`);
+  process.stdout.write(`Deployed to: ${result.platforms.map((item) => item.id).join(", ") || "shared Skills only"}\n`);
 }
 
 export async function main(argv) {
@@ -73,30 +72,26 @@ export async function main(argv) {
     return;
   }
   if (command === "version" || command === "--version" || command === "-v") {
-    const packageFile = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "package.json");
-    const pkg = JSON.parse(fs.readFileSync(packageFile, "utf8"));
-    process.stdout.write(`${pkg.version}\n`);
-    return;
-  }
-
-  const project = options.project || process.cwd();
-  if (command === "install") {
-    const result = install();
-    if (options.json) {
-      printJson(result);
-    } else {
-      process.stdout.write(`Installed Harness Kernel ${result.kernel.revision.slice(0, 7)}\n`);
-      process.stdout.write(`Installed Domain Packs ${result.domain_source.revision.slice(0, 7)}\n`);
-      process.stdout.write(`Published ${result.managed_skills.length} global Skill projection(s)\n`);
-      process.stdout.write(`Deployed to: ${result.platforms.map((item) => item.id).join(", ") || "shared Skills only"}\n`);
+    const info = versionInfo();
+    if (options.json) printJson(info);
+    else {
+      process.stdout.write(`Harness CLI ${info.cli_version}\n`);
+      if (info.runtime) {
+        process.stdout.write(`Runtime Bundle ${info.runtime.bundle_version}\n`);
+        process.stdout.write(`Kernel ${info.runtime.kernel_revision}\n`);
+        process.stdout.write(`Domains ${info.runtime.domain_revision}\n`);
+      } else process.stdout.write("Runtime: not installed\n");
     }
     return;
   }
-  if (command === "platforms") {
-    const platforms = detectPlatforms(resolveUserPaths(), process.env);
-    if (options.json) printJson({ platforms });
-    else if (!platforms.length) process.stdout.write("No supported AI platform detected\n");
-    else for (const platform of platforms) process.stdout.write(`${platform.id}: ${platform.evidence}\n`);
+  if (command === "install") {
+    const result = install();
+    options.json ? printJson(result) : printDeployment("Installed", result);
+    return;
+  }
+  if (command === "update") {
+    const result = update();
+    options.json ? printJson(result) : printDeployment("Updated", result);
     return;
   }
   if (command === "uninstall") {
@@ -107,34 +102,6 @@ export async function main(argv) {
       process.stdout.write(`Removed ${result.removed.length} managed Skill projection(s)\n`);
       process.stdout.write("Removed the managed Runtime and platform adapter(s)\n");
     }
-    return;
-  }
-  if (command === "doctor") {
-    const result = doctor({ project });
-    options.json ? printJson(result) : printDoctor(result);
-    if (!result.passed) {
-      process.exitCode = 1;
-    }
-    return;
-  }
-  if (command === "context") {
-    const result = context({ project });
-    printJson(result);
-    return;
-  }
-  if (command === "check") {
-    const result = check({ project });
-    options.json ? printJson(result) : printCheck(result);
-    if (!result.passed) {
-      process.exitCode = 1;
-    }
-    return;
-  }
-  if (command === "route") {
-    if (!options.task) {
-      throw new Error("route requires --task");
-    }
-    printJson(route({ project, taskFile: options.task, output: options.output }));
     return;
   }
   throw new Error(`Unknown command: ${command}\n\n${HELP}`);

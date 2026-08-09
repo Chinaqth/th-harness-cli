@@ -71,17 +71,17 @@ function discoverSkills(runtimeRoot, bundleManifest) {
   return (bundleManifest.skills || []).map((item) => ({
     name: item.name,
     source: path.join(runtimeRoot, item.source),
-    platforms: ["shared", "codex", "hermes"]
+    platforms: ["shared", "codex", "hermes", "kimi"]
   }));
 }
 
 function hermesAdapterContent() {
   return `---
 name: harness-runtime
-description: Use the installed Harness Engineering Kernel and deterministic Domain routing runtime for governed engineering work.
+description: Use the installed Harness Engineering Kernel and Domain capabilities for governed engineering work.
 metadata:
   hermes:
-    tags: [engineering, governance, routing]
+    tags: [engineering, governance]
     requires_toolsets: [terminal]
 ---
 
@@ -89,25 +89,23 @@ metadata:
 
 ## When to Use
 
-Use this Skill for engineering work that should follow the installed Harness Kernel or resolve an Enterprise Domain capability.
+Use this Skill for engineering work that should follow the installed Harness Kernel or use an Enterprise Domain capability.
 
 ## Procedure
 
 1. Read and follow \`~/.harness/runtime/kernel/AGENTS.md\` before taking task actions.
-2. Run \`harness context --project <path>\` to inspect the installed revisions and project overlay.
-3. When deterministic capability selection is required, create a Task Envelope that conforms to the installed Kernel schema and run \`harness route --task <file> --project <path>\`.
-4. Load only the workflows, Skills, evaluators, and constraints selected by the resulting routing plan.
-5. Run \`harness check --project <path>\` before reporting completion.
+2. Use the Kernel's installed workflows, schemas, and routing mechanism as authoritative.
+3. Resolve Domain capabilities through the installed Domain registry and project overlay.
+4. Load only the workflows, Skills, evaluators, and constraints selected by Harness Engineering.
 
 ## Boundaries
 
 - The installed Kernel and Domain Runtime are authoritative; this adapter does not restate their policy.
-- Do not invent a route when the CLI returns \`unroutable\`.
 - Project constraints may be stricter but cannot weaken Kernel requirements.
 
 ## Verification
 
-Confirm that \`harness doctor --project <path>\` passes and report any failed check exactly.
+Report the installed Kernel and Domain revisions when runtime provenance is material.
 `;
 }
 
@@ -142,6 +140,18 @@ export function install({ env = process.env, bundleRoot } = {}) {
       .map((item) => ({ ...item, link: path.join(target.root, item.name), platform: target.platform }))
   );
   assertTargetsAvailable(projections, previous);
+  const nextLinks = new Set(projections.map((item) => item.link));
+  const staleProjections = (previous?.managed_skills || []).filter((item) => !nextLinks.has(item.link));
+  for (const item of staleProjections) {
+    if (!pathExists(item.link)) continue;
+    if (!fs.lstatSync(item.link).isSymbolicLink()) {
+      throw new Error(`Refusing to replace modified managed Skill projection: ${item.link}`);
+    }
+    const target = path.resolve(path.dirname(item.link), fs.readlinkSync(item.link));
+    if (target !== item.source) {
+      throw new Error(`Refusing to replace modified managed Skill projection: ${item.link}`);
+    }
+  }
 
   const priorGuidance = targets.guidance.map((item) => ({
     ...item,
@@ -158,6 +168,7 @@ export function install({ env = process.env, bundleRoot } = {}) {
   );
   const backupRuntime = `${paths.runtimeRoot}.previous`;
   const createdLinks = [];
+  const removedLinks = [];
   try {
     fs.mkdirSync(paths.harnessHome, { recursive: true });
     if (fs.existsSync(backupRuntime)) fs.rmSync(backupRuntime, { recursive: true, force: true });
@@ -170,6 +181,11 @@ export function install({ env = process.env, bundleRoot } = {}) {
         fs.symlinkSync(item.source, item.link, "dir");
         createdLinks.push(item.link);
       }
+    }
+    for (const item of staleProjections) {
+      if (!pathExists(item.link)) continue;
+      fs.unlinkSync(item.link);
+      removedLinks.push(item);
     }
     const installedFiles = listFiles(paths.runtimeRoot).map((relative) => ({
       path: relative,
@@ -200,6 +216,10 @@ export function install({ env = process.env, bundleRoot } = {}) {
     return manifest;
   } catch (error) {
     for (const link of createdLinks.reverse()) fs.rmSync(link, { force: true });
+    for (const item of removedLinks) {
+      fs.mkdirSync(path.dirname(item.link), { recursive: true });
+      if (!pathExists(item.link)) fs.symlinkSync(item.source, item.link, "dir");
+    }
     if (fs.existsSync(paths.runtimeRoot)) fs.rmSync(paths.runtimeRoot, { recursive: true, force: true });
     if (fs.existsSync(backupRuntime)) fs.renameSync(backupRuntime, paths.runtimeRoot);
     for (const item of priorGuidance) {
@@ -210,6 +230,14 @@ export function install({ env = process.env, bundleRoot } = {}) {
   } finally {
     fs.rmSync(stage, { recursive: true, force: true });
   }
+}
+
+export function update({ env = process.env, bundleRoot } = {}) {
+  const paths = resolveUserPaths(env);
+  if (!fs.existsSync(paths.manifestPath) || !fs.existsSync(paths.installRecordPath)) {
+    throw new Error("Cannot update: Harness is not installed; run harness install first");
+  }
+  return install({ env, bundleRoot });
 }
 
 export function uninstall({ env = process.env } = {}) {

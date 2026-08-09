@@ -1,6 +1,6 @@
 # Harness Engineering CLI
 
-Harness CLI installs a version-locked Harness Kernel and Enterprise Domain Runtime for the current user and deploys adapters to detected AI agent platforms. Codex and Hermes Agent are currently supported. Product projects stay untouched and are discoverable without initialization.
+Harness CLI installs, updates, and uninstalls a version-locked Harness Kernel and Enterprise Domain Runtime for the current user. It deploys adapters to detected AI agent platforms, currently Codex, Hermes Agent, and Kimi Code CLI, and reports installed versions. Kernel workflow and Domain routing remain owned by Harness Engineering.
 
 [中文说明](README-CH.md)
 
@@ -13,9 +13,9 @@ npm install -g @chinaqth/harness-cli
 harness install
 ```
 
-`harness platforms` performs read-only platform discovery. `harness install` verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` routing adapter in `~/.hermes/skills`. Shared Skills are also projected to `~/.agents/skills`. The installer does not edit Hermes `config.yaml`, `SOUL.md`, or memories, and refuses to overwrite unmanaged Skills.
+`harness install` performs read-only platform discovery, verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` adapter in `~/.hermes/skills`; Kimi Code receives a managed block in `$KIMI_CODE_HOME/AGENTS.md` and Skills in `$KIMI_CODE_HOME/skills` (default home: `~/.kimi-code`). Shared Skills are also projected to `~/.agents/skills`. The installer does not edit platform identity, credentials, sessions, or memories, and refuses to overwrite unmanaged Skills.
 
-Detection uses an existing default platform home (`~/.codex` or `~/.hermes`) or an explicitly configured `CODEX_HOME`/`HERMES_HOME`. For automation, set `HARNESS_PLATFORMS=codex,hermes` to select adapters explicitly.
+Detection uses an existing default platform home (`~/.codex`, `~/.hermes`, or `~/.kimi-code`) or an explicitly configured `CODEX_HOME`, `HERMES_HOME`, or `KIMI_CODE_HOME`. For automation, set `HARNESS_PLATFORMS=codex,hermes,kimi` to select adapters explicitly. `HARNESS_KIMI_SKILL_ROOT` may override only the Kimi Skill projection directory; it does not change Kimi's own configuration or session home.
 
 ```text
 ~/.harness/
@@ -26,18 +26,22 @@ Detection uses an existing default platform home (`~/.codex` or `~/.hermes`) or 
 └── state/install-record.json
 ```
 
-## Use
-
-From any project, including one without a `.harness` directory:
+## Update
 
 ```bash
-harness doctor
-harness check
-harness context
-harness route --task /path/to/task-envelope.json
+harness update
 ```
 
-Projects may opt into registered Domain capabilities with `.harness/domains.json`. Routing selects only active, exact-version, project-enabled capabilities. Missing capability produces a traceable `unroutable` result.
+`harness update` requires an existing managed installation. It validates and stages the new Bundle, atomically replaces the Runtime, refreshes managed guidance and Skill projections, removes obsolete managed projections, and restores the previous Runtime if the transaction fails. It never overwrites an unmanaged Skill.
+
+## Version
+
+```bash
+harness version
+harness version --json
+```
+
+The command reports the CLI version and, when installed, the Runtime Bundle, Kernel revision, and Domain revision.
 
 ## Uninstall
 
@@ -50,7 +54,7 @@ The first command removes only manifest-owned Runtime files, platform Skill proj
 
 ## Release Bundle
 
-The Runtime is generated from authoritative repositories and is not maintained as a second policy source:
+The Runtime is generated from authoritative repositories. The CLI deploys it and does not maintain or execute a second copy of Kernel routing policy:
 
 ```bash
 HARNESS_KERNEL_SOURCE=/path/to/kernel \
