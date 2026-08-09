@@ -3,10 +3,10 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { install, uninstall, GUIDANCE_START } from "../src/install.js";
-import { check, context, doctor, route } from "../src/runtime.js";
+import { install, uninstall, update, GUIDANCE_START } from "../src/install.js";
 import { detectPlatforms } from "../src/platforms.js";
 import { resolveUserPaths } from "../src/paths.js";
 
@@ -21,8 +21,12 @@ function fixture(t) {
     HARNESS_HOME: path.join(temp, "user", ".harness"),
     CODEX_HOME: path.join(temp, "user", ".codex"),
     HARNESS_AGENTS_SKILL_ROOT: path.join(temp, "user", ".agents", "skills"),
-    HARNESS_CODEX_SKILL_ROOT: path.join(temp, "user", ".codex", "skills")
+    HARNESS_CODEX_SKILL_ROOT: path.join(temp, "user", ".codex", "skills"),
+    HARNESS_KIMI_SKILL_ROOT: path.join(temp, "user", ".kimi-code", "skills")
   };
+  for (const leaked of ["HERMES_HOME", "HARNESS_HERMES_SKILL_ROOT", "KIMI_CODE_HOME", "HARNESS_PLATFORMS"]) {
+    delete env[leaked];
+  }
   const project = path.join(temp, "project");
   fs.mkdirSync(project, { recursive: true });
   return { temp, env, project };
@@ -64,8 +68,8 @@ test("install is self-contained, idempotent, and preserves user guidance", (t) =
   assert.match(text, /User rules/);
   assert.equal(text.split(GUIDANCE_START).length - 1, 1);
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime", "kernel", "AGENTS.md")));
-  assert.equal(doctor({ project: item.project, env: item.env }).passed, true);
-  assert.equal(check({ project: item.project, env: item.env }).passed, true);
+  assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "manifest.json")));
+  assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "state", "install-record.json")));
 });
 
 test("platform discovery is read-only and deploys Hermes only when detected", (t) => {
@@ -82,10 +86,9 @@ test("platform discovery is read-only and deploys Hermes only when detected", (t
   assert.ok(hermesSkills.length > 0);
   assert.ok(hermesSkills.some((skill) => skill.name === "harness-runtime"));
   assert.ok(hermesSkills.every((skill) => fs.lstatSync(skill.link).isSymbolicLink()));
-  assert.match(
-    fs.readFileSync(path.join(hermesHome, "skills", "harness-runtime", "SKILL.md"), "utf8"),
-    /harness route --task/
-  );
+  const adapter = fs.readFileSync(path.join(hermesHome, "skills", "harness-runtime", "SKILL.md"), "utf8");
+  assert.match(adapter, /Kernel's installed workflows, schemas, and routing mechanism as authoritative/);
+  assert.doesNotMatch(adapter, /harness route/);
   assert.equal(fs.existsSync(path.join(hermesHome, "SOUL.md")), false);
 
   uninstall({ env: item.env });
@@ -110,6 +113,49 @@ test("HARNESS_PLATFORMS supports explicit isolated Hermes deployment", (t) => {
   assert.ok(result.managed_skills.every((skill) => skill.platform !== "codex"));
 });
 
+test("Kimi Code discovery is read-only and deploys Skills plus bounded global guidance", (t) => {
+  const item = fixture(t);
+  const kimiHome = path.join(item.env.HARNESS_USER_HOME, ".kimi-code");
+  const paths = resolveUserPaths(item.env);
+  assert.deepEqual(detectPlatforms(paths, item.env).map((platform) => platform.id), ["codex"]);
+  assert.equal(fs.existsSync(kimiHome), false);
+
+  fs.mkdirSync(kimiHome, { recursive: true });
+  const guidance = path.join(kimiHome, "AGENTS.md");
+  write(guidance, "# Kimi user rules\n");
+  assert.deepEqual(detectPlatforms(paths, item.env).map((platform) => platform.id), ["codex", "kimi"]);
+
+  const result = install({ env: item.env, bundleRoot });
+  const kimiSkills = result.managed_skills.filter((skill) => skill.platform === "kimi");
+  assert.ok(kimiSkills.length > 0);
+  assert.ok(kimiSkills.every((skill) => fs.lstatSync(skill.link).isSymbolicLink()));
+  assert.equal(kimiSkills.some((skill) => skill.name === "harness-runtime"), false);
+  assert.match(fs.readFileSync(guidance, "utf8"), /Kimi user rules/);
+  assert.match(fs.readFileSync(guidance, "utf8"), /harness:managed:start/);
+
+  uninstall({ env: item.env });
+  assert.equal(fs.readFileSync(guidance, "utf8"), "# Kimi user rules\n");
+  assert.ok(kimiSkills.every((skill) => !fs.existsSync(skill.link)));
+});
+
+test("HARNESS_PLATFORMS supports explicit isolated Kimi Code deployment", (t) => {
+  const item = fixture(t);
+  const kimiHome = path.join(item.temp, "custom-kimi-code");
+  const env = {
+    ...item.env,
+    HARNESS_PLATFORMS: "kimi",
+    KIMI_CODE_HOME: kimiHome,
+    HARNESS_KIMI_SKILL_ROOT: path.join(kimiHome, "skills")
+  };
+  const result = install({ env, bundleRoot });
+  assert.deepEqual(result.platforms.map((platform) => platform.id), ["kimi"]);
+  assert.deepEqual(result.managed_guidance, [{ platform: "kimi", path: path.join(kimiHome, "AGENTS.md") }]);
+  assert.ok(result.managed_skills.some((skill) => skill.platform === "kimi"));
+  assert.ok(result.managed_skills.some((skill) => skill.platform === "shared"));
+  assert.ok(result.managed_skills.every((skill) => skill.platform !== "codex" && skill.platform !== "hermes"));
+  assert.ok(fs.existsSync(path.join(kimiHome, "AGENTS.md")));
+});
+
 test("Hermes adapter is not projected to Codex or the shared Skill root", (t) => {
   const item = fixture(t);
   const result = install({ env: item.env, bundleRoot });
@@ -119,103 +165,62 @@ test("Hermes adapter is not projected to Codex or the shared Skill root", (t) =>
   assert.equal(fs.existsSync(path.join(item.env.HARNESS_AGENTS_SKILL_ROOT, "harness-runtime")), false);
 });
 
-test("fresh project is discoverable and routes fail closed", (t) => {
+test("update requires an existing managed installation", (t) => {
   const item = fixture(t);
-  install({ env: item.env, bundleRoot });
-  assert.equal(context({ project: item.project, env: item.env }).project_overlay.present, false);
-  const task = path.join(item.temp, "task.json");
-  write(task, JSON.stringify({
-    schema_version: "1.0", task_id: "test", intent: "Test routing", task_type: "feature",
-    deliverables: ["result"], constraints: [], repository_signals: ["node"],
-    required_evidence: ["tests"], risk_hints: []
+  assert.throws(() => update({ env: item.env, bundleRoot }), /run harness install first/);
+});
+
+test("update replaces the Runtime and removes obsolete managed Skill projections", (t) => {
+  const item = fixture(t);
+  const initial = install({ env: item.env, bundleRoot });
+  const obsolete = initial.managed_skills.find((skill) => skill.platform === "shared");
+  assert.ok(obsolete);
+
+  const nextBundle = copyBundle(item);
+  const manifestFile = path.join(nextBundle, "bundle-manifest.json");
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
+  manifest.bundle_version = `${manifest.bundle_version}.update-test`;
+  manifest.skills = manifest.skills.filter((skill) => skill.name !== obsolete.name);
+  writeJson(manifestFile, manifest);
+  refreshBundleManifest(nextBundle);
+
+  const result = update({ env: item.env, bundleRoot: nextBundle });
+  assert.equal(result.bundle_version.endsWith(".update-test"), true);
+  assert.equal(fs.existsSync(obsolete.link), false);
+  assert.equal(result.managed_skills.some((skill) => skill.link === obsolete.link), false);
+});
+
+test("version reports CLI and installed Runtime versions", (t) => {
+  const item = fixture(t);
+  const bin = path.join(root, "bin", "harness.js");
+  const before = JSON.parse(execFileSync(process.execPath, [bin, "version", "--json"], {
+    env: item.env, encoding: "utf8"
   }));
-  const plan = route({ project: item.project, taskFile: task, env: item.env });
-  assert.equal(plan.status, "unroutable");
-  assert.deepEqual(plan.selections, []);
+  assert.equal(before.cli_version, "0.2.2");
+  assert.equal(before.runtime, null);
+
+  const installed = install({ env: item.env, bundleRoot });
+  const after = JSON.parse(execFileSync(process.execPath, [bin, "version", "--json"], {
+    env: item.env, encoding: "utf8"
+  }));
+  assert.equal(after.runtime.bundle_version, installed.bundle_version);
+  assert.equal(after.runtime.kernel_revision, installed.kernel.revision);
+  assert.equal(after.runtime.domain_revision, installed.domain_source.revision);
 });
 
-test("bundled active Web Domain routes only after explicit project enablement", (t) => {
-  const item = fixture(t);
-  install({ env: item.env, bundleRoot });
-  writeJson(path.join(item.project, ".harness", "domains.json"), {
-    schema_version: "1.0",
-    domains: [{
-      id: "engineering.web", version: "0.1.0", enabled: true, local_owner: "product-web",
-      additional_signals: [], constraints: [], disabled_capabilities: [], mappings: []
-    }]
-  });
-  const task = path.join(item.temp, "web-task.json");
-  writeJson(task, {
-    schema_version: "1.0", task_id: "web-feature", intent: "Implement a semantic web interface",
-    task_type: "web-frontend-implementation", deliverables: ["interface"], constraints: [],
-    repository_signals: ["HTML element semantics, content model, document structure, form, or native interactive control"],
-    required_evidence: ["tests"], risk_hints: []
-  });
-  const plan = route({ project: item.project, taskFile: task, env: item.env });
-  assert.equal(plan.status, "routed");
-  assert.equal(plan.selections[0].domain_id, "engineering.web");
-  assert.deepEqual(plan.selections[0].skills, ["web-interface-delivery"]);
-  assert.ok(fs.lstatSync(path.join(item.env.HARNESS_CODEX_SKILL_ROOT, "web-interface-delivery")).isSymbolicLink());
-});
-
-test("active and project-enabled synthetic Domain produces a routed plan", (t) => {
-  const item = fixture(t);
-  const syntheticBundle = copyBundle(item);
-  const domainRoot = path.join(syntheticBundle, "domains", "domains", "engineering", "web");
-  writeJson(path.join(syntheticBundle, "domains", "registry", "domains.json"), {
-    schema_version: "1.0",
-    domains: [{ id: "engineering.web", path: "domains/engineering/web", version: "1.0.0", status: "active", owner: "web-team" }]
-  });
-  writeJson(path.join(domainRoot, "domain.json"), { id: "engineering.web", version: "1.0.0", status: "active" });
-  writeJson(path.join(domainRoot, "routes.json"), {
-    routes: [{ id: "feature", priority: 100, task_types: ["feature"], signals: ["node"], capabilities: ["delivery"] }]
-  });
-  writeJson(path.join(domainRoot, "capabilities.json"), {
-    capabilities: [{
-      id: "delivery", task_types: ["feature"], workflows: ["DELIVERY.md"], skills: ["web-delivery"],
-      tools: ["npm"], evaluators: ["EVALUATOR.md"], permissions: ["repository:write"]
-    }]
-  });
-  write(path.join(domainRoot, "skills", "web-delivery", "SKILL.md"), "---\nname: web-delivery\ndescription: Deliver web changes.\n---\n");
-  const syntheticManifestFile = path.join(syntheticBundle, "bundle-manifest.json");
-  const syntheticManifest = JSON.parse(fs.readFileSync(syntheticManifestFile, "utf8"));
-  syntheticManifest.skills.push({
-    name: "web-delivery",
-    source: "domains/domains/engineering/web/skills/web-delivery"
-  });
-  writeJson(syntheticManifestFile, syntheticManifest);
-  refreshBundleManifest(syntheticBundle);
-  writeJson(path.join(item.project, ".harness", "domains.json"), {
-    schema_version: "1.0",
-    domains: [{
-      id: "engineering.web", version: "1.0.0", enabled: true, local_owner: "product-team",
-      additional_signals: [], constraints: [], disabled_capabilities: [], mappings: []
-    }]
-  });
-  const task = path.join(item.temp, "task.json");
-  writeJson(task, {
-    schema_version: "1.0", task_id: "feature", intent: "Build feature", task_type: "feature",
-    deliverables: ["result"], constraints: [], repository_signals: ["node"],
-    required_evidence: ["tests"], risk_hints: []
-  });
-  install({ env: item.env, bundleRoot: syntheticBundle });
-  const plan = route({ project: item.project, taskFile: task, env: item.env });
-  assert.equal(plan.status, "routed");
-  assert.deepEqual(plan.selections[0].capability_ids, ["delivery"]);
-  assert.ok(fs.lstatSync(path.join(item.env.HARNESS_CODEX_SKILL_ROOT, "web-delivery")).isSymbolicLink());
-});
-
-test("duplicate project Domain entries fail closed", (t) => {
-  const item = fixture(t);
-  install({ env: item.env, bundleRoot });
-  const entry = {
-    id: "engineering.web", version: "1.0.0", enabled: true, local_owner: "team",
-    additional_signals: [], constraints: [], disabled_capabilities: [], mappings: []
-  };
-  writeJson(path.join(item.project, ".harness", "domains.json"), {
-    schema_version: "1.0", domains: [entry, entry]
-  });
-  assert.throws(() => context({ project: item.project, env: item.env }), /must be unique/);
+test("public CLI surface is limited to lifecycle and version commands", () => {
+  const bin = path.join(root, "bin", "harness.js");
+  const help = execFileSync(process.execPath, [bin, "--help"], { encoding: "utf8" });
+  for (const command of ["install", "update", "uninstall", "version"]) {
+    assert.match(help, new RegExp(`harness ${command}`));
+  }
+  for (const removed of ["route", "doctor", "check", "context", "platforms"]) {
+    assert.doesNotMatch(help, new RegExp(`harness ${removed}`));
+  }
+  assert.throws(
+    () => execFileSync(process.execPath, [bin, "route"], { encoding: "utf8", stdio: "pipe" }),
+    /Unknown command: route/
+  );
 });
 
 test("install refuses an unmanaged Skill collision", (t) => {
@@ -251,7 +256,7 @@ test("failed reinstall restores the previously installed Runtime", (t) => {
   const originalRuntime = fs.readFileSync(runtimeAgent, "utf8");
   const guidance = path.join(item.env.CODEX_HOME, "AGENTS.md");
   write(guidance, `# User rules\n${GUIDANCE_START}\nbroken\n`);
-  assert.throws(() => install({ env: item.env, bundleRoot }), /managed guidance block is malformed/);
+  assert.throws(() => update({ env: item.env, bundleRoot }), /managed guidance block is malformed/);
   assert.equal(fs.readFileSync(runtimeAgent, "utf8"), originalRuntime);
   assert.equal(JSON.parse(fs.readFileSync(path.join(item.env.HARNESS_HOME, "manifest.json"), "utf8")).bundle_version, first.bundle_version);
 });
@@ -267,7 +272,7 @@ test("uninstall removes only managed artifacts and supports reinstall", (t) => {
   assert.equal(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime")), false);
   assert.equal(fs.existsSync(path.join(item.env.HARNESS_HOME, "manifest.json")), false);
   install({ env: item.env, bundleRoot });
-  assert.equal(doctor({ project: item.project, env: item.env }).passed, true);
+  assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime", "kernel", "AGENTS.md")));
 });
 
 test("uninstall fails closed when ownership record is missing", (t) => {
@@ -278,12 +283,11 @@ test("uninstall fails closed when ownership record is missing", (t) => {
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime")));
 });
 
-test("doctor detects Runtime drift and uninstall preserves all managed state", (t) => {
+test("uninstall detects Runtime drift and preserves all managed state", (t) => {
   const item = fixture(t);
   install({ env: item.env, bundleRoot });
   const runtimeFile = path.join(item.env.HARNESS_HOME, "runtime", "kernel", "AGENTS.md");
   fs.appendFileSync(runtimeFile, "\nmodified\n");
-  assert.equal(doctor({ project: item.project, env: item.env }).passed, false);
   assert.throws(() => uninstall({ env: item.env }), /modified Runtime file/);
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "manifest.json")));
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_AGENTS_SKILL_ROOT, "harness-audit")));

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "change_id": "20260809-kimi-code-deployment",
+  "status": "complete",
+  "criteria": [
+    { "id": "read-only-detection", "status": "passed", "evidence": ["src/platforms.js", "test/cli.test.js"] },
+    { "id": "kimi-projections", "status": "passed", "evidence": ["src/paths.js", "src/install.js", "test/cli.test.js"] },
+    { "id": "lifecycle-verification", "status": "passed", "evidence": ["test/cli.test.js", "changes/20260809-kimi-code-deployment/task.md"] }
+  ]
+}

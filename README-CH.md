@@ -1,6 +1,6 @@
 # Harness Engineering CLI
 
-Harness CLI 为当前用户安装版本锁定的 Harness Kernel 和 Enterprise Domain Runtime，并向已探测到的 AI Agent 平台部署适配器。目前支持 Codex 和 Hermes Agent。产品项目保持不变，新项目无需初始化即可被发现。
+Harness CLI 为当前用户安装、更新和卸载版本锁定的 Harness Kernel 与 Enterprise Domain Runtime，并向已探测到的 AI Agent 平台（目前包括 Codex、Hermes Agent 和 Kimi Code CLI）部署适配器和报告已安装版本。Kernel 工作流与 Domain 路由仍由 Harness Engineering 负责。
 
 [English README](README.md)
 
@@ -13,9 +13,9 @@ npm install -g @chinaqth/harness-cli
 harness install
 ```
 
-`harness platforms` 只读探测平台。`harness install` 会验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用官方原生目录 `~/.hermes/skills`，并获得仅限 Hermes 的 `harness-runtime` 路由适配 Skill；共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改 Hermes 的 `config.yaml`、`SOUL.md` 或记忆文件，遇到同名非受管 Skill 时会安全失败。
+`harness install` 会只读探测平台、验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用 `~/.hermes/skills` 并获得仅限 Hermes 的 `harness-runtime` 适配 Skill；Kimi Code 使用 `$KIMI_CODE_HOME/AGENTS.md` 受控区块及 `$KIMI_CODE_HOME/skills`（默认 Home 为 `~/.kimi-code`）。共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改平台身份、凭据、会话或记忆，遇到同名非受管 Skill 时会安全失败。
 
-探测依据为默认平台目录（`~/.codex`、`~/.hermes`）已经存在，或显式配置了 `CODEX_HOME`/`HERMES_HOME`。自动化环境可用 `HARNESS_PLATFORMS=codex,hermes` 明确选择适配器。
+探测依据为默认平台目录（`~/.codex`、`~/.hermes`、`~/.kimi-code`）已经存在，或显式配置了 `CODEX_HOME`、`HERMES_HOME`、`KIMI_CODE_HOME`。自动化环境可用 `HARNESS_PLATFORMS=codex,hermes,kimi` 明确选择适配器；`HARNESS_KIMI_SKILL_ROOT` 只覆盖 Kimi Skill 投影目录，不改变 Kimi 自身的配置和会话 Home。
 
 ```text
 ~/.harness/
@@ -26,18 +26,22 @@ harness install
 └── state/install-record.json
 ```
 
-## 使用
-
-可从任意项目执行，包括没有 `.harness` 目录的新项目：
+## 更新
 
 ```bash
-harness doctor
-harness check
-harness context
-harness route --task /path/to/task-envelope.json
+harness update
 ```
 
-项目可通过 `.harness/domains.json` 选择已注册能力。路由只选择 `active`、版本精确匹配且项目已启用的能力；能力缺失时返回可追踪的 `unroutable`。
+`harness update` 要求存在受管安装。它会校验并暂存新 Bundle，原子替换 Runtime，刷新受管规则和 Skill 投影，移除已废弃的受管投影，并在事务失败时恢复旧 Runtime。它不会覆盖非受管 Skill。
+
+## 版本
+
+```bash
+harness version
+harness version --json
+```
+
+该命令显示 CLI 版本；已安装 Runtime 时，还会显示 Runtime Bundle、Kernel revision 和 Domain revision。
 
 ## 卸载
 
@@ -50,7 +54,7 @@ npm uninstall -g @chinaqth/harness-cli
 
 ## 发布 Bundle
 
-Runtime 从权威源码仓库生成，CLI 不独立维护 Kernel policy 或 Domain 专业内容：
+Runtime 从权威源码仓库生成；CLI 只负责部署，不维护或执行第二份 Kernel 路由策略：
 
 ```bash
 HARNESS_KERNEL_SOURCE=/path/to/kernel \

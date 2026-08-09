@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "change_id": "20260809-routing-contract-v2-sync",
+  "status": "complete",
+  "criteria": [
+    { "id": "source-pin", "status": "passed", "evidence": ["bundle/bundle-manifest.json", "bundle/kernel/config/domain-pack-sources.json"] },
+    { "id": "cli-scope", "status": "passed", "evidence": ["src/cli.js", "AGENTS.md"] },
+    { "id": "transactional-update", "status": "passed", "evidence": ["src/install.js", "test/cli.test.js"] },
+    { "id": "version-reporting", "status": "passed", "evidence": ["src/cli.js", "test/cli.test.js"] },
+    { "id": "isolated-lifecycle", "status": "passed", "evidence": ["changes/20260809-routing-contract-v2-sync/progress.md", "test/cli.test.js"] }
+  ]
+}
