@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.2+66f64c9.0ca789c",
-  "cli_version": "0.2.2",
-  "kernel_revision": "66f64c9e3638eed1ef77b29f7de65cdfc8188c5e",
-  "domain_revision": "0ca789ced412a5cceb4c247c3dd726fcb10b9882",
+  "bundle_version": "0.2.3+9354a6b.6a30f69",
+  "cli_version": "0.2.3",
+  "kernel_revision": "9354a6b7a0590d2240677c1333430c98f97586aa",
+  "domain_revision": "6a30f691d954b10d55f2bae7b315ff24776efd5c",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -238,11 +238,11 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/DOMAIN.md",
-      "sha256": "10b6ec97ac220afa1f352f86ac787d43835f8e555de0be41b7f592292b27202e"
+      "sha256": "6fcaa120fdba383a20a1cfdcf4eeca9ff9549819c9ed3d424e242d7e4674684e"
     },
     {
       "path": "domains/domains/engineering/harmonyos/README-CH.md",
-      "sha256": "06b527c93e15f7d29ac6a8c9de4d0865cd096a357bff8eecd98fd7b0598547cb"
+      "sha256": "4689bd0f817b96170e0064a4fc23528c9fa3ead73a4687a539affbe2df501075"
     },
     {
       "path": "domains/domains/engineering/harmonyos/capabilities.json",
@@ -250,7 +250,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/domain.json",
-      "sha256": "22d6bc3021f8de8d8dbbb53816e0102760c9ed23b33ac3b7972729a56f0df384"
+      "sha256": "606a88172e833ab9c694c7c6289da5d5e51c0efe47d1482519483bcf1f26d15c"
     },
     {
       "path": "domains/domains/engineering/harmonyos/evaluators/EVALUATOR.md",
@@ -266,7 +266,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/rules/BASE.md",
-      "sha256": "b1c20fce437182df60ab39f29d970df1812face1a0fea2afe042aab89d0721f2"
+      "sha256": "f4be226ac2313d0094569d89da0d07768b8da21e326c0cccba806a8df1462171"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/.gitkeep",
@@ -278,7 +278,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/harmonyos-engineering/SKILL.md",
-      "sha256": "7f8b0a7c5fc58ea5563e9b89a23756d44d6b3535ac3bcc1ed1e9c9f0b52f3cd2"
+      "sha256": "6dd8ba2fba1073b916df50718e1adfb677ecd12fe35f195da0899eafff364bc5"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-arkts-deprecated-interface-checker/README.md",
@@ -3218,7 +3218,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/workflows/WORKFLOW.md",
-      "sha256": "37e1a422a42a1c798a119000786735e212cdbb0f245f6485a90148a3818b0914"
+      "sha256": "e08a48daccfe1395a862eec04c5f55d058f6d346748e3f865c34390b49c36eed"
     },
     {
       "path": "domains/domains/engineering/web/DOMAIN.md",
@@ -3274,7 +3274,7 @@
     },
     {
       "path": "domains/registry/domains.json",
-      "sha256": "1ad9f3c2e9832110e1ee79d8502905ee1219cec85ef2d19a123fc42aea2828b3"
+      "sha256": "8f667741bea6a797d7d699a7b627ed251212a7c1aea0d6f293cb87fcc052d6e5"
     },
     {
       "path": "domains/schemas/capability.schema.json",
@@ -3302,7 +3302,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "aca9fa5c21ce6b9c91c4fbf80482b13cff6c3325a4b12504afee3f85304891e8"
+      "sha256": "4c60074a479d3f0884540da6d932c0a16f15d666ed4cfa5775cb97ee55ae8a51"
     },
     {
       "path": "kernel/config/protocol-versions.json",

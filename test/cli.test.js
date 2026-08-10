@@ -196,7 +196,7 @@ test("version reports CLI and installed Runtime versions", (t) => {
   const before = JSON.parse(execFileSync(process.execPath, [bin, "version", "--json"], {
     env: item.env, encoding: "utf8"
   }));
-  assert.equal(before.cli_version, "0.2.2");
+  assert.equal(before.cli_version, "0.2.3");
   assert.equal(before.runtime, null);
 
   const installed = install({ env: item.env, bundleRoot });
