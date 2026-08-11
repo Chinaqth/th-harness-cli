@@ -15,6 +15,17 @@ harness install
 
 `harness install` 会只读探测平台、验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用 `~/.hermes/skills` 并获得仅限 Hermes 的 `harness-runtime` 适配 Skill；Kimi Code 使用 `$KIMI_CODE_HOME/AGENTS.md` 受控区块及 `$KIMI_CODE_HOME/skills`（默认 Home 为 `~/.kimi-code`）。共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改平台身份、凭据、会话或记忆，遇到同名非受管 Skill 时会安全失败。
 
+安装只代表 Harness 可用，不会对所有项目自动启用。需要接入时，在项目根目录放置：
+
+```json
+{
+  "contract_code": "harness-engineering",
+  "enabled": true
+}
+```
+
+适配器会先精确比较 `contract_code`，匹配后才判断 `enabled`。文件缺失、无法解析、代码不匹配或未启用时，Kernel 和 Domain 保持未激活。
+
 探测依据为默认平台目录（`~/.codex`、`~/.hermes`、`~/.kimi-code`）已经存在，或显式配置了 `CODEX_HOME`、`HERMES_HOME`、`KIMI_CODE_HOME`。自动化环境可用 `HARNESS_PLATFORMS=codex,hermes,kimi` 明确选择适配器；`HARNESS_KIMI_SKILL_ROOT` 只覆盖 Kimi Skill 投影目录，不改变 Kimi 自身的配置和会话 Home。
 
 ```text

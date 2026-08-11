@@ -12,6 +12,12 @@ Kernel revision + Domain revision
 
 Platform discovery is read-only and adapter-driven. An existing platform home or explicit home environment variable is evidence of installation; discovery never creates a platform directory. The Codex adapter owns a bounded guidance block and Skill projections. The Hermes adapter owns projections into `~/.hermes/skills` plus a generated `harness-runtime` Skill, while leaving identity, configuration, and memories untouched. The Kimi Code adapter owns a bounded block in `$KIMI_CODE_HOME/AGENTS.md` and projections into `$KIMI_CODE_HOME/skills`; it does not modify Kimi configuration, credentials, sessions, logs, or `SYSTEM.md`.
 
+Platform adapters gate the Runtime at project-task start. They inspect only the project-root
+`.harness.json`, compare `contract_code` exactly with `harness-engineering`, and only after a match
+evaluate whether `enabled` is the JSON boolean `true`. Every other outcome leaves the installed
+Kernel and Domains inactive. The Kernel owns the authoritative bridge schema and semantics; the CLI
+only projects this bootstrap instruction and keeps no project registry.
+
 `harness install` validates every Bundle file before mutation, stages a complete Runtime beside the destination, switches the Runtime, writes bounded guidance where the platform supports it, creates only declared Skill links, and commits `manifest.json` plus `state/install-record.json`. Repeated installation is idempotent.
 
 `harness update` requires both ownership records and uses the same transaction to replace an existing Runtime. It refreshes projections and removes obsolete managed links. A failed transaction restores the previous Runtime, projections, and guidance.

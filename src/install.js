@@ -48,13 +48,17 @@ function loadBundle(bundleRoot) {
 
 function guidanceBlock() {
   return `${GUIDANCE_START}
-Harness Engineering is installed.
+Harness Engineering is installed but activates only through a project bridge.
 
-Load and follow:
+At the start of a project task, inspect only the project-root .harness.json.
+First require contract_code to equal "harness-engineering" exactly. Only after it matches,
+require enabled to be the JSON boolean true. If the file is absent, malformed, mismatched,
+disabled, or has invalid field types, do not load or apply the Harness Kernel or Domains.
+
+Only when the bridge activates Harness, load and follow:
 ~/.harness/runtime/kernel/AGENTS.md
 
-Resolve Domain capabilities through the installed Harness runtime.
-Project constraints may be stricter but cannot weaken Kernel requirements.
+Then resolve Domain capabilities through the installed Harness runtime.
 ${GUIDANCE_END}`;
 }
 
@@ -78,7 +82,7 @@ function discoverSkills(runtimeRoot, bundleManifest) {
 function hermesAdapterContent() {
   return `---
 name: harness-runtime
-description: Use the installed Harness Engineering Kernel and Domain capabilities for governed engineering work.
+description: Use the installed Harness Engineering Kernel and Domain capabilities only when the current project activates them through a valid project-root .harness.json bridge.
 metadata:
   hermes:
     tags: [engineering, governance]
@@ -89,14 +93,19 @@ metadata:
 
 ## When to Use
 
-Use this Skill for engineering work that should follow the installed Harness Kernel or use an Enterprise Domain capability.
+Use this Skill only when the current project explicitly activates the installed Harness Runtime.
 
 ## Procedure
 
-1. Read and follow \`~/.harness/runtime/kernel/AGENTS.md\` before taking task actions.
-2. Use the Kernel's installed workflows, schemas, and routing mechanism as authoritative.
-3. Resolve Domain capabilities through the installed Domain registry and project overlay.
-4. Load only the workflows, Skills, evaluators, and constraints selected by Harness Engineering.
+1. Inspect only the project-root \`.harness.json\`.
+2. First require \`contract_code\` to equal \`harness-engineering\` exactly. Only after it
+   matches, require \`enabled\` to be the JSON boolean \`true\`.
+3. If the bridge is absent, malformed, mismatched, disabled, or has invalid field types, stop and
+   do not load or apply the Harness Kernel or Domains.
+4. Only after activation, read and follow \`~/.harness/runtime/kernel/AGENTS.md\`.
+5. Use the Kernel's installed workflows, schemas, and routing mechanism as authoritative.
+6. Resolve Domain capabilities through the installed Domain registry and project overlay.
+7. Load only the workflows, Skills, evaluators, and constraints selected by Harness Engineering.
 
 ## Boundaries
 

@@ -15,6 +15,19 @@ harness install
 
 `harness install` performs read-only platform discovery, verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` adapter in `~/.hermes/skills`; Kimi Code receives a managed block in `$KIMI_CODE_HOME/AGENTS.md` and Skills in `$KIMI_CODE_HOME/skills` (default home: `~/.kimi-code`). Shared Skills are also projected to `~/.agents/skills`. The installer does not edit platform identity, credentials, sessions, or memories, and refuses to overwrite unmanaged Skills.
 
+Installation makes Harness available but does not activate it for every project. To opt in, place
+this exact bridge in the project root:
+
+```json
+{
+  "contract_code": "harness-engineering",
+  "enabled": true
+}
+```
+
+Adapters compare `contract_code` first and evaluate `enabled` only after an exact match. An absent,
+malformed, mismatched, or disabled bridge leaves the Kernel and Domains inactive.
+
 Detection uses an existing default platform home (`~/.codex`, `~/.hermes`, or `~/.kimi-code`) or an explicitly configured `CODEX_HOME`, `HERMES_HOME`, or `KIMI_CODE_HOME`. For automation, set `HARNESS_PLATFORMS=codex,hermes,kimi` to select adapters explicitly. `HARNESS_KIMI_SKILL_ROOT` may override only the Kimi Skill projection directory; it does not change Kimi's own configuration or session home.
 
 ```text

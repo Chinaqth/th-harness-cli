@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.3+9354a6b.6a30f69",
+  "bundle_version": "0.2.3+10e4def.6a30f69",
   "cli_version": "0.2.3",
-  "kernel_revision": "9354a6b7a0590d2240677c1333430c98f97586aa",
+  "kernel_revision": "10e4def5e813a42c9ea4c2b1f9a803c877e58a06",
   "domain_revision": "6a30f691d954b10d55f2bae7b315ff24776efd5c",
   "domain_source": {
     "id": "enterprise-domain-packs",
@@ -3298,7 +3298,7 @@
     },
     {
       "path": "kernel/AGENTS.md",
-      "sha256": "f1878fbfb94131458484c2129e54166d7ae00b62ef9a28b7f360f38872f4f9a9"
+      "sha256": "d83f8f68deacad723f1ea2173376e0e461959ac8b41b429c1d1f916a0bdd2a1e"
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
@@ -3314,7 +3314,7 @@
     },
     {
       "path": "kernel/docs/ARCHITECTURE.md",
-      "sha256": "011426fb1f8ccfc02244a78a4808853a6da57dd6dc822987c96140677acd1818"
+      "sha256": "605bb61d146dda2359132d16ed3a1d0c1396213fca8c99058959fb4ba16856fa"
     },
     {
       "path": "kernel/docs/AUTONOMY_POLICY.md",
@@ -3335,6 +3335,10 @@
     {
       "path": "kernel/docs/OBSERVABILITY.md",
       "sha256": "c602b7f1a665510d91b72ab85142d01eb2df04b823c24618d82153de0aab3ecd"
+    },
+    {
+      "path": "kernel/docs/PROJECT_ACTIVATION.md",
+      "sha256": "7cc66d7d65601ba9a2a3c4c28569bb688a0fb5234e98dec4e5b3ee93fb16155f"
     },
     {
       "path": "kernel/docs/PROTOCOL_VERSIONING.md",
@@ -3379,6 +3383,10 @@
     {
       "path": "kernel/schemas/project-domain-overlay.schema.json",
       "sha256": "75fa3ecd24c3f7ad27f990cc1b9a8c22452e69bd7d6c17d8965473f281998789"
+    },
+    {
+      "path": "kernel/schemas/project-harness-bridge.schema.json",
+      "sha256": "da1f4378de5014edc746c24051f2add59fb10d12dd652e80889bd9358bc57b74"
     },
     {
       "path": "kernel/schemas/protocol-versions.schema.json",

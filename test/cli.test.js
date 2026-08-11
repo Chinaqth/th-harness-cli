@@ -67,6 +67,9 @@ test("install is self-contained, idempotent, and preserves user guidance", (t) =
   const text = fs.readFileSync(guidance, "utf8");
   assert.match(text, /User rules/);
   assert.equal(text.split(GUIDANCE_START).length - 1, 1);
+  assert.match(text, /project-root \.harness\.json/);
+  assert.ok(text.indexOf("contract_code") < text.indexOf("enabled"));
+  assert.match(text, /Only when the bridge activates Harness/);
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime", "kernel", "AGENTS.md")));
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "manifest.json")));
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "state", "install-record.json")));
@@ -87,6 +90,8 @@ test("platform discovery is read-only and deploys Hermes only when detected", (t
   assert.ok(hermesSkills.some((skill) => skill.name === "harness-runtime"));
   assert.ok(hermesSkills.every((skill) => fs.lstatSync(skill.link).isSymbolicLink()));
   const adapter = fs.readFileSync(path.join(hermesHome, "skills", "harness-runtime", "SKILL.md"), "utf8");
+  assert.match(adapter, /project-root \.harness\.json/);
+  assert.ok(adapter.indexOf("contract_code") < adapter.indexOf("enabled"));
   assert.match(adapter, /Kernel's installed workflows, schemas, and routing mechanism as authoritative/);
   assert.doesNotMatch(adapter, /harness route/);
   assert.equal(fs.existsSync(path.join(hermesHome, "SOUL.md")), false);
