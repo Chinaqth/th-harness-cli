@@ -1,6 +1,6 @@
 {
   "name": "@chinaqth/harness-cli",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "User-level Harness Engineering gateway for Codex, Hermes Agent, and future AI platforms.",
   "type": "module",
   "bin": {
