@@ -6,12 +6,16 @@ Harness CLI 为当前用户安装、更新和卸载版本锁定的 Harness Kerne
 
 ## 安装
 
-要求 Node.js 20 或更高版本。运行时安装不要求 Git，也不要求本地存在 Kernel 或 Domain 源码仓库。
+CLI 不提供远程 registry 部署，需通过本地仓库检出进行安装。要求 Node.js 20 或更高版本以及 Git；运行时不要求本地存在 Kernel 或 Domain 源码仓库。
 
 ```bash
-npm install -g @chinaqth/harness-cli
+git clone git@github.com:Chinaqth/th-harness-cli.git
+cd th-harness-cli
+npm install -g .
 harness install
 ```
+
+如需部署到其他机器，可先执行 `npm pack` 生成 tarball，拷贝到目标机器后运行 `npm install -g chinaqth-harness-cli-<version>.tgz`，再执行 `harness install`。
 
 `harness install` 会只读探测平台、验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用 `~/.hermes/skills` 并获得仅限 Hermes 的 `harness-runtime` 适配 Skill；Kimi Code 使用 `$KIMI_CODE_HOME/AGENTS.md` 受控区块及 `$KIMI_CODE_HOME/skills`（默认 Home 为 `~/.kimi-code`）。共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改平台身份、凭据、会话或记忆，遇到同名非受管 Skill 时会安全失败。
 

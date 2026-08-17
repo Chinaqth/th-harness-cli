@@ -6,12 +6,16 @@ Harness CLI installs, updates, and uninstalls a version-locked Harness Kernel an
 
 ## Install
 
-Requirements: Node.js 20 or newer. Git and local Kernel or Domain checkouts are not required at runtime.
+The CLI has no remote registry deployment; it is installed from a local repository checkout. Requirements: Node.js 20 or newer and Git. Local Kernel or Domain checkouts are not required at runtime.
 
 ```bash
-npm install -g @chinaqth/harness-cli
+git clone git@github.com:Chinaqth/th-harness-cli.git
+cd th-harness-cli
+npm install -g .
 harness install
 ```
+
+To deploy on another machine, build a tarball with `npm pack`, copy it over, and run `npm install -g chinaqth-harness-cli-<version>.tgz`, then `harness install`.
 
 `harness install` performs read-only platform discovery, verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` adapter in `~/.hermes/skills`; Kimi Code receives a managed block in `$KIMI_CODE_HOME/AGENTS.md` and Skills in `$KIMI_CODE_HOME/skills` (default home: `~/.kimi-code`). Shared Skills are also projected to `~/.agents/skills`. The installer does not edit platform identity, credentials, sessions, or memories, and refuses to overwrite unmanaged Skills.
 
