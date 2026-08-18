@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.4+3ab99a6.bb9578c",
+  "bundle_version": "0.2.4+7790a87.f359d6a",
   "cli_version": "0.2.4",
-  "kernel_revision": "3ab99a6073387b7a119fae17b8f11e03cf4b1496",
-  "domain_revision": "bb9578c6b755cb3e4bf100f1870c1bc262fb5d45",
+  "kernel_revision": "7790a8768eab0faa09f2a2af69fa91a5dd36916d",
+  "domain_revision": "f359d6a8966665abef196af90b905afaa0f701fe",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -3218,7 +3218,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/SKILL.md",
-      "sha256": "89e855e37ce80db4e4ac7c0608956b9426a137f6ef5535fd7b7dbae5974e3375"
+      "sha256": "5faeb91ec5fc5ca88249ec858363137fec59e5e2132fc1283c3eac4fc8c59483"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/references/business-module-architecture.md",
@@ -3422,7 +3422,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "588a85680c2ab254ce4f709f623d70fa7ffe0818769a1c8e9358cd85af329e2c"
+      "sha256": "239356362b9cea101fd032309b8208e4a73e6ddaa1b4929f203b703fa4dc06f2"
     },
     {
       "path": "kernel/config/protocol-versions.json",
