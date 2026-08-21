@@ -7,7 +7,7 @@ import { resolveUserPaths } from "./paths.js";
 const HELP = `Harness Engineering CLI
 
 Usage:
-  harness install [--json]
+  harness install [project-path] [--json]
   harness update [--json]
   harness uninstall [--json]
   harness version [--json]
@@ -16,10 +16,12 @@ Usage:
 function parse(argv) {
   const [command = "help", ...rest] = argv;
   const options = {};
+  const positionals = [];
   for (let index = 0; index < rest.length; index += 1) {
     const token = rest[index];
     if (!token.startsWith("--")) {
-      throw new Error(`Unexpected argument: ${token}`);
+      positionals.push(token);
+      continue;
     }
     const key = token.slice(2).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     if (key === "json") {
@@ -33,7 +35,7 @@ function parse(argv) {
     options[key] = value;
     index += 1;
   }
-  return { command, options };
+  return { command, options, positionals };
 }
 
 function printJson(value) {
@@ -66,12 +68,13 @@ function printDeployment(verb, result) {
 }
 
 export async function main(argv) {
-  const { command, options } = parse(argv);
+  const { command, options, positionals } = parse(argv);
   if (command === "help" || command === "--help" || command === "-h") {
     process.stdout.write(HELP);
     return;
   }
   if (command === "version" || command === "--version" || command === "-v") {
+    if (positionals.length) throw new Error("harness version does not accept a project path");
     const info = versionInfo();
     if (options.json) printJson(info);
     else {
@@ -85,16 +88,19 @@ export async function main(argv) {
     return;
   }
   if (command === "install") {
-    const result = install();
+    if (positionals.length > 1) throw new Error("harness install accepts at most one project path");
+    const result = install({ projectPath: positionals[0] });
     options.json ? printJson(result) : printDeployment("Installed", result);
     return;
   }
   if (command === "update") {
+    if (positionals.length) throw new Error("harness update does not accept a project path");
     const result = update();
     options.json ? printJson(result) : printDeployment("Updated", result);
     return;
   }
   if (command === "uninstall") {
+    if (positionals.length) throw new Error("harness uninstall does not accept a project path");
     const result = uninstall({});
     if (options.json) {
       printJson(result);

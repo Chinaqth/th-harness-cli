@@ -75,6 +75,53 @@ test("install is self-contained, idempotent, and preserves user guidance", (t) =
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "state", "install-record.json")));
 });
 
+test("install accepts a project path and writes Codex guidance in the project", (t) => {
+  const item = fixture(t);
+  const globalGuidance = path.join(item.env.CODEX_HOME, "AGENTS.md");
+  const projectGuidance = path.join(item.project, "AGENTS.md");
+  write(projectGuidance, "# Project rules\n");
+
+  const result = install({ env: item.env, bundleRoot, projectPath: item.project });
+
+  assert.equal(fs.existsSync(globalGuidance), false);
+  assert.match(fs.readFileSync(projectGuidance, "utf8"), /Project rules/);
+  assert.match(fs.readFileSync(projectGuidance, "utf8"), /harness:managed:start/);
+  assert.equal(fs.realpathSync(result.runtime.project_root), fs.realpathSync(item.project));
+  assert.ok(result.managed_guidance.some((item) => item.path === projectGuidance));
+});
+
+test("update preserves the installed project guidance target", (t) => {
+  const item = fixture(t);
+  install({ env: item.env, bundleRoot, projectPath: item.project });
+
+  const result = update({ env: item.env, bundleRoot });
+
+  assert.equal(result.runtime.project_root, item.project);
+  assert.match(fs.readFileSync(path.join(item.project, "AGENTS.md"), "utf8"), /harness:managed:start/);
+  assert.equal(fs.existsSync(path.join(item.env.CODEX_HOME, "AGENTS.md")), false);
+});
+
+test("CLI install accepts a relative project path", (t) => {
+  const item = fixture(t);
+  const bin = path.join(root, "bin", "harness.js");
+  const result = JSON.parse(execFileSync(process.execPath, [bin, "install", "project", "--json"], {
+    cwd: item.temp,
+    env: item.env,
+    encoding: "utf8"
+  }));
+
+  assert.equal(fs.realpathSync(result.runtime.project_root), fs.realpathSync(item.project));
+  assert.ok(fs.existsSync(path.join(item.project, "AGENTS.md")));
+  assert.equal(fs.existsSync(path.join(item.env.CODEX_HOME, "AGENTS.md")), false);
+});
+
+test("install rejects a missing project path before changing user state", (t) => {
+  const item = fixture(t);
+  const missing = path.join(item.temp, "missing");
+  assert.throws(() => install({ env: item.env, bundleRoot, projectPath: missing }), /does not exist/);
+  assert.equal(fs.existsSync(path.join(item.env.HARNESS_HOME, "runtime")), false);
+});
+
 test("platform discovery is read-only and deploys Hermes only when detected", (t) => {
   const item = fixture(t);
   const hermesHome = path.join(item.env.HARNESS_USER_HOME, ".hermes");

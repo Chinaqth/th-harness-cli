@@ -71,6 +71,15 @@ function replaceManagedBlock(existing) {
   return `${preserved ? `${preserved}\n\n` : ""}${guidanceBlock()}\n`;
 }
 
+function removeManagedBlock(existing) {
+  const startCount = existing.split(GUIDANCE_START).length - 1;
+  const endCount = existing.split(GUIDANCE_END).length - 1;
+  if (startCount !== endCount || startCount > 1) throw new Error("Existing Harness managed guidance block is malformed");
+  const pattern = new RegExp(`\\n?${GUIDANCE_START}[\\s\\S]*?${GUIDANCE_END}\\n?`, "g");
+  const preserved = existing.replace(pattern, "\n").trim();
+  return preserved ? `${preserved}\n` : null;
+}
+
 function discoverSkills(runtimeRoot, bundleManifest) {
   return (bundleManifest.skills || []).map((item) => ({
     name: item.name,
@@ -130,11 +139,22 @@ function assertTargetsAvailable(projections, previous) {
   }
 }
 
-export function install({ env = process.env, bundleRoot } = {}) {
+export function install({ env = process.env, bundleRoot, projectPath } = {}) {
   const paths = resolveUserPaths(env);
-  const targets = deploymentTargets(paths, env);
   const bundle = loadBundle(bundleRoot);
   const previous = fs.existsSync(paths.manifestPath) ? readJson(paths.manifestPath) : null;
+  const explicitProjectRoot = projectPath ? path.resolve(projectPath) : null;
+  if (explicitProjectRoot) {
+    if (!fs.existsSync(explicitProjectRoot)) throw new Error(`Project path does not exist: ${explicitProjectRoot}`);
+    if (!fs.statSync(explicitProjectRoot).isDirectory()) throw new Error(`Project path is not a directory: ${explicitProjectRoot}`);
+  }
+  const projectRoot = explicitProjectRoot || previous?.runtime?.project_root || null;
+  const targets = deploymentTargets(paths, env);
+  if (projectRoot) {
+    targets.guidance = targets.guidance.map((item) => item.platform === "codex"
+      ? { ...item, path: path.join(projectRoot, "AGENTS.md") }
+      : item);
+  }
   const skillSources = [
     ...discoverSkills(paths.runtimeRoot, bundle.manifest),
     {
@@ -162,8 +182,14 @@ export function install({ env = process.env, bundleRoot } = {}) {
     }
   }
 
-  const priorGuidance = targets.guidance.map((item) => ({
+  const currentGuidancePaths = new Set(targets.guidance.map((item) => item.path));
+  const guidanceByPath = new Map([
+    ...(previous?.managed_guidance || []),
+    ...targets.guidance
+  ].map((item) => [item.path, item]));
+  const priorGuidance = [...guidanceByPath.values()].map((item) => ({
     ...item,
+    active: currentGuidancePaths.has(item.path),
     content: fs.existsSync(item.path) ? fs.readFileSync(item.path, "utf8") : null
   }));
   fs.mkdirSync(path.dirname(paths.harnessHome), { recursive: true });
@@ -183,7 +209,11 @@ export function install({ env = process.env, bundleRoot } = {}) {
     if (fs.existsSync(backupRuntime)) fs.rmSync(backupRuntime, { recursive: true, force: true });
     if (fs.existsSync(paths.runtimeRoot)) fs.renameSync(paths.runtimeRoot, backupRuntime);
     fs.renameSync(stagedRuntime, paths.runtimeRoot);
-    for (const item of priorGuidance) atomicWrite(item.path, replaceManagedBlock(item.content || ""));
+    for (const item of priorGuidance) {
+      const next = item.active ? replaceManagedBlock(item.content || "") : removeManagedBlock(item.content || "");
+      if (next === null) fs.rmSync(item.path, { force: true });
+      else atomicWrite(item.path, next);
+    }
     for (const item of projections) {
       fs.mkdirSync(path.dirname(item.link), { recursive: true });
       if (!pathExists(item.link)) {
@@ -212,7 +242,12 @@ export function install({ env = process.env, bundleRoot } = {}) {
         repository: bundle.manifest.domain_source.repository,
         registry: bundle.manifest.domain_source.registry
       },
-      runtime: { root: paths.runtimeRoot, project_overlay: ".harness/domains.json", global_guidance: targets.guidance[0]?.path || null },
+      runtime: {
+        root: paths.runtimeRoot,
+        project_overlay: ".harness/domains.json",
+        global_guidance: targets.guidance[0]?.path || null,
+        project_root: projectRoot
+      },
       platforms: targets.platforms,
       managed_guidance: targets.guidance,
       installed_at: new Date().toISOString(),

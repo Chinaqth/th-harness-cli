@@ -13,11 +13,16 @@ git clone git@github.com:Chinaqth/th-harness-cli.git
 cd th-harness-cli
 npm install -g .
 harness install
+harness install /path/to/project
 ```
 
 如需部署到其他机器，可先执行 `npm pack` 生成 tarball，拷贝到目标机器后运行 `npm install -g chinaqth-harness-cli-<version>.tgz`，再执行 `harness install`。
 
 `harness install` 会只读探测平台、验证内置 Bundle 清单和 SHA-256 校验值，把 Runtime 部署到 `~/.harness/runtime`，并只为探测到的平台安装适配器：Codex 使用 `~/.codex/AGENTS.md` 受控区块及 `~/.codex/skills`；Hermes 使用 `~/.hermes/skills` 并获得仅限 Hermes 的 `harness-runtime` 适配 Skill；Kimi Code 使用 `$KIMI_CODE_HOME/AGENTS.md` 受控区块及 `$KIMI_CODE_HOME/skills`（默认 Home 为 `~/.kimi-code`）。共享 Skills 同时投影到 `~/.agents/skills`。安装器不会修改平台身份、凭据、会话或记忆，遇到同名非受管 Skill 时会安全失败。
+
+提供可选项目路径时，Codex 受控引导区块会写入 `<项目路径>/AGENTS.md`，而不是
+`~/.codex/AGENTS.md`。项目目录必须已存在；相对路径按当前工作目录解析，后续执行
+`harness update` 时会继续使用安装清单中记录的项目目标。
 
 安装只代表 Harness 可用，不会对所有项目自动启用。需要接入时，在项目根目录放置：
 

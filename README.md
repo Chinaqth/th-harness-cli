@@ -13,11 +13,17 @@ git clone git@github.com:Chinaqth/th-harness-cli.git
 cd th-harness-cli
 npm install -g .
 harness install
+harness install /path/to/project
 ```
 
 To deploy on another machine, build a tarball with `npm pack`, copy it over, and run `npm install -g chinaqth-harness-cli-<version>.tgz`, then `harness install`.
 
 `harness install` performs read-only platform discovery, verifies the bundled manifest and SHA-256 checksums, deploys the Runtime under `~/.harness/runtime`, and installs only the adapters for detected platforms. Codex receives a managed block in `~/.codex/AGENTS.md` and Skills in `~/.codex/skills`; Hermes receives Skills plus a platform-only `harness-runtime` adapter in `~/.hermes/skills`; Kimi Code receives a managed block in `$KIMI_CODE_HOME/AGENTS.md` and Skills in `$KIMI_CODE_HOME/skills` (default home: `~/.kimi-code`). Shared Skills are also projected to `~/.agents/skills`. The installer does not edit platform identity, credentials, sessions, or memories, and refuses to overwrite unmanaged Skills.
+
+When an optional project path is supplied, the Codex managed guidance block is written to
+`<project-path>/AGENTS.md` instead of `~/.codex/AGENTS.md`. The project directory must already
+exist. Relative paths are resolved from the current working directory, and subsequent
+`harness update` operations retain the recorded project target.
 
 Installation makes Harness available but does not activate it for every project. To opt in, place
 this exact bridge in the project root:
