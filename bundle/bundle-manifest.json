@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.4+c28afb8.f3d9901",
+  "bundle_version": "0.2.4+7f26f62.4345d12",
   "cli_version": "0.2.4",
-  "kernel_revision": "c28afb82b9e4381e2224c9633faac2f7c360061d",
-  "domain_revision": "f3d99019d16b681ae3dbc24f948e78508345e311",
+  "kernel_revision": "7f26f6201f356f0355f7e644236fe7a7ce81ce69",
+  "domain_revision": "4345d12179655ece58acc75d55d031d82efd43f1",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -3430,7 +3430,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "2ce1e23acbaf48860f5ab13fee189b177da41e6e585a2b1852aec33e72b43129"
+      "sha256": "2279110b657bdce52e7c9602b107d23a81bfde18514a38870ae900c61758bafd"
     },
     {
       "path": "kernel/config/protocol-versions.json",
