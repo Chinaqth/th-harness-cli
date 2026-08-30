@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "bundle_version": "0.2.4+7f26f62.4345d12",
+  "bundle_version": "0.2.4+cbbf802.6063034",
   "cli_version": "0.2.4",
-  "kernel_revision": "7f26f6201f356f0355f7e644236fe7a7ce81ce69",
-  "domain_revision": "4345d12179655ece58acc75d55d031d82efd43f1",
+  "kernel_revision": "cbbf802276e380d23d4ed0a4b43e4f1480e840a3",
+  "domain_revision": "60630348a14be125d3b7eb8aca3820a3929cf40f",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -201,6 +201,14 @@
       "sha256": "fad33801f76a97588febf009afcd6d2ee9fc3a6b4950ddb8a788c495fc36fca4"
     },
     {
+      "path": "domains/docs/plans/2026-08-30-harmonyos-model-api-boundary-design.md",
+      "sha256": "c310e1d353033e421f8027585a8f817034da03757a0b0f1491f3729926a9d459"
+    },
+    {
+      "path": "domains/docs/superpowers/plans/2026-08-30-harmonyos-model-api-boundary.md",
+      "sha256": "126d4a501c3921d8098d993228e789fd4400c7ead263d0bc9d04ee46a1bbdd79"
+    },
+    {
       "path": "domains/domains/_template/DOMAIN.md",
       "sha256": "f844d954dd9260782cadc085134c46c7b269cffc67859e12d8baff0af2032ad5"
     },
@@ -246,23 +254,23 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/DOMAIN.md",
-      "sha256": "547b967c63cf2cf737b25cdce2ac8a4b31c8a17b9e05d0fb3406b516eaa5497f"
+      "sha256": "9a250166a63669c7fb59205cf991af5a084e3351e81eb1d585ad2e143c1420d9"
     },
     {
       "path": "domains/domains/engineering/harmonyos/README-CH.md",
-      "sha256": "793c5697cb947b85940393d2d53fd475eaac79938e4f831a06f6d91d94efa4d6"
+      "sha256": "c8cca646e2f1aab513bb3f3fd5df54e0043ad6e6228278a3a5ee60a4398664c2"
     },
     {
       "path": "domains/domains/engineering/harmonyos/capabilities.json",
-      "sha256": "d678f8e192db5e133db0010990c1cfe5673c71427257adb1059749dab9bad31a"
+      "sha256": "298db4edaa087ca7a685a3c4c2087e86276149db275706fd8d8d3a9d96fd42f6"
     },
     {
       "path": "domains/domains/engineering/harmonyos/domain.json",
-      "sha256": "9946b4d63087012b7cb4200ab3250adf284c0f6a6cc156ccd65468457be28b37"
+      "sha256": "cffa89cb483e10817fcc957b490918ad39adbcc120bd00278a5734efd7f52fdd"
     },
     {
       "path": "domains/domains/engineering/harmonyos/evaluators/EVALUATOR.md",
-      "sha256": "58100d2bf575795958307e78dcb7d2d03a678f66f675bfada9e27b0093d94024"
+      "sha256": "198fbf183f3786e806538f189f802d9f23a15648af005ddc72e421acc8685afe"
     },
     {
       "path": "domains/domains/engineering/harmonyos/owners.json",
@@ -274,7 +282,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/rules/BASE.md",
-      "sha256": "f8acb3c41abd32915502ebae670ca03ab5d1e7c860d54fa74b9eba0996a3de41"
+      "sha256": "0db0f3dc66e47690869b952674e48b032d27172b496a8ffb27b049b1d32deca3"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/.gitkeep",
@@ -286,7 +294,7 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/harmonyos-engineering/SKILL.md",
-      "sha256": "8077eb662f802791db50e2881be88dfdcbcb7088463b21a6ae68dd37199aa90b"
+      "sha256": "f862ea74f3c773e508e0cad0812945bb1abed5e053c310b34caed3d27cf92fc1"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-arkts-deprecated-interface-checker/README.md",
@@ -3218,15 +3226,15 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/SKILL.md",
-      "sha256": "54da63081bcc23460ffe16d35fee26aaa1e95fef131ae6c0bcd7b6b75d047384"
+      "sha256": "55a78722e57a6038186a573cae153d97c4a989da9244c12a9efc715ea4c40377"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/references/business-module-architecture.md",
-      "sha256": "661c49364329e5fc0c72d1525f7cac97e008f130ffb5d4c2a894da8698ca4711"
+      "sha256": "12d5f2342c3c3f401b88c24681290ead15b10e340c3a75610ee70aa91949f87d"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/references/network-request-conventions.md",
-      "sha256": "e15b9df76962c671d589b2ad5629a7d8586a9ca4621887761b46c1c236d519af"
+      "sha256": "0802fcf92fcbda09f9cb516e5567739f1e075e45de83a34384f5f07e59ac8ba4"
     },
     {
       "path": "domains/domains/engineering/harmonyos/skills/hmos-business-module-development/references/ui-page-dialog-conventions.md",
@@ -3342,11 +3350,11 @@
     },
     {
       "path": "domains/domains/engineering/harmonyos/templates/delivery-evidence.md",
-      "sha256": "6f8b565f6208f36db91bcf76fb9cd0284c4ae0300756e06dcaadc4096e7e82a5"
+      "sha256": "1733505ce096831fe66b8b358c6b8618a778c6fbdc52263aeb9c67f95bd8242a"
     },
     {
       "path": "domains/domains/engineering/harmonyos/workflows/WORKFLOW.md",
-      "sha256": "f41789314e5dbcd10940565ccd7244801aacba58d3d017be485f453725069318"
+      "sha256": "b1c039e4124c83612be74d5ad0578b71339c22eced11ce3842f82bf51f11d5c7"
     },
     {
       "path": "domains/domains/engineering/web/DOMAIN.md",
@@ -3402,7 +3410,7 @@
     },
     {
       "path": "domains/registry/domains.json",
-      "sha256": "23c83d57f06d90dede12456217f384c5f75ae8533efad08766f0839e69bd1240"
+      "sha256": "1a3a55db72f4fba85256f27adfba9ecf5cf6e02eef9befdb2c4d7a30f4de0df5"
     },
     {
       "path": "domains/schemas/capability.schema.json",
@@ -3430,7 +3438,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "2279110b657bdce52e7c9602b107d23a81bfde18514a38870ae900c61758bafd"
+      "sha256": "e16e729f4eabab7985975d5ca2234ab3aeacf9566851dc3b679f83b54d67911e"
     },
     {
       "path": "kernel/config/protocol-versions.json",
