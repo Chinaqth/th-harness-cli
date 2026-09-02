@@ -12,6 +12,14 @@ const kernel = path.resolve(process.env.HARNESS_KERNEL_SOURCE);
 const domains = path.resolve(process.env.HARNESS_DOMAIN_SOURCE);
 const output = path.join(root, "bundle");
 const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+function assertCleanCheckout(checkout, label) {
+  const changes = execFileSync("git", ["-C", checkout, "status", "--porcelain"], { encoding: "utf8" }).trim();
+  if (changes) {
+    throw new Error(`${label} source checkout is dirty; commit or discard changes before building an immutable bundle`);
+  }
+}
+assertCleanCheckout(kernel, "Kernel");
+assertCleanCheckout(domains, "Domain Packs");
 const kernelRevision = execFileSync("git", ["-C", kernel, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 const domainRevision = execFileSync("git", ["-C", domains, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 const source = JSON.parse(fs.readFileSync(path.join(kernel, "config", "domain-pack-sources.json"), "utf8")).sources?.[0];
