@@ -27,3 +27,7 @@ The Runtime manifest records exact source revisions, installed file checksums, a
 The release Bundle includes Domain repository runtime content and administrative Skills, but excludes repository-development `.codex` configuration and Custom Agents. Those files orchestrate work inside the authoritative Domain repository and are not user-runtime policy. Functional Domain Skills are projected only when their registry entry is `active`; draft Domain content remains visible to maintainers but cannot become globally selectable.
 
 Uninstall is the inverse operation. It requires both ownership records, rejects modified projections or Runtime files, removes only manifest-recorded platform adapters, and never modifies a product project or platform-owned identity/configuration.
+
+## Version 1.0.0 lifecycle Runtime
+
+Ships Kernel 4.0 scripts and Domain stage bindings (Web 2.0.0, HarmonyOS 7.0.0). Markdown Skills execute through the host adapter, not an embedded model process. `npm run bundle:build -- --development` creates an explicitly marked SHA-256 development snapshot without commits. Release builds still require clean committed sources. Installed Domain provenance supports routing without a Git checkout. New regression tests exercise installed dispatch/resume and managed Skill relocation. Python 3.11+ is needed for Domain authoring checks; Kernel routing itself is dependency-free.

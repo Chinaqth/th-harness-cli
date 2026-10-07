@@ -15,7 +15,7 @@ const walk = (directory, prefix = "") => fs.readdirSync(path.join(directory, pre
   const relative = path.join(prefix, name);
   return fs.statSync(path.join(directory, relative)).isDirectory() ? walk(directory, relative) : [relative];
 });
-const actual = walk(bundle).filter((file) => file !== "bundle-manifest.json");
+const actual = walk(bundle).filter((file) => file !== "bundle-manifest.json").sort();
 const expected = manifest.files.map((item) => item.path).sort();
 if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error("Bundle file list drift");
 for (const item of manifest.files) {

@@ -54,6 +54,7 @@ function versionInfo(env = process.env) {
     cli_version: packageVersion(),
     runtime: installed ? {
       bundle_version: installed.bundle_version,
+      build_kind: installed.build_kind || "release",
       kernel_revision: installed.kernel?.revision,
       domain_revision: installed.domain_source?.revision
     } : null
@@ -61,8 +62,8 @@ function versionInfo(env = process.env) {
 }
 
 function printDeployment(verb, result) {
-  process.stdout.write(`${verb} Harness Kernel ${result.kernel.revision.slice(0, 7)}\n`);
-  process.stdout.write(`${verb} Domain Packs ${result.domain_source.revision.slice(0, 7)}\n`);
+  process.stdout.write(`${verb} Harness Kernel ${result.kernel.revision.replace("sha256:", "").slice(0, 12)}\n`);
+  process.stdout.write(`${verb} Domain Packs ${result.domain_source.revision.replace("sha256:", "").slice(0, 12)}\n`);
   process.stdout.write(`Published ${result.managed_skills.length} managed Skill projection(s)\n`);
   process.stdout.write(`Deployed to: ${result.platforms.map((item) => item.id).join(", ") || "shared Skills only"}\n`);
 }

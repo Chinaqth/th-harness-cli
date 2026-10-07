@@ -31,7 +31,7 @@ function loadBundle(bundleRoot) {
   if (!fs.existsSync(manifestPath)) throw new Error(`Runtime Bundle is missing: ${manifestPath}`);
   const manifest = readJson(manifestPath);
   if (manifest.schema_version !== "1.0") throw new Error("Unsupported Runtime Bundle manifest");
-  const actual = listFiles(root).filter((file) => file !== "bundle-manifest.json");
+  const actual = listFiles(root).filter((file) => file !== "bundle-manifest.json").sort();
   const expected = (manifest.files || []).map((item) => item.path).sort();
   if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error("Runtime Bundle file list does not match its manifest");
   for (const item of manifest.files) {
@@ -58,7 +58,7 @@ disabled, or has invalid field types, do not load or apply the Harness Kernel or
 Only when the bridge activates Harness, load and follow:
 ~/.harness/runtime/kernel/AGENTS.md
 
-Then resolve Domain capabilities through the installed Harness runtime.
+Then use the installed Kernel resolver and task runtime scripts. No matching Domain ends the task immediately with a notice. Matched tasks invoke Domain prepare, execute, evaluate and summarize Skills; ordinary problems are recorded for the final checklist.
 ${GUIDANCE_END}`;
 }
 
@@ -133,7 +133,7 @@ function assertTargetsAvailable(projections, previous) {
     if (!pathExists(item.link)) continue;
     const stat = fs.lstatSync(item.link);
     const target = stat.isSymbolicLink() ? path.resolve(path.dirname(item.link), fs.readlinkSync(item.link)) : null;
-    if (target !== item.source || owned.get(item.link) !== item.source) {
+    if (!target || owned.get(item.link) !== target) {
       throw new Error(`Refusing to overwrite unmanaged Skill path: ${item.link}`);
     }
   }
@@ -193,6 +193,7 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
     content: fs.existsSync(item.path) ? fs.readFileSync(item.path, "utf8") : null
   }));
   fs.mkdirSync(path.dirname(paths.harnessHome), { recursive: true });
+  const previousRecords = [paths.manifestPath, paths.installRecordPath].map(file => ({file, content:fs.existsSync(file)?fs.readFileSync(file):null}));
   const stage = fs.mkdtempSync(path.join(path.dirname(paths.harnessHome), ".harness-stage-"));
   const stagedRuntime = path.join(stage, "runtime");
   fs.cpSync(path.join(bundle.root, "kernel"), path.join(stagedRuntime, "kernel"), { recursive: true });
@@ -203,6 +204,7 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
   );
   const backupRuntime = `${paths.runtimeRoot}.previous`;
   const createdLinks = [];
+  const retargetedLinks = [];
   const removedLinks = [];
   try {
     fs.mkdirSync(paths.harnessHome, { recursive: true });
@@ -219,6 +221,13 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
       if (!pathExists(item.link)) {
         fs.symlinkSync(item.source, item.link, "dir");
         createdLinks.push(item.link);
+      } else {
+        const oldSource = path.resolve(path.dirname(item.link), fs.readlinkSync(item.link));
+        if (oldSource !== item.source) {
+          retargetedLinks.push({link:item.link, source:oldSource});
+          fs.unlinkSync(item.link);
+          fs.symlinkSync(item.source, item.link, "dir");
+        }
       }
     }
     for (const item of staleProjections) {
@@ -233,6 +242,7 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
     const manifest = {
       schema_version: "2.0",
       cli_version: bundle.manifest.cli_version,
+      build_kind: bundle.manifest.build_kind || "release",
       bundle_version: bundle.manifest.bundle_version,
       kernel: { path: path.join(paths.runtimeRoot, "kernel"), revision: bundle.manifest.kernel_revision },
       domain_source: {
@@ -260,6 +270,10 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
     return manifest;
   } catch (error) {
     for (const link of createdLinks.reverse()) fs.rmSync(link, { force: true });
+    for (const item of retargetedLinks.reverse()) {
+      fs.rmSync(item.link, {force:true});
+      fs.symlinkSync(item.source,item.link,"dir");
+    }
     for (const item of removedLinks) {
       fs.mkdirSync(path.dirname(item.link), { recursive: true });
       if (!pathExists(item.link)) fs.symlinkSync(item.source, item.link, "dir");
@@ -269,6 +283,10 @@ export function install({ env = process.env, bundleRoot, projectPath } = {}) {
     for (const item of priorGuidance) {
       if (item.content === null) fs.rmSync(item.path, { force: true });
       else atomicWrite(item.path, item.content);
+    }
+    for (const item of previousRecords) {
+      if (item.content === null) fs.rmSync(item.file, {force:true});
+      else atomicWrite(item.file,item.content);
     }
     throw error;
   } finally {

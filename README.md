@@ -89,3 +89,7 @@ npm run check
 The builder checks the Kernel’s immutable Domain pin, excludes Git metadata and temporary artifacts, and emits `bundle/bundle-manifest.json` with exact revisions and file checksums.
 
 See [architecture](docs/ARCHITECTURE.md), [validation](docs/VALIDATION.md), and [rollback](docs/ROLLBACK.md).
+
+## Version 1.0.0 lifecycle Runtime
+
+Ships Kernel 4.0 scripts and Domain stage bindings (Web 2.0.0, HarmonyOS 7.0.0). Markdown Skills execute through the host adapter, not an embedded model process. `npm run bundle:build -- --development` creates an explicitly marked SHA-256 development snapshot without commits. Release builds still require clean committed sources. Installed Domain provenance supports routing without a Git checkout. New regression tests exercise installed dispatch/resume and managed Skill relocation. Python 3.11+ is needed for Domain authoring checks; Kernel routing itself is dependency-free.

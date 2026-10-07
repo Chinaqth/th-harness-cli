@@ -248,7 +248,7 @@ test("version reports CLI and installed Runtime versions", (t) => {
   const before = JSON.parse(execFileSync(process.execPath, [bin, "version", "--json"], {
     env: item.env, encoding: "utf8"
   }));
-  assert.equal(before.cli_version, "0.2.4");
+  assert.equal(before.cli_version, "1.0.0");
   assert.equal(before.runtime, null);
 
   const installed = install({ env: item.env, bundleRoot });
@@ -344,4 +344,44 @@ test("uninstall detects Runtime drift and preserves all managed state", (t) => {
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_HOME, "manifest.json")));
   assert.ok(fs.existsSync(path.join(item.env.HARNESS_AGENTS_SKILL_ROOT, "harness-audit")));
   assert.match(fs.readFileSync(path.join(item.env.CODEX_HOME, "AGENTS.md"), "utf8"), /harness:managed:start/);
+});
+
+test("update retargets only previously owned Skill projections and preserves ownership", (t) => {
+ const item=fixture(t);
+ const first=install({env:item.env,bundleRoot});
+ const target=copyBundle(item);
+ const manifestPath=path.join(target,"bundle-manifest.json");
+ const manifest=JSON.parse(fs.readFileSync(manifestPath,"utf8"));
+ const skill=manifest.skills[0];
+ const newSource=`domains/.agents/skills/${skill.name}-relocated`;
+ fs.cpSync(path.join(target,skill.source),path.join(target,newSource),{recursive:true});
+ skill.source=newSource;
+ fs.writeFileSync(manifestPath,JSON.stringify(manifest,null,2));
+ refreshBundleManifest(target);
+ const result=update({env:item.env,bundleRoot:target});
+ const old=first.managed_skills.find(x=>x.name===skill.name);
+ const next=result.managed_skills.find(x=>x.link===old.link);
+ assert.notEqual(old.source,next.source);
+ assert.equal(fs.readlinkSync(old.link),next.source);
+ uninstall({env:item.env});
+});
+
+test("installed Runtime includes runnable Domain router and crash recovery interface", (t) => {
+ const item=fixture(t); install({env:item.env,bundleRoot});
+ const runtime=path.join(item.env.HARNESS_HOME,"runtime");
+ const envelope={schema_version:"2.0",task_id:"installed-fixture",intent:"Review frontend",task_class:"investigation",task_type:"web-frontend-review",operation:"inspect",deliverables:["review"],constraints:[],repository_signals:["html"],affected_surfaces:["frontend"],required_evidence:[]};
+ const envelopePath=path.join(item.project,"envelope.json"),planPath=path.join(item.project,"route.json"),state=path.join(item.project,"state.json");
+ writeJson(envelopePath,envelope); writeJson(path.join(item.project,".harness.json"),{contract_code:"harness-engineering",enabled:true});
+ const python=process.env.HARNESS_PYTHON || "python3";
+ const env={...item.env,PYTHONDONTWRITEBYTECODE:"1"};
+ execFileSync(python,[path.join(runtime,"kernel/scripts/resolve_route.py"),"--envelope",envelopePath,"--output",planPath],{env});
+ assert.equal(JSON.parse(fs.readFileSync(planPath,"utf8")).status,"matched");
+ const runner=path.join(runtime,"kernel/scripts/task_runtime.py");
+ execFileSync(python,[runner,"start","--state",state,"--plan",planPath,"--envelope",envelopePath,"--project-root",item.project],{env});
+ const first=JSON.parse(execFileSync(python,[runner,"next","--state",state],{env,encoding:"utf8"}));
+ const second=JSON.parse(execFileSync(python,[runner,"next","--state",state],{env,encoding:"utf8"}));
+ assert.equal(first.status,"dispatch"); assert.equal(second.status,"reconcile");
+ envelope.task_type="unmatched"; writeJson(envelopePath,envelope);
+ const noMatch=JSON.parse(execFileSync(python,[path.join(runtime,"kernel/scripts/resolve_route.py"),"--envelope",envelopePath],{env,encoding:"utf8"}));
+ assert.equal(noMatch.status,"no_match"); assert.deepEqual(noMatch.selections,[]);
 });
