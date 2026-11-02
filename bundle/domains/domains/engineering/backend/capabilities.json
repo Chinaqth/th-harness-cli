@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.backend",
+  "capabilities": [
+    {
+      "id": "backend.api-contract",
+      "description": "Produce service/API operation, payload, validation, error and security contract changes, consumer compatibility decisions, and accepted/rejected request evidence using the project-selected protocol. [WEB-OAS] [WEB-OWASP] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.api-contract"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.service-implementation",
+      "description": "Deliver bounded server-side business behavior with approved invariants, actor/resource/state/order enforcement, an invariant-to-code/check map, and permitted/rejected/competing effect evidence. [WEB-OWASP] [WEB-PG-ISOLATION] [WEB-SRE-TESTING] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.service-implementation"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.persistence",
+      "description": "Deliver persistence operations and transaction/constraint boundaries with actual engine/version/isolation rationale, concurrent-write and failure checks, final persisted-state evidence, and complete-transaction retry scope where required; account separately for external effects. [WEB-PG-ISOLATION] [WEB-AWS-RETRIES] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.persistence"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.migration",
+      "description": "Produce schema/data/application compatibility sequencing, existing-data and lock/resource impact checks, authorized local migration rehearsals including partial/interrupted execution, recovery or forward-repair evidence, and explicit residual irreversibility; code rollback proves no data restoration. [WEB-PG-MIGRATION] [WEB-SRE-RELEASE] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.migration"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.async-processing",
+      "description": "Deliver producer/consumer or worker processing with separate acceptance, acknowledgement and durable-effect contracts, duplicate/idempotency scope, bounded in-flight work, poison disposition, and redelivery/restart/effect-count evidence; transport confirmation proves no exactly-once business effects. [WEB-RABBITMQ] [WEB-AWS-RETRIES] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.async-processing"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.dependency-resilience",
+      "description": "Deliver dependency wait/retry controls with the retry-owning layer, project-supplied attempt/duration/concurrency budgets, justified backoff/jitter, idempotency or reconciliation, and overload/exhaustion/timeout-after-effect evidence. [WEB-AWS-RETRIES] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.dependency-resilience"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.service-security",
+      "description": "Deliver service transport and approved identity integration, endpoint/resource authorization, input/workflow validation, management restrictions, safe errors/audits/telemetry, and control-to-negative-check evidence at the actual tested boundary; record policy and unavailable deployed-verification gaps. [WEB-OWASP] [WEB-OTEL] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.service-security"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.observability",
+      "description": "Deliver complementary request/worker traces, metrics and event logs with safe correlation, signal-to-risk mapping, captured success/failure signals, verified collection/export evidence, and separately stated operational-alert coverage. [WEB-OTEL] [WEB-SRE-TESTING] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.observability"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "backend.verification-delivery",
+      "description": "Produce candidate-bound risk-based unit/integration/system/regression/concurrency/failure/security/performance evidence, retained failures and coverage gaps, and monitored rollout/stop/recovery proposals or separately authorized operation results; distinguish local/mock, actual dependency integration, deployed observation and independent acceptance. [WEB-SRE-TESTING] [WEB-SRE-RELEASE] Follow the four Domain lifecycle stages and record current artifacts, checks, limits and handoffs using templates/task-evidence.md. This independent workflow lane declares no capability dependencies; prepare must verify actual technical prerequisites because Kernel does not enforce capability dependencies or repository signals. [REPO-MANIFEST]",
+      "task_types": [
+        "backend.verification-delivery"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "backend-prepare/SKILL.md",
+        "backend-execute/SKILL.md",
+        "backend-evaluate/SKILL.md",
+        "backend-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Read only task-authorized local repository contracts, source, configuration, maintained tooling and sanitized evidence within the prepared scope; privileged or sensitive access requires established applicable authority.",
+        "Write only task-authorized local source, contracts, tests, configuration and sanitized evidence within the prepared scope; preserve unrelated changes and use only authorized local fixtures and data.",
+        "Invoke only project-discovered tools and exact maintained commands whose scope, required access, environment and data authority have been verified during prepare; an empty tools list grants no tool access.",
+        "No remote access or mutation, production access, destructive operation, deployment, publication, commit or push authority is implied by this capability or Domain activation; require applicable explicit task authority before each such action.",
+        "Unknown required authority, context, technical prerequisite or necessary semantics fails closed for the dependent action; record needs_input or needs-org-input and continue only independently authorized work."
+      ],
+      "dependencies": []
+    }
+  ]
+}

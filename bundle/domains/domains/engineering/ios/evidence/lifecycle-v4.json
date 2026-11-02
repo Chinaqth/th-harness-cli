@@ -1,0 +1,1875 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.ios",
+  "version": "0.1.0",
+  "kernel_protocol": "4.0",
+  "generated_at": "2026-10-24T11:20:29.634470+00:00",
+  "artifact_iteration": 1,
+  "status": "historical_candidate_routing_evidence",
+  "evidence_scope": {
+    "original_domain_status": "draft",
+    "fixture_timestamp": "2026-10-24T11:19:14.020650+00:00",
+    "candidate_applicability": true,
+    "snapshot_mutations": "Only temporary copies: synchronize iOS active for positive cases; optional candidate mode injects route-union task_types in manifest only; specific draft/priority/corruption variants are named per case",
+    "meaning": "Observed actual Kernel routing results on isolated temporary candidate snapshots, plus digest-bound independent artifact assessments. This is historical provenance, not a live activation-state assertion. It remains historically scoped if the Domain is later activated.",
+    "final_pack_gate": "not_assessed_by_this_artifact",
+    "activation": "not_performed_by_this_artifact",
+    "final_repository_suite": "not_asserted_by_this_artifact"
+  },
+  "source_ledger": {
+    "path": "evidence/sources.json",
+    "artifact_sha256": "0116ae9bc5bb97ecedee47912af33dbf9588eead80d36e36aec8ca13ac0fbd53",
+    "source_ids": [
+      "IOS-IDENTITY",
+      "IOS-UI",
+      "IOS-UIKIT",
+      "IOS-STATE",
+      "IOS-CONCURRENCY",
+      "IOS-DATA",
+      "IOS-NETWORK",
+      "IOS-SECRETS",
+      "IOS-PRIVACY",
+      "IOS-CONSENT",
+      "IOS-TEST",
+      "IOS-ACCESSIBILITY",
+      "IOS-DEVICE",
+      "IOS-DISTRIBUTION"
+    ],
+    "source_count": 14
+  },
+  "stage_bindings": {
+    "prepare": {
+      "skill": "skills/ios-prepare/SKILL.md",
+      "artifact_sha256": "81f46cf07a0780243eb61242f66989df6ff1d780d058e51c9351296a97f4db58",
+      "evaluation_provenance_key": "skills/ios-prepare/SKILL.md"
+    },
+    "execute": {
+      "skill": "skills/ios-execute/SKILL.md",
+      "artifact_sha256": "606c6ad5e22e4a82d23b279332825ee2fe539f662fe8f82ac169b971e1311832",
+      "evaluation_provenance_key": "skills/ios-execute/SKILL.md"
+    },
+    "evaluate": {
+      "skill": "skills/ios-evaluate/SKILL.md",
+      "artifact_sha256": "990badd26cea264ea99caee01bbdc1a459be78121bf094b8725ca432ad39758b",
+      "evaluation_provenance_key": "skills/ios-evaluate/SKILL.md"
+    },
+    "summarize": {
+      "skill": "skills/ios-summarize/SKILL.md",
+      "artifact_sha256": "9d327c5e4420582ff97793d4f78f8c2cac79babff402fa03cdd5243a441c79d8",
+      "evaluation_provenance_key": "skills/ios-summarize/SKILL.md"
+    }
+  },
+  "artifact_assessment_provenance": {
+    "skills/ios-prepare/SKILL.md": {
+      "artifact_sha256": "81f46cf07a0780243eb61242f66989df6ff1d780d058e51c9351296a97f4db58",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/prepare.2.evaluation.json",
+      "evaluation_record_sha256": "caf23fc9f11da02a53eece679211cb7ff574509177e7790e48c19d839e17b41e",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "skills/ios-prepare/SKILL.md",
+        "artifact_sha256": "81f46cf07a0780243eb61242f66989df6ff1d780d058e51c9351296a97f4db58",
+        "evaluator": "eval_prepare2",
+        "iteration": 2,
+        "evaluated_at": "2026-10-24T11:10:37Z",
+        "dimensions": {
+          "contract": 97.0,
+          "professional": 95.0,
+          "boundaries": 98.0,
+          "executability": 95.0,
+          "verifiability": 96.0,
+          "architecture": 97.0,
+          "maintainability": 96.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-IDENTITY",
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-STATE",
+          "IOS-CONCURRENCY",
+          "IOS-DATA",
+          "IOS-NETWORK",
+          "IOS-SECRETS",
+          "IOS-PRIVACY",
+          "IOS-CONSENT",
+          "IOS-TEST",
+          "IOS-ACCESSIBILITY",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.25,
+        "verdict": "pass"
+      }
+    },
+    "skills/ios-execute/SKILL.md": {
+      "artifact_sha256": "606c6ad5e22e4a82d23b279332825ee2fe539f662fe8f82ac169b971e1311832",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/execute.1.evaluation.json",
+      "evaluation_record_sha256": "0b6475bbb48f857149a1519ef2ff5b1252606fd015f26e2ae1b23a8a3532d1dc",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "skills/ios-execute/SKILL.md",
+        "artifact_sha256": "606c6ad5e22e4a82d23b279332825ee2fe539f662fe8f82ac169b971e1311832",
+        "evaluator": "eval_execute",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:03:13Z",
+        "dimensions": {
+          "contract": 97.0,
+          "professional": 96.0,
+          "boundaries": 98.0,
+          "executability": 96.0,
+          "verifiability": 97.0,
+          "architecture": 98.0,
+          "maintainability": 96.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-IDENTITY",
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-STATE",
+          "IOS-CONCURRENCY",
+          "IOS-DATA",
+          "IOS-NETWORK",
+          "IOS-SECRETS",
+          "IOS-PRIVACY",
+          "IOS-CONSENT",
+          "IOS-TEST",
+          "IOS-ACCESSIBILITY",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.85,
+        "verdict": "pass"
+      }
+    },
+    "skills/ios-evaluate/SKILL.md": {
+      "artifact_sha256": "990badd26cea264ea99caee01bbdc1a459be78121bf094b8725ca432ad39758b",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/evaluate-skill.1.evaluation.json",
+      "evaluation_record_sha256": "d15e1e1852e2d7a67488a109b7f210e2904eda39a30cc7a10d0ecdfc620c15b6",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "skills/ios-evaluate/SKILL.md",
+        "artifact_sha256": "990badd26cea264ea99caee01bbdc1a459be78121bf094b8725ca432ad39758b",
+        "evaluator": "eval_evaluate_skill",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:12:04Z",
+        "dimensions": {
+          "contract": 97.0,
+          "professional": 96.0,
+          "boundaries": 98.0,
+          "executability": 95.0,
+          "verifiability": 97.0,
+          "architecture": 97.0,
+          "maintainability": 95.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-STATE",
+          "IOS-CONCURRENCY",
+          "IOS-DATA",
+          "IOS-NETWORK",
+          "IOS-SECRETS",
+          "IOS-PRIVACY",
+          "IOS-CONSENT",
+          "IOS-TEST",
+          "IOS-ACCESSIBILITY",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.55,
+        "verdict": "pass"
+      }
+    },
+    "skills/ios-summarize/SKILL.md": {
+      "artifact_sha256": "9d327c5e4420582ff97793d4f78f8c2cac79babff402fa03cdd5243a441c79d8",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/summarize.1.evaluation.json",
+      "evaluation_record_sha256": "6265ddd1322690637c3baeac94978aaf1da8bb1332d3aa4a2b856d12ba86e357",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "skills/ios-summarize/SKILL.md",
+        "artifact_sha256": "9d327c5e4420582ff97793d4f78f8c2cac79babff402fa03cdd5243a441c79d8",
+        "evaluator": "eval_summarize",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:13:19Z",
+        "dimensions": {
+          "contract": 97.0,
+          "professional": 96.0,
+          "boundaries": 98.0,
+          "executability": 96.0,
+          "verifiability": 97.0,
+          "architecture": 98.0,
+          "maintainability": 96.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-ACCESSIBILITY",
+          "IOS-CONSENT",
+          "IOS-DATA",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION",
+          "IOS-NETWORK",
+          "IOS-PRIVACY",
+          "IOS-SECRETS",
+          "IOS-TEST",
+          "IOS-UI",
+          "IOS-UIKIT"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.85,
+        "verdict": "pass"
+      }
+    },
+    "capabilities.json": {
+      "artifact_sha256": "7ae175d68bc6a27799a3bad841c9c8fe9fdb2a1a33f83818f1d97f326a62ddc1",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/capabilities.1.evaluation.json",
+      "evaluation_record_sha256": "6add9c1fb3e23c5baea95aa69dda9617696461c3c5cc8177ae37359ef8f65cdc",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "capabilities.json",
+        "artifact_sha256": "7ae175d68bc6a27799a3bad841c9c8fe9fdb2a1a33f83818f1d97f326a62ddc1",
+        "evaluator": "eval_capabilities",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:16:40Z",
+        "dimensions": {
+          "contract": 98.0,
+          "professional": 96.0,
+          "boundaries": 98.0,
+          "executability": 96.0,
+          "verifiability": 96.0,
+          "architecture": 97.0,
+          "maintainability": 96.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-IDENTITY",
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-STATE",
+          "IOS-CONCURRENCY",
+          "IOS-DATA",
+          "IOS-NETWORK",
+          "IOS-SECRETS",
+          "IOS-PRIVACY",
+          "IOS-CONSENT",
+          "IOS-TEST",
+          "IOS-ACCESSIBILITY",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.8,
+        "verdict": "pass"
+      }
+    },
+    "routes.json": {
+      "artifact_sha256": "b9a20705bb6474bf65cf86059df1b5b1a9ff2c9be5c3d67896cf0ee718a5c47a",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/routes.1.evaluation.json",
+      "evaluation_record_sha256": "e2ff1c06eba674ed27edf7270b5c196d7ac5e1e2ff5f8d0d7305f9036f0c5dc0",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "routes.json",
+        "artifact_sha256": "b9a20705bb6474bf65cf86059df1b5b1a9ff2c9be5c3d67896cf0ee718a5c47a",
+        "evaluator": "eval_routes",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:18:29Z",
+        "dimensions": {
+          "contract": 98.0,
+          "professional": 96.0,
+          "boundaries": 98.0,
+          "executability": 94.0,
+          "verifiability": 94.0,
+          "architecture": 97.0,
+          "maintainability": 98.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-IDENTITY",
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-DEVICE"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 96.3,
+        "verdict": "pass"
+      }
+    },
+    "lifecycle.json": {
+      "artifact_sha256": "58a98881b2d7ff53aee6b3821ba8b745710156005441035581b12930ccac1001",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/lifecycle.1.evaluation.json",
+      "evaluation_record_sha256": "dc85df6f45f0b1a00866700605cd143609794ac731a6645722c434cb2499ff3b",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "lifecycle.json",
+        "artifact_sha256": "58a98881b2d7ff53aee6b3821ba8b745710156005441035581b12930ccac1001",
+        "evaluator": "eval_lifecycle",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:15:33Z",
+        "dimensions": {
+          "contract": 100.0,
+          "professional": 97.0,
+          "boundaries": 99.0,
+          "executability": 98.0,
+          "verifiability": 98.0,
+          "architecture": 100.0,
+          "maintainability": 100.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-IDENTITY",
+          "IOS-UI",
+          "IOS-UIKIT",
+          "IOS-STATE",
+          "IOS-CONCURRENCY",
+          "IOS-TEST",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 98.65,
+        "verdict": "pass"
+      }
+    },
+    "evidence/sources.json": {
+      "artifact_sha256": "0116ae9bc5bb97ecedee47912af33dbf9588eead80d36e36aec8ca13ac0fbd53",
+      "original_evaluation_record": "changes/engineering.ios-completion/evaluations/sources.1.evaluation.json",
+      "evaluation_record_sha256": "aed7eb14bc4b421e362f607669e0cde3231ad10b15a4d9abe452b3d30c5bb111",
+      "independent_evaluation_snapshot": {
+        "schema_version": "1.0",
+        "artifact": "evidence/sources.json",
+        "artifact_sha256": "0116ae9bc5bb97ecedee47912af33dbf9588eead80d36e36aec8ca13ac0fbd53",
+        "evaluator": "eval_sources",
+        "iteration": 1,
+        "evaluated_at": "2026-10-24T11:06:00Z",
+        "dimensions": {
+          "contract": 100.0,
+          "professional": 97.0,
+          "boundaries": 98.0,
+          "executability": 96.0,
+          "verifiability": 99.0,
+          "architecture": 98.0,
+          "maintainability": 98.0
+        },
+        "weights": {
+          "contract": 20,
+          "professional": 20,
+          "boundaries": 15,
+          "executability": 15,
+          "verifiability": 15,
+          "architecture": 10,
+          "maintainability": 5
+        },
+        "hard_gates": {
+          "schema_passed": true,
+          "references_resolved": true,
+          "professional_sources_traceable": true,
+          "no_invented_authority": true,
+          "kernel_constraints_preserved": true,
+          "owner_facts_authoritative": true
+        },
+        "source_ids": [
+          "IOS-ACCESSIBILITY",
+          "IOS-CONCURRENCY",
+          "IOS-CONSENT",
+          "IOS-DATA",
+          "IOS-DEVICE",
+          "IOS-DISTRIBUTION",
+          "IOS-IDENTITY",
+          "IOS-NETWORK",
+          "IOS-PRIVACY",
+          "IOS-SECRETS",
+          "IOS-STATE",
+          "IOS-TEST",
+          "IOS-UI",
+          "IOS-UIKIT"
+        ],
+        "findings": [],
+        "blocked_reasons": [],
+        "overall_score": 98.05,
+        "verdict": "pass"
+      }
+    }
+  },
+  "routing_fixture_provenance": {
+    "original_report_locator": "changes/engineering.ios-completion/evaluations/kernel-routing-candidate.json",
+    "original_report_sha256": "47625246a4d7ffa17f7cb1025ad3fb56465a61d48d6aede0a10c4b5b5a164c5b",
+    "embedded_report_canonical_sha256": "8695fec75ae82360a94457345b66b991d03c6901c43155741d159dbcaf50752c",
+    "canonicalization": "UTF-8 JSON, sorted keys, compact comma/colon separators, ensure_ascii=true, no trailing newline",
+    "report_preservation": "The complete original report object is embedded below without field alteration. The original locator is provenance only; this durable file retains the evidence after changes cleanup.",
+    "report": {
+      "schema_version": "1.0",
+      "generated_at": "2026-10-24T11:19:14.020650+00:00",
+      "scope": "Actual Kernel route fixtures over isolated source snapshots; not product, device, installed Runtime, or stage-execution acceptance",
+      "original_ios_status": "draft",
+      "candidate_applicability": true,
+      "manifest_task_types_before": [],
+      "manifest_task_types_tested": [
+        "ios.accessibility",
+        "ios.distribution-preparation",
+        "ios.native-development",
+        "ios.native-review",
+        "ios.testing"
+      ],
+      "kernel_resolver_sha256": "71438c098308e2157516030c9d6083904929011519ae7761940e737b846c2b20",
+      "snapshot_mutations": "Only temporary copies: synchronize iOS active for positive cases; optional candidate mode injects route-union task_types in manifest only; specific draft/priority/corruption variants are named per case",
+      "all_passed": true,
+      "case_count": 21,
+      "cases": [
+        {
+          "id": "positive:ios.accessibility",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "positive:ios.distribution-preparation",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.distribution-preparation",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.distribution-preparation",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "positive:ios.native-development",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.native-development",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.native-development",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "positive:ios.native-review",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.native-review",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.native-review",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "positive:ios.testing",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.testing",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.testing",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "excluded-task:swift.server-development",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "swift.server-development",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Package.swift",
+              "server Swift"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "excluded-task:macos.native-development",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "macos.native-development",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "App.swift",
+              "macOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "excluded-task:watchos.native-development",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "watchos.native-development",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "WatchApp.swift",
+              "watchOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "excluded-task:unregistered.task",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "unregistered.task",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Unknown.txt"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "platform-collision:engineering.harmonyos",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "harmonyos-stage-architecture",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.harmonyos",
+                "version": "7.0.0",
+                "route_id": "stage-application-architecture",
+                "capability_ids": [
+                  "stage-application-and-package-design"
+                ],
+                "reason": "Exact task_type match: harmonyos-stage-architecture",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/harmonyos/skills/harmonyos-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/harmonyos/skills/harmonyos-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/harmonyos/skills/harmonyos-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/harmonyos/skills/harmonyos-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "platform-collision:engineering.web",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "web-frontend-design",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.web",
+                "version": "2.0.0",
+                "route_id": "semantic-web-interface-engineering",
+                "capability_ids": [
+                  "semantic-web-interface-engineering"
+                ],
+                "reason": "Exact task_type match: web-frontend-design",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/web/skills/web-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/web/skills/web-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/web/skills/web-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/web/skills/web-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "all-route-capabilities-disabled",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": {
+            "schema_version": "1.0",
+            "domains": [
+              {
+                "id": "engineering.ios",
+                "version": "0.1.0",
+                "enabled": true,
+                "local_owner": "Albert",
+                "additional_signals": [],
+                "constraints": [],
+                "disabled_capabilities": [
+                  "ios.native-engineering"
+                ],
+                "mappings": []
+              }
+            ]
+          },
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": [
+              {
+                "code": "disabled_capability",
+                "message": "engineering.ios: project disabled ios.native-engineering"
+              }
+            ]
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "domain-disabled",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": {
+            "schema_version": "1.0",
+            "domains": [
+              {
+                "id": "engineering.ios",
+                "version": "0.1.0",
+                "enabled": false,
+                "local_owner": "Albert",
+                "additional_signals": [],
+                "constraints": [],
+                "disabled_capabilities": [],
+                "mappings": []
+              }
+            ]
+          },
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "overlay-version-mismatch",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": {
+            "schema_version": "1.0",
+            "domains": [
+              {
+                "id": "engineering.ios",
+                "version": "999.0.0",
+                "enabled": true,
+                "local_owner": "Albert",
+                "additional_signals": [],
+                "constraints": [],
+                "disabled_capabilities": [],
+                "mappings": []
+              }
+            ]
+          },
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": null,
+          "raised": "Overlay version mismatch: engineering.ios",
+          "expected_error_fragment": "Overlay version mismatch",
+          "note": null
+        },
+        {
+          "id": "signal-only-not-enforced:macOS",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "App.swift",
+              "macOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": "Observed resolver limitation: exact iOS task type selects the Domain despite non-iOS signals. Native admission must be checked by ios-prepare/ios-execute; this fixture does not execute those Skills or prove admission rejection."
+        },
+        {
+          "id": "signal-only-not-enforced:watchOS",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "App.swift",
+              "watchOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": "Observed resolver limitation: exact iOS task type selects the Domain despite non-iOS signals. Native admission must be checked by ios-prepare/ios-execute; this fixture does not execute those Skills or prove admission rejection."
+        },
+        {
+          "id": "signal-only-not-enforced:server Swift",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "App.swift",
+              "server Swift target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "ios.native-engineering",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:18a678f9dc85162e68310306933868c438d63cec9bfb88264501d6fba7b5c671"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": "Observed resolver limitation: exact iOS task type selects the Domain despite non-iOS signals. Native admission must be checked by ios-prepare/ios-execute; this fixture does not execute those Skills or prove admission rejection."
+        },
+        {
+          "id": "draft-not-routable",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:513b8e85ce6a45ad6a3021bd56cbce5a6c35b0f22bea1ea8e05953083aaa2746",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "no_match",
+            "message": "\u65e0\u5339\u914d Domain\uff0c\u672c\u6b21\u4efb\u52a1\u5df2\u7ed3\u675f\uff0c\u672a\u6267\u884c\u5177\u4f53\u4efb\u52a1\u3002",
+            "source_revision": "sha256:513b8e85ce6a45ad6a3021bd56cbce5a6c35b0f22bea1ea8e05953083aaa2746",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "highest-priority",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "fixture-priority",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:30cfdeae6c56c03b92c03a01477d37dadb8a16692888e9f9c79ca712b58ec177"
+                  }
+                }
+              }
+            ],
+            "issues": []
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "equal-priority-stable-id",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd",
+          "input_schema_issues": [],
+          "result": {
+            "schema_version": "5.0",
+            "task_id": "ios-pack-routing-fixture",
+            "status": "matched",
+            "message": "Domain dispatch ready",
+            "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd",
+            "source_root": "isolated-temporary-domain-snapshot",
+            "selections": [
+              {
+                "domain_id": "engineering.ios",
+                "version": "0.1.0",
+                "route_id": "fixture-priority",
+                "capability_ids": [
+                  "ios.native-engineering"
+                ],
+                "reason": "Exact task_type match: ios.accessibility",
+                "stages": {
+                  "prepare": {
+                    "path": "domains/engineering/ios/skills/ios-prepare/SKILL.md",
+                    "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd"
+                  },
+                  "execute": {
+                    "path": "domains/engineering/ios/skills/ios-execute/SKILL.md",
+                    "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd"
+                  },
+                  "evaluate": {
+                    "path": "domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+                    "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd"
+                  },
+                  "summarize": {
+                    "path": "domains/engineering/ios/skills/ios-summarize/SKILL.md",
+                    "source_revision": "sha256:3d146a52925bdd581ecdb26f8ed2325cb657d5dca5cf1a0b54fa29c64d062fcd"
+                  }
+                }
+              }
+            ],
+            "issues": [
+              {
+                "code": "route_tie",
+                "message": "Equal priority; selected stable route ID fixture-priority"
+              }
+            ]
+          },
+          "raised": null,
+          "expected_error_fragment": null,
+          "note": null
+        },
+        {
+          "id": "unknown-capability-rejected",
+          "passed": true,
+          "envelope": {
+            "schema_version": "2.0",
+            "task_id": "ios-pack-routing-fixture",
+            "intent": "Inspect route selection only",
+            "task_class": "engineering",
+            "task_type": "ios.accessibility",
+            "operation": "inspect",
+            "deliverables": [
+              "route evidence"
+            ],
+            "constraints": [
+              "No product mutation"
+            ],
+            "repository_signals": [
+              "Example.xcodeproj",
+              "iOS target"
+            ],
+            "affected_surfaces": [
+              "native iOS client"
+            ],
+            "required_evidence": [
+              "actual Kernel route output"
+            ]
+          },
+          "overlay": null,
+          "source_revision": "sha256:476c442649406abb8179573ef2fa5e7e56be54c754353457e14cb6c1e896be64",
+          "input_schema_issues": [],
+          "result": null,
+          "raised": "Route references unknown capability",
+          "expected_error_fragment": "Route references unknown capability",
+          "note": null
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "The source Domain was draft with empty manifest task types. Candidate applicability injected route-union task types into the temporary manifest and synchronized temporary active statuses for positive cases; draft, priority and corruption variants are identified per case. No production manifest activation was tested or performed by this record.",
+    "Kernel ignores repository signals for these exact task-type matches. The macOS-only, watchOS-only and server Swift signal cases still matched the iOS Domain; fixture success records that observed limitation, not native platform rejection.",
+    "Native admission guards are instructions in ios-prepare and ios-execute. These fixtures did not execute stage Skills or verify admission-blocked behavior, receipts, host invocation or any professional stage execution.",
+    "The unknown-capability rejection fixture covers a route referencing a missing capability. It does not establish task-level dependency, toolchain, permission, device, signing or service prerequisite handling. That downstream coverage remains unverified.",
+    "No product code, build, simulator, physical device, accessibility journey, installed Runtime, distribution or release acceptance was exercised. Artifact-review passes do not confer independent product acceptance.",
+    "Embedded artifact assessments are historical digest-bound records. Revisions invalidate their applicability to changed artifacts and require fresh independent assessment.",
+    "No final full-suite result, final assembled-Pack verdict, activation completion or prospective result is asserted."
+  ],
+  "organizational_gaps": [
+    {
+      "id": "IOS-GAP-OWNERS",
+      "description": "Task reviewers, independent acceptance authority, security/privacy contacts and release approvers are unknown; bind them in downstream project/task context without inventing names.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-PROJECT",
+      "description": "Product requirements, private architecture, repository location, internal standards, schemes, build/test commands, dependency policies, supported OS/device matrix and performance budgets are unknown downstream inputs.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-ACCESS",
+      "description": "Available Macs/Xcode/SDKs, physical devices, signing assets, account/team permissions, entitlements, test services and credentials require downstream verification.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-POLICY",
+      "description": "Applicable jurisdictions, lawful data purposes, retention/deletion rules, organization privacy/security policies, intended distribution channel and publication authorization are unknown; public platform documentation cannot establish them.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-EVIDENCE",
+      "description": "Product-specific acceptance journeys, release criteria, approval evidence, monitoring/rollback arrangements and actual delivery results do not yet exist in this reusable baseline.",
+      "required_for_activation": false
+    }
+  ]
+}

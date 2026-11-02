@@ -93,3 +93,7 @@ See [architecture](docs/ARCHITECTURE.md), [validation](docs/VALIDATION.md), and 
 ## Version 1.0.0 lifecycle Runtime
 
 Ships Kernel 4.0 scripts and Domain stage bindings (Web 2.0.0, HarmonyOS 7.0.0). Markdown Skills execute through the host adapter, not an embedded model process. `npm run bundle:build -- --development` creates an explicitly marked SHA-256 development snapshot without commits. Release builds still require clean committed sources. Installed Domain provenance supports routing without a Git checkout. New regression tests exercise installed dispatch/resume and managed Skill relocation. Python 3.11+ is needed for Domain authoring checks; Kernel routing itself is dependency-free.
+
+## Version 1.1.0 Domain synchronization
+
+Bundles the main-branch Kernel 4.0 and active Backend, HarmonyOS, iOS and Web Domains from committed sources. See [release synchronization](docs/LIFECYCLE_V4_RELEASE.md).

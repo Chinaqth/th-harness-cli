@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.ios",
+  "generated_at": "2026-10-24T10:43:40Z",
+  "sources": [
+    {
+      "id": "IOS-IDENTITY",
+      "kind": "repository",
+      "title": "Registered iOS Domain identity",
+      "publisher": "harness-engineering-domain-packs",
+      "locator": "domains/engineering/ios/domain.json",
+      "authority": "repository-fact",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "The registered Domain is engineering.ios, named iOS Engineering, owned by Albert, version 0.1.0, status draft; its description assigns reusable native iOS engineering practice, delivery, and independent evaluation."
+      ]
+    },
+    {
+      "id": "IOS-UI",
+      "kind": "web",
+      "title": "SwiftUI",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/swiftui",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "SwiftUI supplies declarative views, controls, layouts, app structure, navigation, event handling, model data flow, accessibility and localization, and supports integration with UIKit. Official Markdown representation was read through the corresponding .md endpoint."
+      ]
+    },
+    {
+      "id": "IOS-UIKIT",
+      "kind": "web",
+      "title": "UIKit",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/uikit",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "UIKit provides native iOS window/view architecture, event handling, lifecycle support and SwiftUI interoperability. UIKit UI classes ordinarily require main-thread or main-dispatch-queue access unless their documentation says otherwise. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-STATE",
+      "kind": "web",
+      "title": "Managing model data in your app",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Separating model data from views improves modularity and testability; SwiftUI Observation, State, environment and bindings support data ownership and updates. SwiftUI Observation support starts at iOS 17, so deployment availability matters. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-CONCURRENCY",
+      "kind": "web",
+      "title": "Concurrency — The Swift Programming Language",
+      "publisher": "Swift.org",
+      "locator": "https://docs.swift.org/latest/documentation/the-swift-programming-language/concurrency/",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Swift supports async/await, structured tasks, cooperative cancellation, actors and isolation. MainActor protects UI-related state; actor isolation and suspension points shape safe shared-state design."
+      ]
+    },
+    {
+      "id": "IOS-DATA",
+      "kind": "web",
+      "title": "SwiftData",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/swiftdata",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "SwiftData provides managed persistence, model querying and changes through model contexts, with optional synchronization and possible caching/offline use. It supplements existing model classes rather than requiring every app to adopt it. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-NETWORK",
+      "kind": "web",
+      "title": "Preventing Insecure Network Connections",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/security/preventing-insecure-network-connections",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "App Transport Security enforces secure connections through the standard URL Loading System; URLSession negotiates secure connections and performs server trust evaluation. ATS does not cover lower-level Network or CFNetwork calls, whose security becomes the implementer's responsibility; exceptions should be limited and server fixes preferred. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-SECRETS",
+      "kind": "web",
+      "title": "Keychain services",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/security/keychain-services",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Keychain services store small secrets such as passwords, cryptographic keys and certificates in an encrypted database; macOS-specific keychain management topics must not be assumed to apply to iOS. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-PRIVACY",
+      "kind": "web",
+      "title": "Privacy manifest files",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/bundleresources/privacy-manifest-files",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "PrivacyInfo.xcprivacy describes collected data, tracking domains and required-reason API use for apps and SDKs. SDK requirements depend on SDK behavior and Apple's specified SDK list, so applicability needs inspection rather than a universal assertion. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-CONSENT",
+      "kind": "web",
+      "title": "Protecting the User’s Privacy",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/uikit/protecting-the-user-s-privacy",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Apple advises requesting sensitive data access when needed, supplying purpose strings, providing fallback behavior after denial, minimizing collection and protecting stored and transmitted data. These engineering practices do not determine applicable law or an organization's privacy policy."
+      ]
+    },
+    {
+      "id": "IOS-TEST",
+      "kind": "web",
+      "title": "Testing",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/xcode/testing",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Xcode supports unit, integration, UI and performance testing, coverage and results inspection. Swift Testing supports unit testing in Xcode 16 and later; XCTest with XCUIAutomation supports UI workflows. Different test types provide different evidence. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-ACCESSIBILITY",
+      "kind": "web",
+      "title": "Performing accessibility testing for your app",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/accessibility/performing-accessibility-testing-for-your-app",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Accessibility evaluation starts with the app's main user tasks and a device/settings/assistive-technology matrix, including VoiceOver, Voice Control, Switch Control and relevant visual/media settings. Device testing can expose differences. Official Markdown representation was read."
+      ]
+    },
+    {
+      "id": "IOS-DEVICE",
+      "kind": "web",
+      "title": "Running your app on simulated or physical devices",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/xcode/running-your-app-on-simulated-or-physical-devices",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Xcode schemes and run destinations govern builds and execution. Simulators do not reproduce physical-device performance or every feature; verifying intended device behavior requires physical-device runs. Device provisioning needs an account and assigned team."
+      ]
+    },
+    {
+      "id": "IOS-DISTRIBUTION",
+      "kind": "web",
+      "title": "Distributing your app for beta testing and releases",
+      "publisher": "Apple",
+      "locator": "https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:43:40Z",
+      "claims": [
+        "Distribution uses archives, signing and a selected distribution method; TestFlight/App Store and registered-device paths require appropriate program access. Xcode Validate App performs limited initial automated validation, which does not establish complete release acceptance. Official Markdown representation was read."
+      ]
+    }
+  ],
+  "capability_hypotheses": [
+    {
+      "id": "ios.prepare",
+      "description": "Inspect native iOS project structure, deployment and toolchain constraints, SwiftUI/UIKit ownership, task scope, dependencies, execution commands and evidence needs before implementation.",
+      "source_ids": [
+        "IOS-UI",
+        "IOS-UIKIT",
+        "IOS-STATE",
+        "IOS-DEVICE"
+      ]
+    },
+    {
+      "id": "ios.execute",
+      "description": "Implement bounded native iOS changes with explicit state ownership, lifecycle handling, safe concurrency, appropriate persistence/networking and applicable security/privacy/accessibility behavior.",
+      "source_ids": [
+        "IOS-UI",
+        "IOS-UIKIT",
+        "IOS-STATE",
+        "IOS-CONCURRENCY",
+        "IOS-DATA",
+        "IOS-NETWORK",
+        "IOS-SECRETS",
+        "IOS-PRIVACY",
+        "IOS-CONSENT",
+        "IOS-ACCESSIBILITY"
+      ]
+    },
+    {
+      "id": "ios.evaluate",
+      "description": "Independently evaluate the delivered change against its requirements with appropriate build, unit/integration/UI/performance, accessibility and device evidence; distinguish simulator results and archive validation from physical-device or release acceptance.",
+      "source_ids": [
+        "IOS-TEST",
+        "IOS-ACCESSIBILITY",
+        "IOS-DEVICE",
+        "IOS-DISTRIBUTION"
+      ]
+    },
+    {
+      "id": "ios.summarize",
+      "description": "Produce a traceable delivery handoff recording implementation, tested configurations, actual results, unavailable coverage, residual issues and applicable distribution prerequisites.",
+      "source_ids": [
+        "IOS-TEST",
+        "IOS-DEVICE",
+        "IOS-DISTRIBUTION"
+      ]
+    }
+  ],
+  "organizational_gaps": [
+    {
+      "id": "IOS-GAP-OWNERS",
+      "description": "Task reviewers, independent acceptance authority, security/privacy contacts and release approvers are unknown; bind them in downstream project/task context without inventing names.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-PROJECT",
+      "description": "Product requirements, private architecture, repository location, internal standards, schemes, build/test commands, dependency policies, supported OS/device matrix and performance budgets are unknown downstream inputs.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-ACCESS",
+      "description": "Available Macs/Xcode/SDKs, physical devices, signing assets, account/team permissions, entitlements, test services and credentials require downstream verification.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-POLICY",
+      "description": "Applicable jurisdictions, lawful data purposes, retention/deletion rules, organization privacy/security policies, intended distribution channel and publication authorization are unknown; public platform documentation cannot establish them.",
+      "required_for_activation": false
+    },
+    {
+      "id": "IOS-GAP-EVIDENCE",
+      "description": "Product-specific acceptance journeys, release criteria, approval evidence, monitoring/rollback arrangements and actual delivery results do not yet exist in this reusable baseline.",
+      "required_for_activation": false
+    }
+  ]
+}

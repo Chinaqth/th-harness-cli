@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.ios",
+  "routes": [
+    {
+      "id": "ios.native-engineering",
+      "priority": 100,
+      "task_types": [
+        "ios.native-development",
+        "ios.native-review",
+        "ios.testing",
+        "ios.accessibility",
+        "ios.distribution-preparation"
+      ],
+      "signals": [
+        "An actual Xcode project, workspace or package identifies an affected native iOS app target, with iOS SDK/deployment settings and an iPhone or iPad destination. [IOS-IDENTITY] [IOS-DEVICE]",
+        "The requested work affects SwiftUI, UIKit or their interoperability within that identified native iOS target; a .swift file or a multiplatform framework name alone does not establish iOS identity. [IOS-UI] [IOS-UIKIT]",
+        "These signals describe applicability; Kernel 4.0 currently matches the exact task_type and does not enforce signals. The ios-prepare Skill verifies actual native admission before dependent execution; macOS-only, server Swift, watchOS-only and unverified-platform scope are not admitted."
+      ],
+      "capabilities": [
+        "ios.native-engineering"
+      ]
+    }
+  ]
+}

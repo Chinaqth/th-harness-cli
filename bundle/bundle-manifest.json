@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
   "build_kind": "release",
-  "bundle_version": "1.0.0+db9ec08.3ea7d88",
-  "cli_version": "1.0.0",
-  "kernel_revision": "db9ec08718c2f13c45e3c28d07ac353dbd7bf7eb",
-  "domain_revision": "3ea7d882ae251796be96b96f80290231e58f16e0",
+  "bundle_version": "1.1.0+38405d3.6ee7122",
+  "cli_version": "1.1.0",
+  "kernel_revision": "38405d35fe6c16d7cdb960c03a026d275589da8c",
+  "domain_revision": "6ee71225947651863b48c11f1db58ae5536f6249",
   "domain_source": {
     "id": "enterprise-domain-packs",
     "repository": "git@github.com:Chinaqth/harness-engineering-domain-packs.git",
@@ -38,6 +38,22 @@
     {
       "name": "register-domain-pack",
       "source": "domains/.agents/skills/register-domain-pack"
+    },
+    {
+      "name": "backend-evaluate",
+      "source": "domains/domains/engineering/backend/skills/backend-evaluate"
+    },
+    {
+      "name": "backend-execute",
+      "source": "domains/domains/engineering/backend/skills/backend-execute"
+    },
+    {
+      "name": "backend-prepare",
+      "source": "domains/domains/engineering/backend/skills/backend-prepare"
+    },
+    {
+      "name": "backend-summarize",
+      "source": "domains/domains/engineering/backend/skills/backend-summarize"
     },
     {
       "name": "harmonyos-engineering",
@@ -90,6 +106,22 @@
     {
       "name": "hmos-init-business-module",
       "source": "domains/domains/engineering/harmonyos/skills/hmos-init-business-module"
+    },
+    {
+      "name": "ios-evaluate",
+      "source": "domains/domains/engineering/ios/skills/ios-evaluate"
+    },
+    {
+      "name": "ios-execute",
+      "source": "domains/domains/engineering/ios/skills/ios-execute"
+    },
+    {
+      "name": "ios-prepare",
+      "source": "domains/domains/engineering/ios/skills/ios-prepare"
+    },
+    {
+      "name": "ios-summarize",
+      "source": "domains/domains/engineering/ios/skills/ios-summarize"
     },
     {
       "name": "web-evaluate",
@@ -215,7 +247,7 @@
     },
     {
       "path": "domains/.agents/skills/evaluate-domain-pack/scripts/check_pack.py",
-      "sha256": "f96a4b2b1282e4391c246b0af61a31bffb33dcdafd5fcc74931f5c444a7fd875"
+      "sha256": "c0f4f1fd11159834887d7a011cb2514d029c4d49d5d6d79624303108d4719951"
     },
     {
       "path": "domains/.agents/skills/harness-audit/SKILL.md",
@@ -308,6 +340,90 @@
     {
       "path": "domains/domains/_template/workflows/WORKFLOW.md",
       "sha256": "423611d960356c4ca12cc16169fdea03c817e1f76f0c880cdd62bfa6d9f5b325"
+    },
+    {
+      "path": "domains/domains/engineering/backend/DOMAIN.md",
+      "sha256": "cd62aa00ffce1dc7508c9082a7e867f7347a5701411b48fb139e722180f88788"
+    },
+    {
+      "path": "domains/domains/engineering/backend/README-CH.md",
+      "sha256": "83664dc64025b465b6383c58a67e3bcd05e722448b821938da45bc72307043f5"
+    },
+    {
+      "path": "domains/domains/engineering/backend/capabilities.json",
+      "sha256": "fede3d35a043fd12d747c4677b61a493b5b1bf3b8a921f2be313ac987526b3c3"
+    },
+    {
+      "path": "domains/domains/engineering/backend/domain.json",
+      "sha256": "6ddce5365a991a9c0b0e134112f9fedd205595d1fae9735dc08b9bd856d4dc9a"
+    },
+    {
+      "path": "domains/domains/engineering/backend/evaluators/EVALUATOR.md",
+      "sha256": "d171cdd096ba0631818ea3eada6d5106e0a876cfb3848a844fde99248757c8f4"
+    },
+    {
+      "path": "domains/domains/engineering/backend/evidence/activation.md",
+      "sha256": "8d8623f81fcb346f6d5baf24ebc87ebd43ef9b40b9455c408317a8e0652dffda"
+    },
+    {
+      "path": "domains/domains/engineering/backend/evidence/capability-map.md",
+      "sha256": "b28dd9eabf30269bbf797f8427d99edf4e237311c990d6f0f0ea655ad3268372"
+    },
+    {
+      "path": "domains/domains/engineering/backend/evidence/responsibility-boundaries.md",
+      "sha256": "6292564dc6bba28c68b99d36ccdc257120daa0d053bf1067b749f24c0700eb5b"
+    },
+    {
+      "path": "domains/domains/engineering/backend/evidence/sources.json",
+      "sha256": "4a745eab96e51143e8d01f970cfd4666da3d0d8635491b3dad7738af27b09f70"
+    },
+    {
+      "path": "domains/domains/engineering/backend/lifecycle.json",
+      "sha256": "ae2bcb52977a1794f55a1dc78384f44b27eab842e5b96f1fd916d3a92bb75153"
+    },
+    {
+      "path": "domains/domains/engineering/backend/owners.json",
+      "sha256": "b637cd90c2928816949e7874348f0ecaf49c2a2525cb5a7e7dd231697c0c8820"
+    },
+    {
+      "path": "domains/domains/engineering/backend/routes.json",
+      "sha256": "d9f2e23d7fb0ba76e5718da92cf99b463abc787b10f561ee9f52585eefa333ea"
+    },
+    {
+      "path": "domains/domains/engineering/backend/rules/BASE.md",
+      "sha256": "558df381e0d992e218a8700e92e9981e9daa8b25276733766cef9dd09a29e359"
+    },
+    {
+      "path": "domains/domains/engineering/backend/skills/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/backend/skills/backend-evaluate/SKILL.md",
+      "sha256": "1367dd767404a8d1b41c8dbdc845e4975689778a0798886d565107b92b672e48"
+    },
+    {
+      "path": "domains/domains/engineering/backend/skills/backend-execute/SKILL.md",
+      "sha256": "89f1eb78cf65a5b606bcf023c7754a3dc2712219e24c1fce3bfd738c308f9152"
+    },
+    {
+      "path": "domains/domains/engineering/backend/skills/backend-prepare/SKILL.md",
+      "sha256": "18b16ccc83765f535fd16c5a9e1fe5b3e1274409c1a89c1ab25f1568826bac19"
+    },
+    {
+      "path": "domains/domains/engineering/backend/skills/backend-summarize/SKILL.md",
+      "sha256": "811df4bbfbb66c163a5d92a815758cf7c78ebecd68dcca2be7469f1d5f2ac5be"
+    },
+    {
+      "path": "domains/domains/engineering/backend/templates/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/backend/templates/task-evidence.md",
+      "sha256": "f3f09928d8f10dc5fb809821b7c954e29e18567b0a9822fe08c7871789ef955c"
+    },
+    {
+      "path": "domains/domains/engineering/backend/workflows/WORKFLOW.md",
+      "sha256": "5e57d940b6a6ab2c9d631967ee1479f187b381e7777810c6f9d2c989d2a57cd9"
     },
     {
       "path": "domains/domains/engineering/harmonyos/DOMAIN.md",
@@ -3450,6 +3566,90 @@
       "sha256": "6c3d9ef0fbe54871d180e802ee6343f8bf0239a74d311bb50451d457124bf4bd"
     },
     {
+      "path": "domains/domains/engineering/ios/DOMAIN.md",
+      "sha256": "7b9abcf22ffd8db8b440d2176158990b3e1c4ca87d8ae2bcf93f386ea0d45f2a"
+    },
+    {
+      "path": "domains/domains/engineering/ios/README-CH.md",
+      "sha256": "744bea010eaf9ff4f183c4a72c2eab90d36e15e29c242972b49a5e55e3f18558"
+    },
+    {
+      "path": "domains/domains/engineering/ios/capabilities.json",
+      "sha256": "7ae175d68bc6a27799a3bad841c9c8fe9fdb2a1a33f83818f1d97f326a62ddc1"
+    },
+    {
+      "path": "domains/domains/engineering/ios/domain.json",
+      "sha256": "74ad5397c5b5d002a759d1e5825e54d3777532f7c0fa7808e03b948d27d5c714"
+    },
+    {
+      "path": "domains/domains/engineering/ios/evaluators/EVALUATOR.md",
+      "sha256": "393f749a799f5fbf61c3e75fe822f245b2b7369cf33126f06073de7c7835c768"
+    },
+    {
+      "path": "domains/domains/engineering/ios/evidence/capability-map.md",
+      "sha256": "0cc262e43ada49af86f4255e6574ea6bb9ba2b66240844fe15cc31f3eabf89c0"
+    },
+    {
+      "path": "domains/domains/engineering/ios/evidence/lifecycle-v4.json",
+      "sha256": "a96be5bddc468494ce58d5895fb2faeb02efd70781450eb8704a114d9e31ef84"
+    },
+    {
+      "path": "domains/domains/engineering/ios/evidence/responsibility-boundaries.md",
+      "sha256": "7e102237334365acd232f4dad978344ffbb1c68bdf73caa11584a8a434f61783"
+    },
+    {
+      "path": "domains/domains/engineering/ios/evidence/sources.json",
+      "sha256": "0116ae9bc5bb97ecedee47912af33dbf9588eead80d36e36aec8ca13ac0fbd53"
+    },
+    {
+      "path": "domains/domains/engineering/ios/lifecycle.json",
+      "sha256": "58a98881b2d7ff53aee6b3821ba8b745710156005441035581b12930ccac1001"
+    },
+    {
+      "path": "domains/domains/engineering/ios/owners.json",
+      "sha256": "bf2fcb151d69ab3b74ea99463aa6b6c9930b8e4066ac5811176f8a9c69d62e4e"
+    },
+    {
+      "path": "domains/domains/engineering/ios/routes.json",
+      "sha256": "b9a20705bb6474bf65cf86059df1b5b1a9ff2c9be5c3d67896cf0ee718a5c47a"
+    },
+    {
+      "path": "domains/domains/engineering/ios/rules/BASE.md",
+      "sha256": "0c466878118c5cce223d49457fe0ad8883a90e83f20f828a5fec5f53cd5ebc78"
+    },
+    {
+      "path": "domains/domains/engineering/ios/skills/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/ios/skills/ios-evaluate/SKILL.md",
+      "sha256": "990badd26cea264ea99caee01bbdc1a459be78121bf094b8725ca432ad39758b"
+    },
+    {
+      "path": "domains/domains/engineering/ios/skills/ios-execute/SKILL.md",
+      "sha256": "606c6ad5e22e4a82d23b279332825ee2fe539f662fe8f82ac169b971e1311832"
+    },
+    {
+      "path": "domains/domains/engineering/ios/skills/ios-prepare/SKILL.md",
+      "sha256": "81f46cf07a0780243eb61242f66989df6ff1d780d058e51c9351296a97f4db58"
+    },
+    {
+      "path": "domains/domains/engineering/ios/skills/ios-summarize/SKILL.md",
+      "sha256": "9d327c5e4420582ff97793d4f78f8c2cac79babff402fa03cdd5243a441c79d8"
+    },
+    {
+      "path": "domains/domains/engineering/ios/templates/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "domains/domains/engineering/ios/templates/DELIVERY.md",
+      "sha256": "9a4608243119b7724fd887eee0200d182aa0944d33988a522fe4adef2ed0dc82"
+    },
+    {
+      "path": "domains/domains/engineering/ios/workflows/WORKFLOW.md",
+      "sha256": "cc9851a3c01750b6ddc0ce1b4c6f9f5064e2fc116a1e3774a7cacd4041b6b387"
+    },
+    {
       "path": "domains/domains/engineering/web/DOMAIN.md",
       "sha256": "ac18e1432e6f3bb2994633da39cc18cee906b5837a430becc31b37035c59ce39"
     },
@@ -3539,7 +3739,7 @@
     },
     {
       "path": "domains/registry/domains.json",
-      "sha256": "e7cf847c89a0c0bdae6fe0fb870a3f97cc22323c66979c1ab7cbdaea0e2f4235"
+      "sha256": "98ee538d337544d2f4de137f7e2890f7fff98ed0d93c87846af620d1c67f2236"
     },
     {
       "path": "domains/schemas/capability.schema.json",
@@ -3567,7 +3767,7 @@
     },
     {
       "path": "domains/source-provenance.json",
-      "sha256": "9d398029b8c2bcf4fd5b603ddbebd5dc171b75693c11ea4ce4f52c8527e4b9bc"
+      "sha256": "5968492cfee111287cfdd535a1cef382877e29875b4831dd6b846f1e41396a80"
     },
     {
       "path": "kernel/AGENTS.md",
@@ -3575,7 +3775,7 @@
     },
     {
       "path": "kernel/config/domain-pack-sources.json",
-      "sha256": "d0630334811fe57a34fa28458c83df4208a7eff2f8caa329970f9d3daf399406"
+      "sha256": "28a47586a702d1fc6b4de429fb8bea456bab8e788c1cc2f87419ab542addc5bb"
     },
     {
       "path": "kernel/config/protocol-versions.json",

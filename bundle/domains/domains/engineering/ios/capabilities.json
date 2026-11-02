@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.ios",
+  "capabilities": [
+    {
+      "id": "ios.native-engineering",
+      "description": "Prepare, execute, independently evaluate and summarize bounded native iOS development, review, testing, accessibility and distribution-preparation work using workflows/WORKFLOW.md and templates/DELIVERY.md. Establish actual native iOS targets and deployment compatibility before dependent actions; Swift files or task-type selection alone do not admit macOS-only, server Swift, watchOS-only or unverified-platform work. Preserve existing SwiftUI/UIKit architecture, state/lifecycle ownership and concurrency boundaries; inspect applicable persistence, networking, secrets, privacy and consent behavior. Produce scoped changes or evidence-backed findings with actual build/test/accessibility/device configurations and current independent assessment. Review, testing and distribution preparation do not inherently authorize source mutation or release. Keep simulator, physical-device, independent product and release evidence distinct; archive validation is limited screening. This single reusable lifecycle capability declares no mandatory cross-Domain capability dependency; prepare verifies actual project/task prerequisites and authority. Source IDs resolve in evidence/sources.json: [IOS-IDENTITY] [IOS-UI] [IOS-UIKIT] [IOS-STATE] [IOS-CONCURRENCY] [IOS-DATA] [IOS-NETWORK] [IOS-SECRETS] [IOS-PRIVACY] [IOS-CONSENT] [IOS-TEST] [IOS-ACCESSIBILITY] [IOS-DEVICE] [IOS-DISTRIBUTION].",
+      "task_types": [
+        "ios.native-development",
+        "ios.native-review",
+        "ios.testing",
+        "ios.accessibility",
+        "ios.distribution-preparation"
+      ],
+      "workflows": [
+        "WORKFLOW.md"
+      ],
+      "skills": [
+        "ios-prepare/SKILL.md",
+        "ios-execute/SKILL.md",
+        "ios-evaluate/SKILL.md",
+        "ios-summarize/SKILL.md"
+      ],
+      "tools": [],
+      "evaluators": [
+        "EVALUATOR.md"
+      ],
+      "permissions": [
+        "Inspect only task-authorized project source, configuration, contracts, maintained tooling and redacted evidence within the prepared scope; sensitive or privileged access requires applicable user and platform authority.",
+        "Edit local source, configuration, tests and redacted task evidence only when authorized by the actual task and applicable user/platform permissions; preserve unrelated user changes. Review-only intent requires findings without forced mutation; testing, accessibility and distribution-preparation task labels alone grant no source-edit authority.",
+        "Run only task-authorized checks using procedures and tools discovered from actual project documentation/configuration and verified available Xcode or other project tooling. Verify commands, supported configurations, data, services and destination access before dependent execution; an empty tools list promises no installed command and grants no tool access.",
+        "Signing, entitlement or provisioning changes, account/team access or changes, physical-device access or changes, archive/distribution, external mutation, publication, commit and push require actual action-specific task/user authorization and applicable platform authority. Capability selection, Domain activation and distribution preparation imply none of these permissions.",
+        "Stop only dependent actions when native admission, compatibility, required prerequisites or authority are absent or unverified; record the concrete block or needs-org-input and continue independently authorized inspection/checks. Never invent access, bypass platform controls or substitute local checks for independent, device or release acceptance."
+      ],
+      "dependencies": []
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.backend",
+  "generated_at": "2026-10-24T10:44:16Z",
+  "sources": [
+    {
+      "id": "REPO-MANIFEST",
+      "kind": "repository",
+      "title": "Registered Backend Engineering manifest",
+      "publisher": "harness-engineering-domain-packs",
+      "locator": "domains/engineering/backend/domain.json",
+      "authority": "repository-fact",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Domain engineering.backend is Backend Engineering, version 0.1.0, draft, owned by Albert, compatible with Kernel protocol 4.0.",
+        "Registered scope covers APIs, business logic, persistence, asynchronous processing, security, observability, reliability, and evidence-backed delivery; applicability and activation evidence are initially empty."
+      ]
+    },
+    {
+      "id": "REPO-REGISTRY",
+      "kind": "repository",
+      "title": "Backend Engineering registry entry",
+      "publisher": "harness-engineering-domain-packs",
+      "locator": "registry/domains.json",
+      "authority": "repository-fact",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "engineering.backend maps to domains/engineering/backend with version 0.1.0, draft status, and owner Albert."
+      ]
+    },
+    {
+      "id": "WEB-OAS",
+      "kind": "web",
+      "title": "OpenAPI Specification v3.2.1, published 10 September 2026",
+      "publisher": "OpenAPI Initiative / Linux Foundation",
+      "locator": "https://spec.openapis.org/oas/v3.2.1.html",
+      "authority": "standards-body",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "OpenAPI defines a programming-language-agnostic description of HTTP APIs.",
+        "Its objects describe paths, operations, parameters, request bodies, responses, schemas, and security requirements; it does not prescribe a server implementation language."
+      ]
+    },
+    {
+      "id": "WEB-PG-ISOLATION",
+      "kind": "web",
+      "title": "PostgreSQL 18 Documentation: Transaction Isolation",
+      "publisher": "PostgreSQL Global Development Group",
+      "locator": "https://www.postgresql.org/docs/18/transaction-iso.html",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Isolation levels have different concurrency guarantees; PostgreSQL Read Committed can observe different committed snapshots across successive statements.",
+        "Serializable execution may require retrying the complete transaction after a serialization failure; database-specific behavior must be checked."
+      ]
+    },
+    {
+      "id": "WEB-PG-MIGRATION",
+      "kind": "web",
+      "title": "PostgreSQL 18 Documentation: Modifying Tables",
+      "publisher": "PostgreSQL Global Development Group",
+      "locator": "https://www.postgresql.org/docs/18/ddl-alter.html",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Schema modification differs from data modification; table alterations include columns, constraints, defaults, and types.",
+        "Dropping a column removes its data; volatile defaults can require row updates, and constraints must be compatible with existing values."
+      ]
+    },
+    {
+      "id": "WEB-RABBITMQ",
+      "kind": "web",
+      "title": "RabbitMQ: Consumer Acknowledgements and Publisher Confirms",
+      "publisher": "RabbitMQ",
+      "locator": "https://www.rabbitmq.com/docs/confirms",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Publisher confirms and consumer acknowledgements cover distinct stages; a publisher confirmation does not prove business processing succeeded.",
+        "Acknowledgement modes affect data safety and memory pressure; negative acknowledgements can requeue, discard, or dead-letter deliveries according to configuration."
+      ]
+    },
+    {
+      "id": "WEB-AWS-RETRIES",
+      "kind": "web",
+      "title": "Timeouts, retries, and backoff with jitter, published 5 December 2019",
+      "publisher": "Amazon Web Services / Amazon Builders' Library",
+      "locator": "https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Timeouts bound waiting and resource retention; retries can amplify overload, and timeout does not prove an operation had no side effects.",
+        "Idempotency, backoff, and jitter help make retries safer; timeout values require dependency-specific evidence."
+      ]
+    },
+    {
+      "id": "WEB-OWASP",
+      "kind": "web",
+      "title": "OWASP REST Security Cheat Sheet",
+      "publisher": "OWASP Foundation",
+      "locator": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html",
+      "authority": "professional-body",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "REST services require protected transport, endpoint access control, input and content-type validation, and restrained error disclosure.",
+        "Server-side workflow state validation prevents bypass through out-of-order calls; authentication alone is insufficient.",
+        "Security audit logging and management-endpoint restrictions are part of API protection."
+      ]
+    },
+    {
+      "id": "WEB-OTEL",
+      "kind": "web",
+      "title": "OpenTelemetry Concepts: Signals, modified 10 March 2026",
+      "publisher": "OpenTelemetry",
+      "locator": "https://opentelemetry.io/docs/concepts/signals/",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Telemetry signals describe runtime system activity; OpenTelemetry collects, processes, and exports signals.",
+        "Traces describe request paths, metrics capture measurements, and logs record events; these signals provide complementary observations."
+      ]
+    },
+    {
+      "id": "WEB-SRE-TESTING",
+      "kind": "web",
+      "title": "Site Reliability Engineering, Chapter 17: Testing for Reliability",
+      "publisher": "Google",
+      "locator": "https://sre.google/sre-book/testing-reliability/",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Unit, integration, system, regression, and performance tests provide different evidence at different costs.",
+        "Hermetic test results and live production behavior differ; configuration and rollout combinations can invalidate operational assumptions."
+      ]
+    },
+    {
+      "id": "WEB-SRE-RELEASE",
+      "kind": "web",
+      "title": "The Site Reliability Workbook, Chapter 16: Canarying Releases",
+      "publisher": "Google",
+      "locator": "https://sre.google/workbook/canarying-releases/",
+      "authority": "primary",
+      "retrieved_at": "2026-10-24T10:44:16Z",
+      "claims": [
+        "Release engineering benefits from reproducible builds, automated tests and deployments, and small changes.",
+        "A canary is a partial, time-limited deployment evaluated against a control before deciding whether to continue rollout."
+      ]
+    }
+  ],
+  "capability_hypotheses": [
+    {
+      "id": "CAP-API-CONTRACTS",
+      "description": "Define and revise service contracts, request/response validation, errors, security requirements, and compatibility evidence using the repository's chosen protocol and schema tooling.",
+      "source_ids": [
+        "WEB-OAS",
+        "WEB-OWASP"
+      ]
+    },
+    {
+      "id": "CAP-BUSINESS-LOGIC",
+      "description": "Implement explicit server-side business invariants and workflow transitions, including rejection of unauthorized, invalid, and out-of-order operations.",
+      "source_ids": [
+        "WEB-OWASP",
+        "WEB-SRE-TESTING"
+      ]
+    },
+    {
+      "id": "CAP-PERSISTENCE",
+      "description": "Design bounded persistence operations and transaction boundaries; verify isolation, concurrency anomalies, and complete-transaction retry behavior against the selected database.",
+      "source_ids": [
+        "WEB-PG-ISOLATION"
+      ]
+    },
+    {
+      "id": "CAP-MIGRATIONS",
+      "description": "Plan and validate schema/data changes with existing-data checks, compatibility sequencing, destructive-change disclosure, and a recovery or forward-repair path.",
+      "source_ids": [
+        "WEB-PG-MIGRATION",
+        "WEB-SRE-RELEASE"
+      ]
+    },
+    {
+      "id": "CAP-ASYNC-PROCESSING",
+      "description": "Specify asynchronous acceptance versus processing completion, acknowledgement timing, duplicate handling, failure disposition, and bounded worker concurrency.",
+      "source_ids": [
+        "WEB-RABBITMQ",
+        "WEB-AWS-RETRIES"
+      ]
+    },
+    {
+      "id": "CAP-DEPENDENCY-RESILIENCE",
+      "description": "Bound dependency waits and retry attempts; justify timeout budgets, idempotency, backoff, and jitter using the selected client and service behavior.",
+      "source_ids": [
+        "WEB-AWS-RETRIES"
+      ]
+    },
+    {
+      "id": "CAP-SERVICE-SECURITY",
+      "description": "Apply transport, authentication integration, authorization, request validation, safe errors, audit logging, and management-surface restrictions with negative test evidence.",
+      "source_ids": [
+        "WEB-OWASP"
+      ]
+    },
+    {
+      "id": "CAP-OBSERVABILITY",
+      "description": "Instrument service requests and asynchronous work with appropriate traces, metrics, and logs, and verify that emitted signals can support diagnosis.",
+      "source_ids": [
+        "WEB-OTEL"
+      ]
+    },
+    {
+      "id": "CAP-TESTING-DELIVERY",
+      "description": "Produce reproducible, risk-appropriate unit, integration, system, concurrency, failure, and performance evidence; distinguish local tests from deployed acceptance and define monitored rollout/recovery criteria.",
+      "source_ids": [
+        "WEB-SRE-TESTING",
+        "WEB-SRE-RELEASE",
+        "WEB-PG-ISOLATION"
+      ]
+    },
+    {
+      "id": "CAP-STACK-NEUTRALITY",
+      "description": "Keep the reusable Domain independent of one language, framework, database, broker, or cloud; select concrete tools from downstream repository evidence and verify their official contracts before implementation.",
+      "source_ids": [
+        "WEB-OAS",
+        "WEB-PG-ISOLATION",
+        "WEB-RABBITMQ"
+      ]
+    }
+  ],
+  "organizational_gaps": [
+    {
+      "id": "GAP-REVIEWERS",
+      "description": "Project reviewers, service owners, security approvers, and independent acceptance authorities are unknown and must be resolved for downstream work.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-PERMISSIONS",
+      "description": "Repository, database, infrastructure, production-access, data-mutation, deployment, and publication permissions are unknown; no such permission is inferred from Domain activation.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-INTERNAL-STANDARDS",
+      "description": "Internal architecture, API compatibility rules, security baseline, data classification, retention, audit, and regulatory obligations are unknown.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-PROJECT-STACK",
+      "description": "Product language/runtime/framework versions, database/broker semantics, topology, existing service boundaries, and private architecture are unknown.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-COMMANDS",
+      "description": "Actual product build, lint, test, migration, integration-environment, rollout, and rollback commands and credentials are unknown; do not invent executable commands.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-RELIABILITY",
+      "description": "Project traffic, latency/availability objectives, capacity limits, retry budgets, alert thresholds, recovery objectives, and on-call arrangements are unknown.",
+      "required_for_activation": false
+    },
+    {
+      "id": "GAP-APPROVAL-EVIDENCE",
+      "description": "Task-specific approvals, approved scope, deployment authority, release evidence, and production acceptance are unknown; public-source research is not approval or acceptance evidence.",
+      "required_for_activation": false
+    }
+  ]
+}

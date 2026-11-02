@@ -1,0 +1,18 @@
+# Capability Map
+
+Registered scope: `engineering.ios`, iOS Engineering, owner Albert, draft version 0.1.0. It owns reusable native iOS engineering practice, delivery and independent evaluation. [IOS-IDENTITY]
+
+The following are source-supported capability hypotheses for the Pack, not claims that a product or its toolchain has been accepted.
+
+| Capability | Professional baseline | Evidence-bearing output |
+| --- | --- | --- |
+| `ios.prepare` | Inspect the actual project, scheme, run destinations, deployment target, Swift language settings, framework boundaries and dependencies. Choose SwiftUI, UIKit or interoperability according to existing architecture and availability rather than mandate one framework. [IOS-UI] [IOS-UIKIT] [IOS-STATE] [IOS-DEVICE] | Bounded plan with affected targets, state/lifecycle ownership, external dependencies, actual build/test commands, supported configurations and unresolved access needs. |
+| `ios.execute` | Deliver native views, navigation and lifecycle behavior; make model ownership and bindings explicit; use Swift concurrency with actor isolation and cancellation appropriate to the task. UIKit UI access ordinarily stays on its documented main-thread boundary. [IOS-UI] [IOS-UIKIT] [IOS-STATE] [IOS-CONCURRENCY] | Reviewable code and configuration changes tied to the plan, with reproducible implementation checks. |
+| `ios.execute` data/integration | Choose persistence against actual requirements and deployment availability; SwiftData is an available managed-persistence option, not a mandatory migration. Prefer secure URL-loading APIs, inspect ATS exceptions and distinguish client behavior from server responsibilities. [IOS-DATA] [IOS-NETWORK] | Data/integration contract, relevant persistence changes and evidence for observable success/error behavior. |
+| `ios.execute` protection/inclusion | Use appropriate Keychain storage for small secrets; inspect app/SDK privacy manifests and required-reason API applicability; request protected resources with purpose strings and denial fallback; implement and exercise relevant accessibility behavior. [IOS-SECRETS] [IOS-PRIVACY] [IOS-CONSENT] [IOS-ACCESSIBILITY] | Applicable security/privacy configuration and main-task accessibility evidence, with unverified areas identified. |
+| `ios.evaluate` | Independently assess relevant unit, integration, UI and performance behavior; exercise main tasks with accessibility settings/assistive technologies and explicit device configurations. Treat simulator coverage as distinct from physical-device verification. [IOS-TEST] [IOS-ACCESSIBILITY] [IOS-DEVICE] | Acceptance assessment with actual commands/configurations, results, evidence references and explicit pass/fail/blocked limits. |
+| `ios.summarize` | Report what changed and what the evidence establishes, including device gaps and distribution prerequisites. Archive validation is limited automated screening. [IOS-TEST] [IOS-DEVICE] [IOS-DISTRIBUTION] | Delivery handoff with result, evidence, unresolved risks, project-specific recovery information and authorized next steps. |
+
+The lifecycle names and evidence forms above are Pack design hypotheses derived from the registered remit; Apple and Swift documentation support their technical content, not the repository's lifecycle protocol. [IOS-IDENTITY] [IOS-TEST]
+
+Sources were accessed live. Apple documentation HTML exposed JavaScript stubs; corresponding official `.md` representations supplied readable primary content. No product repository, device session, private service or distribution account was evaluated. Source IDs resolve through `sources.json`.

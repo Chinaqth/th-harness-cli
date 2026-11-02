@@ -90,3 +90,7 @@ npm run check
 ## 1.0.0 本地升级
 
 Kernel 4.0、Web 2.0.0、HarmonyOS 7.0.0 使用四阶段 Domain Skill。Bundle 包含可运行的路由与任务状态脚本。`npm run bundle:build -- --development` 显式构建带内容摘要的本地开发快照；正式发布仍要求干净、已提交且匹配的来源。安装清单区分 development 与 release。任务执行问题记录并进入最终清单，无匹配 Domain 立即结束。
+
+## 1.1.0 Domain 同步
+
+从 main 分支的固定提交构建 Kernel 4.0 与 Backend、HarmonyOS、iOS、Web 四个已激活 Domain。详见 [版本同步记录](docs/LIFECYCLE_V4_RELEASE.md)。

@@ -1,7 +1,9 @@
 # Lifecycle v4 Release Synchronization
 
-CLI 1.0.0 bundles committed Kernel `db9ec08718c2f13c45e3c28d07ac353dbd7bf7eb` and Domain `3ea7d882ae251796be96b96f80290231e58f16e0` as release Bundle `1.0.0+db9ec08.3ea7d88`.
+CLI 1.1.0 bundles committed Kernel `38405d35fe6c16d7cdb960c03a026d275589da8c` and Domain `6ee71225947651863b48c11f1db58ae5536f6249` as release Bundle `1.1.0+38405d3.6ee7122`.
 
-The Kernel pin matches the Domain commit. Sources were clean during the release build. Kernel 39 tests, Domain 51 tests, and CLI 23 tests passed. Bundle verification checked 905 Runtime files. CLI tests cover isolated installation, update, rollback, managed Skill relocation, and installed routing/lifecycle behavior.
+Active Domains are engineering.backend, engineering.harmonyos, engineering.ios and engineering.web. Kernel and Domain source repositories are merged into main; the Kernel pin matches the Domain commit. Sources were clean during the release build.
 
-These are local automated checks, not independent professional acceptance or real-device validation. Source branches are `feat/lifecycle-v4`; this delivery does not merge them into main or publish to an npm registry.
+Kernel 39 tests and Domain 54 tests passed. CLI validation covers version reporting against package metadata, isolated installation, update, rollback, managed Skill relocation and installed routing/lifecycle behavior. The CLI suite and Bundle integrity check must pass before delivery.
+
+These checks do not establish real-service, real-device or independent product acceptance. This synchronization does not publish to an npm registry. The existing installer retains project-specific guidance targeting when present in its prior installation record; this release does not change that behavior.

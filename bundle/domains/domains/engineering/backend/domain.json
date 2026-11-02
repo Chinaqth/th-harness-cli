@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "id": "engineering.backend",
+  "display_name": "Backend Engineering",
+  "description": "Owns reusable server-side platform and service engineering practice, including API contracts, business logic, persistence, asynchronous processing, security, observability, reliability, and evidence-backed delivery.",
+  "version": "0.1.0",
+  "status": "active",
+  "owner": "Albert",
+  "inherits": [],
+  "applicability": {
+    "task_types": [
+      "backend.api-contract",
+      "backend.service-implementation",
+      "backend.persistence",
+      "backend.migration",
+      "backend.async-processing",
+      "backend.dependency-resilience",
+      "backend.service-security",
+      "backend.observability",
+      "backend.verification-delivery"
+    ],
+    "repository_signals": [
+      "Server-side API or service contracts with operations, payloads, validation, errors, and consumer compatibility requirements.",
+      "Service handlers or application services implementing server-side business invariants and workflow transitions.",
+      "Persistence adapters, transaction boundaries, database schemas, or schema/data migration tooling used by a backend service.",
+      "Message producers, consumers, background workers, acknowledgement handling, or dependency timeout and retry policies.",
+      "Service-side authentication integration, endpoint authorization, input validation, audit logging, or management-endpoint restrictions.",
+      "Backend request or worker instrumentation, traces, metrics, event logs, and evidence of telemetry collection.",
+      "Service integration, concurrency, failure, or performance checks and backend rollout or recovery procedures."
+    ]
+  },
+  "compatibility": {
+    "kernel_protocol_version": "4.0",
+    "statement": "Targets Kernel protocol 4.0: Kernel owns activation, exact task_type matching and priority, stage scheduling, and task state; the Domain owns prepare, execute, independent evaluate, and summarize through lifecycle.json. Repository signals describe backend evidence and are not enforced matching gates in the current Kernel. Domain preparation must verify actual backend context, selected capabilities, dependencies, and task authority before dependent execution; unknown required context stops that execution with explicit input gaps. No generic or model-native fallback is permitted when no Domain matches or selected backend context is invalid. Draft applicability does not establish activation, tool availability, permissions, or product acceptance."
+  },
+  "activation": {
+    "evidence": [
+      "evidence/activation.md",
+      "evidence/sources.json"
+    ]
+  }
+}

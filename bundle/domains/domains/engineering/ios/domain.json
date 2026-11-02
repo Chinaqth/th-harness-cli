@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "id": "engineering.ios",
+  "display_name": "iOS Engineering",
+  "description": "Owns reusable native iOS engineering practice, delivery, and independent evaluation.",
+  "version": "0.1.0",
+  "status": "active",
+  "owner": "Albert",
+  "inherits": [],
+  "applicability": {
+    "task_types": [
+      "ios.native-development",
+      "ios.native-review",
+      "ios.testing",
+      "ios.accessibility",
+      "ios.distribution-preparation"
+    ],
+    "repository_signals": [
+      "An actual Xcode project, workspace or package identifies an affected native iOS app target, with iOS SDK/deployment settings and an iPhone or iPad destination. [IOS-IDENTITY] [IOS-DEVICE]",
+      "The requested work affects SwiftUI, UIKit or their interoperability within that identified native iOS target; a .swift file or a multiplatform framework name alone does not establish iOS identity. [IOS-UI] [IOS-UIKIT]",
+      "These signals describe applicability; Kernel 4.0 currently matches the exact task_type and does not enforce signals. The ios-prepare Skill verifies actual native admission before dependent execution; macOS-only, server Swift, watchOS-only and unverified-platform scope are not admitted."
+    ]
+  },
+  "compatibility": {
+    "kernel_protocol_version": "4.0",
+    "statement": "Compatible with Kernel protocol 4.0: Kernel owns activation, matching, stage scheduling and task state; this Domain owns professional prepare, execute, independent evaluate and summarize through the existing lifecycle.json stage Skill bindings, professional rules and capabilities. No routine task-plan presentation or digest approval checkpoint applies. Task scope, user instructions and platform authorization remain binding; signing, distribution and other dependent actions require verified access and applicable task authorization. Ordinary failures are recorded and feasible independent work continues; report passed, failed, blocked and skipped coverage distinctly without converting unavailable evidence into success. Evidence in evidence/lifecycle-v4.json is historical candidate-routing and independent artifact-assessment provenance, not live activation, final Pack approval, product acceptance, physical-device verification, Runtime success or release acceptance."
+  },
+  "activation": {
+    "evidence": [
+      "evidence/lifecycle-v4.json",
+      "evidence/sources.json"
+    ]
+  }
+}

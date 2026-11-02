@@ -114,8 +114,16 @@ def check_pack(root: Path, domain_id: str, ledger_path: Path | None = None) -> d
             else (root / ledger_path).resolve()
         )
         changes_root = (root / "changes").resolve()
-        if changes_root != resolved_ledger and changes_root not in resolved_ledger.parents:
-            research_issues = ["Research ledger must be stored under changes/"]
+        evidence_root = domain_root / "evidence"
+        in_changes = changes_root in resolved_ledger.parents
+        in_evidence = (
+            domain_root.resolve() in evidence_root.resolve().parents
+            and evidence_root.resolve() in resolved_ledger.parents
+        )
+        if not in_changes and not in_evidence:
+            research_issues = [
+                "Research ledger must be stored under changes/ or the registered Domain evidence/"
+            ]
             ledger = {}
         else:
             try:

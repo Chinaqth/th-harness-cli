@@ -2,11 +2,25 @@
   "schema_version": "1.0",
   "domains": [
     {
+      "id": "engineering.backend",
+      "path": "domains/engineering/backend",
+      "version": "0.1.0",
+      "status": "active",
+      "owner": "Albert"
+    },
+    {
       "id": "engineering.harmonyos",
       "path": "domains/engineering/harmonyos",
       "version": "7.0.0",
       "status": "active",
       "owner": "platform-harmony"
+    },
+    {
+      "id": "engineering.ios",
+      "path": "domains/engineering/ios",
+      "version": "0.1.0",
+      "status": "active",
+      "owner": "Albert"
     },
     {
       "id": "engineering.web",

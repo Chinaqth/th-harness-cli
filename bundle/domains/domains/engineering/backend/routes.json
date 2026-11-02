@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "engineering.backend",
+  "routes": [
+    {
+      "id": "backend.api-contract",
+      "priority": 100,
+      "task_types": ["backend.api-contract"],
+      "signals": [
+        "Server-side API operation, payload, validation, error or security contract changes with consumer compatibility evidence. [REPO-MANIFEST] [WEB-OAS] [WEB-OWASP]"
+      ],
+      "capabilities": ["backend.api-contract"]
+    },
+    {
+      "id": "backend.service-implementation",
+      "priority": 100,
+      "task_types": ["backend.service-implementation"],
+      "signals": [
+        "Service handlers or application services enforcing approved business invariants, actor/resource access and permitted workflow transitions. [REPO-MANIFEST] [WEB-OWASP] [WEB-SRE-TESTING]"
+      ],
+      "capabilities": ["backend.service-implementation"]
+    },
+    {
+      "id": "backend.persistence",
+      "priority": 100,
+      "task_types": ["backend.persistence"],
+      "signals": [
+        "Backend persistence adapters, transaction boundaries, constraints, isolation or competing-write behavior requiring actual datastore semantics and persisted-state verification. [REPO-MANIFEST] [WEB-PG-ISOLATION]"
+      ],
+      "capabilities": ["backend.persistence"]
+    },
+    {
+      "id": "backend.migration",
+      "priority": 100,
+      "task_types": ["backend.migration"],
+      "signals": [
+        "Backend schema or data migration with existing-data impact, application compatibility sequencing, interruption handling and recovery or forward-repair rehearsal. [REPO-MANIFEST] [WEB-PG-MIGRATION] [WEB-SRE-RELEASE]"
+      ],
+      "capabilities": ["backend.migration"]
+    },
+    {
+      "id": "backend.async-processing",
+      "priority": 100,
+      "task_types": ["backend.async-processing"],
+      "signals": [
+        "Backend message producers, consumers or background workers with acceptance/completion, acknowledgement, duplicate, redelivery, poison-input or bounded in-flight work contracts. [REPO-MANIFEST] [WEB-RABBITMQ] [WEB-AWS-RETRIES]"
+      ],
+      "capabilities": ["backend.async-processing"]
+    },
+    {
+      "id": "backend.dependency-resilience",
+      "priority": 100,
+      "task_types": ["backend.dependency-resilience"],
+      "signals": [
+        "Service dependency clients with timeout, retry ownership, supplied attempt/duration/concurrency budgets, backoff, jitter or ambiguous-effect reconciliation requirements. [REPO-MANIFEST] [WEB-AWS-RETRIES]"
+      ],
+      "capabilities": ["backend.dependency-resilience"]
+    },
+    {
+      "id": "backend.service-security",
+      "priority": 100,
+      "task_types": ["backend.service-security"],
+      "signals": [
+        "Service transport, identity integration, endpoint/resource authorization, input/workflow validation, safe errors, audit logging or restricted management endpoints with negative-path verification. [REPO-MANIFEST] [WEB-OWASP]"
+      ],
+      "capabilities": ["backend.service-security"]
+    },
+    {
+      "id": "backend.observability",
+      "priority": 100,
+      "task_types": ["backend.observability"],
+      "signals": [
+        "Backend request or worker instrumentation, safe correlation, traces, metrics or event logs requiring collection/export evidence for success and failure paths. [REPO-MANIFEST] [WEB-OTEL]"
+      ],
+      "capabilities": ["backend.observability"]
+    },
+    {
+      "id": "backend.verification-delivery",
+      "priority": 100,
+      "task_types": ["backend.verification-delivery"],
+      "signals": [
+        "Backend candidate verification through risk-based integration, concurrency, failure, regression or performance checks, or rollout stop/recovery criteria with explicit authority and evidence boundaries. [REPO-MANIFEST] [WEB-SRE-TESTING] [WEB-SRE-RELEASE]"
+      ],
+      "capabilities": ["backend.verification-delivery"]
+    }
+  ]
+}
